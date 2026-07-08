@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noticias — Alcaldía Bolivariana de Guarenas</title>
+<script src="scripts/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&amp;family=Poppins:wght@400;500;600;700&amp;family=Varela+Round&amp;display=swap" rel="stylesheet">
+<script src="scripts/image-slot.js"></script>
+<script src="scripts/guarenas-store.js"></script>
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#ffffff; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:#4220e5; color:#fff; }
+  a{ color:inherit; text-decoration:none; }
+  image-slot{ display:block; width:100%; height:100%; }
+</style>
+<style>
+@property --ghue{ syntax:'<angle>'; inherits:false; initial-value:230deg; }
+@property --gba{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+@keyframes ghue{ 0%{--ghue:230deg;}33%{--ghue:352deg;}66%{--ghue:45deg;}100%{--ghue:230deg;} }
+@keyframes gbspin{ to{--gba:360deg;} }
+.glow::after{ content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; background:radial-gradient(210px circle at var(--mx,50%) var(--my,50%), hsl(var(--ghue,230) 92% 62% / .95), hsl(var(--ghue,230) 92% 62% / .35) 42%, transparent 68%); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity .3s; animation:ghue 7s linear infinite; pointer-events:none; z-index:3; }
+.glow:hover::after{ opacity:1; }
+.gborder::before{ content:""; position:absolute; inset:0; border-radius:inherit; padding:2px; background:conic-gradient(from var(--gba,0deg), #4a34ff, #7a5cff, #ff9d00, #cf142b, #4a34ff); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; animation:gbspin 4s linear infinite; pointer-events:none; z-index:4; }
+.theme-dark{ filter:invert(1) hue-rotate(180deg); background:#0d0b2e !important; }
+.theme-dark img, .theme-dark video, .theme-dark image-slot, .theme-dark .leaflet-container, .theme-dark [data-noinvert]{ filter:invert(1) hue-rotate(180deg); }
+@media (prefers-reduced-motion:reduce){ .gborder::before,.glow::after{ animation:none !important; } }
+</style>
+<script src="scripts/fx.js"></script>
+</helmet>
+<div style="font-family:Arial,Helvetica,sans-serif; color:#2a2a2e; background:#ffffff;">
+
+  <div style="background:#141238; color:#b8b5d6;">
+    <div style="max-width:1240px; margin:0 auto; padding:9px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; font-size:12.5px;">
+      <span>Municipio de Guarenas · Estado Bolivariano de Miranda</span>
+      <div style="display:flex; gap:22px;">
+        <a href="#" style-hover="color:#fff;">Directorio</a>
+        <a href="#" style-hover="color:#fff;">Transparencia</a>
+        <a href="#" style-hover="color:#fff;">Contacto</a>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex; height:3px;">
+    <div style="flex:1; background:#4220e5;"></div><div style="flex:1; background:#ea3755;"></div><div style="flex:1; background:#ff9d00;"></div>
+  </div>
+
+  <header style="position:sticky; top:0; z-index:60; background:#ffffff; border-bottom:1px solid #e8e8ec;">
+    <div style="max-width:1240px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; gap:28px;">
+      <a href="Home.dc.html" style="display:flex; align-items:center; gap:12px;">
+        <img src="assets/_compartidas/marca/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:56px; width:auto; display:block;">
+      </a>
+      <nav style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center;">
+        <a href="Gestion.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Gestión</a>
+        <a href="Tramites.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Trámites</a>
+        <a href="Noticias.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; background:linear-gradient(#efeaff,#efeaff) padding-box, linear-gradient(135deg,#4220e5,#7db0ff) border-box;">Noticias</a>
+        <a href="Identidad.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Identidad</a>
+        <a href="Info Municipal.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Info Municipal</a>
+        <a href="Aseo Urbano.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Aseo Urbano</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="Portal Admin.dc.html" aria-label="Portal de administración" title="Portal de administración" style="display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:999px; border:1px solid #dcdce2; background:#fff; color:#6a6a76; text-decoration:none; flex:none;" style-hover="background:#f4f4f6; color:#4220e5;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></a>
+        <a href="Tramites.dc.html" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fff; background:#4220e5; padding:11px 20px; border-radius:8px;" style-hover="background:#3417c4;">Trámites</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO — banner grande con foto -->
+  <section style="position:relative; min-height:440px; display:flex; align-items:flex-end; overflow:hidden; background:#0e1330;">
+    <img src="assets/_compartidas/banner-noticias.png" alt="Guarenas" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,12,32,.92) 0%, rgba(10,12,32,.55) 42%, rgba(10,12,32,.25) 100%);"></div>
+    <div style="position:relative; z-index:1; width:100%; max-width:1240px; margin:0 auto; padding:56px 32px 44px;">
+      <div style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:#c9c8e6; margin-bottom:16px;"><a href="Home.dc.html" style="color:#fff;">Inicio</a> · Política y actualidad</div>
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:28px; flex-wrap:wrap;">
+        <div>
+          <h1 style="font-family:'Lora',serif; font-weight:700; font-size:60px; line-height:1; letter-spacing:-.02em; margin:0 0 16px; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,.35);">Noticias de Guarenas</h1>
+          <p style="font-family:'Varela Round',sans-serif; font-size:17px; line-height:1.6; color:#e4e3f2; margin:0; max-width:52ch;">La actualidad de la ciudad, del país y los comunicados oficiales del alcalde.</p>
+        </div>
+        <div data-turpanel="1" style="display:inline-flex; gap:4px; border:1px solid rgba(255,255,255,.25); padding:4px; border-radius:10px; background:rgba(255,255,255,.1); backdrop-filter:blur(8px);">
+          <button onClick="{{ setCiudad }}" style="{{ tabCiudad }}">Ciudad</button>
+          <button onClick="{{ setPais }}" style="{{ tabPais }}">País</button>
+          <button onClick="{{ setAlcalde }}" style="{{ tabAlcalde }}">Alcalde</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSPAPER LEAD -->
+  <section style="max-width:1240px; margin:0 auto; padding:52px 32px 0;">
+    <div style="display:flex; align-items:center; gap:16px; padding-bottom:14px; border-bottom:2px solid #141418; margin-bottom:34px;">
+      <span style="font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#4220e5;">{{ sectionLabel }}</span>
+      <span style="flex:1; height:1px; background:#e2e2e8;"></span>
+      <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:#9a9aa0;">Edición digital · {{ edition }}</span>
+    </div>
+    <a href="#" style="display:grid; grid-template-columns:1.55fr 1fr; gap:44px; align-items:start;">
+      <div style="overflow:hidden; aspect-ratio:3/2; background:#eef0f4; border:1px solid #e6e6ea;">
+        <img src="{{ featured.img }}" alt="{{ featured.title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
+      </div>
+      <div style="border-top:3px solid #4220e5; padding-top:18px;">
+        <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#4220e5; margin-bottom:14px;">{{ featured.tag }} · {{ featured.date }}</div>
+        <h2 style="font-family:'Lora',serif; font-weight:600; font-size:39px; line-height:1.1; letter-spacing:-.01em; margin:0 0 18px; color:#141418; text-wrap:balance;">{{ featured.title }}</h2>
+        <p style="font-family:'Varela Round',sans-serif; font-size:16px; line-height:1.68; color:#4a4a52; margin:0 0 22px;">{{ featured.desc }}</p>
+        <span style="font-family:'Poppins',sans-serif; font-size:13.5px; font-weight:600; color:#4220e5; display:inline-flex; align-items:center; gap:8px; border-bottom:1.5px solid #4220e5; padding-bottom:3px;">Seguir leyendo
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </span>
+      </div>
+    </a>
+  </section>
+
+  <!-- NEWSPAPER COLUMNS -->
+  <section style="max-width:1240px; margin:0 auto; padding:46px 32px 84px;">
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:28px;">
+      <span style="font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#141418;">Más noticias</span>
+      <span style="flex:1; height:1px; background:#e2e2e8;"></span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0;">
+      <sc-for list="{{ cols }}" as="col" hint-placeholder-count="3">
+        <div style="{{ col.style }}">
+          <sc-for list="{{ col.items }}" as="n" hint-placeholder-count="2">
+            <a href="#" style="{{ n.itemStyle }}">
+              <sc-if value="{{ n.hasImg }}" hint-placeholder-val="{{ true }}">
+                <div style="{{ n.imgBox }}">
+                  <img src="{{ n.img }}" alt="{{ n.title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
+                </div>
+              </sc-if>
+              <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:#4220e5; margin-bottom:8px;">{{ n.tag }} · {{ n.date }}</div>
+              <h3 style="{{ n.titleStyle }}">{{ n.title }}</h3>
+              <sc-if value="{{ n.desc }}" hint-placeholder-val="">
+                <p style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5f5f66; margin:9px 0 0;">{{ n.desc }}</p>
+              </sc-if>
+            </a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CALENDARIO FESTIVO -->
+  <!-- REDES SOCIALES / INSTAGRAM -->
+  <section style="background:#0b1020; position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; background:radial-gradient(120% 90% at 85% 0%, rgba(66,32,229,.28), transparent 55%); pointer-events:none;"></div>
+    <div style="position:relative; max-width:1240px; margin:0 auto; padding:64px 32px 72px;">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:34px;">
+        <div>
+          <span style="font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#8ea2ff;"></span>
+          <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:36px; line-height:1.08; letter-spacing:-.02em; color:#fff; margin:12px 0 0;">Síguenos en Instagram</h2>
+          <p style="font-family:'Varela Round',sans-serif; font-size:15px; color:#aeb4d6; margin:12px 0 0; max-width:46ch;">Publicaciones y actividad del alcalde Antonio Galíndez, en contacto directo con la comunidad guarenera.</p>
+        </div>
+        <a href="https://www.instagram.com/galindezantonio/?hl=es" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:11px; background:linear-gradient(120deg,#4220e5,#7a5cff); color:#fff; font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; padding:13px 22px; border-radius:999px; box-shadow:0 16px 32px -16px rgba(66,32,229,.9);" style-hover="transform:translateY(-2px);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+          @galindezantonio
+        </a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+        <sc-for list="{{ posts }}" as="p" hint-placeholder-count="4">
+          <a href="https://www.instagram.com/galindezantonio/?hl=es" target="_blank" rel="noopener" style="display:block; border-radius:16px; overflow:hidden; background:#151b33; box-shadow:0 20px 40px -26px rgba(0,0,0,.8); transition:transform .25s;" style-hover="transform:translateY(-6px);">
+            <div style="position:relative; aspect-ratio:1/1; background:#1c2340;">
+              <image-slot id="{{ p.slot }}" placeholder="{{ p.ph }}" data-noinvert=""></image-slot>
+              <div style="position:absolute; top:10px; right:10px; width:30px; height:30px; border-radius:8px; background:rgba(11,16,32,.7); display:flex; align-items:center; justify-content:center; color:#fff; backdrop-filter:blur(4px);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+              </div>
+            </div>
+            <div style="padding:14px 15px 16px;">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:9px;">
+                <div style="width:26px; height:26px; border-radius:50%; background:linear-gradient(120deg,#4220e5,#ff9d00); flex:0 0 26px;"></div>
+                <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:12.5px; color:#fff;">galindezantonio</span>
+              </div>
+              <p style="font-family:'Varela Round',sans-serif; font-size:13px; line-height:1.5; color:#b8bee0; margin:0;">{{ p.cap }}</p>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#141238; color:#fff; position:relative; overflow:hidden;">
+    <div style="position:absolute; inset:0; z-index:0; background:radial-gradient(125% 125% at 50% 8%, rgba(15,15,17,.4) 48%, rgba(60,162,250,.22) 100%); pointer-events:none;"></div>
+    <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:40px 24px 0;">
+      <svg class="fx-texthover" viewBox="0 0 1000 170" width="100%" height="auto" style="display:block; overflow:visible; cursor:default;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="fxTxtGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0"><stop offset="0%" stop-color="#2a6fdb"></stop><stop offset="34%" stop-color="#2fb37a"></stop><stop offset="60%" stop-color="#1f8a5b"></stop><stop offset="100%" stop-color="#4aa8ff"></stop></linearGradient>
+          <radialGradient id="fxReveal" class="fx-reveal" gradientUnits="userSpaceOnUse" r="210" cx="-1000" cy="85"><stop offset="0%" stop-color="white"></stop><stop offset="100%" stop-color="black"></stop></radialGradient>
+          <mask id="fxTxtMask"><rect x="0" y="0" width="1000" height="170" fill="url(#fxReveal)"></rect></mask>
+        </defs>
+        <text x="500" y="108" text-anchor="middle" dominant-baseline="middle" style="font-family:'Poppins',sans-serif; font-weight:700; font-size:132px; letter-spacing:-.02em; fill:transparent; stroke:rgba(255,255,255,.12); stroke-width:1;">GUARENAS</text>
+        <text x="500" y="108" text-anchor="middle" dominant-baseline="middle" stroke-dasharray="4200" stroke-dashoffset="4200" style="font-family:'Poppins',sans-serif; font-weight:700; font-size:132px; letter-spacing:-.02em; fill:transparent; stroke:#4aa8ff; stroke-width:1;">GUARENAS<animate attributeName="stroke-dashoffset" from="4200" to="0" dur="3.6s" begin="0.3s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"></animate></text>
+        <text x="500" y="108" text-anchor="middle" dominant-baseline="middle" mask="url(#fxTxtMask)" style="font-family:'Poppins',sans-serif; font-weight:700; font-size:132px; letter-spacing:-.02em; fill:url(#fxTxtGrad); stroke:url(#fxTxtGrad); stroke-width:1;">GUARENAS</text>
+      </svg>
+    </div>
+    <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:36px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <img src="assets/_compartidas/marca/logo-alcaldia-white.png" alt="Alcaldía de Guarenas" style="height:46px; width:auto;">
+      </div>
+      <div style="display:flex; gap:24px; font-family:'Varela Round',sans-serif; font-size:14px; color:#b8b5d6;">
+        <a href="Home.dc.html" style-hover="color:#fff;">Inicio</a>
+        <a href="Gestion.dc.html" style-hover="color:#fff;">Gestión</a>
+        <a href="Tramites.dc.html" style-hover="color:#fff;">Trámites</a>
+      </div>
+      <span style="font-size:12.5px; color:#8f8bb5;">© 2026 Alcaldía de Guarenas</span>
+    </div>
+  </footer>
+
+</div></x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tab: 'ciudad', calM: 6, calY: 2026 };
+
+  componentDidMount(){ this._onStore = (e) => { if(!e.detail || e.detail.key === 'g_noticias') this.forceUpdate(); }; if(window.GStore) window.GStore.on(this._onStore); }
+  componentWillUnmount(){ if(window.GStore && this._onStore) window.GStore.off(this._onStore); }
+
+  MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+  HOLIDAYS = {
+    '1-1':{n:'Año Nuevo',t:'star'}, '1-6':{n:'Día de Reyes',t:'star'},
+    '2-14':{n:'Fundación de Guarenas',t:'flag'}, '2-16':{n:'Carnaval',t:'party'}, '2-17':{n:'Carnaval',t:'party'},
+    '4-2':{n:'Jueves Santo',t:'church'}, '4-3':{n:'Viernes Santo',t:'church'}, '4-19':{n:'Declaración de Independencia',t:'flag'},
+    '5-1':{n:'Día del Trabajador',t:'star'}, '6-24':{n:'Batalla de Carabobo',t:'flag'}, '6-29':{n:'Parranda de San Pedro',t:'music'},
+    '7-5':{n:'Día de la Independencia',t:'flag'}, '7-24':{n:'Natalicio de Bolívar',t:'flag'},
+    '10-12':{n:'Día de la Resistencia Indígena',t:'star'}, '12-24':{n:'Nochebuena',t:'church'}, '12-25':{n:'Navidad',t:'church'}, '12-31':{n:'Fin de Año',t:'party'},
+  };
+
+  _ico(t){
+    const p = { star:'<path d="M12 2l2.9 6.3 6.9.8-5.1 4.6 1.4 6.8L12 17.8 5.9 21.3l1.4-6.8L2.2 9.9l6.9-.8z"/>',
+      flag:'<path d="M4 22V3M4 4h13l-2 4 2 4H4"/>',
+      church:'<path d="M12 2v6M9 5h6M6 22v-9l6-3 6 3v9M9 22v-5h6v5"/>',
+      party:'<path d="M2 22l5-14 9 9-14 5zM14 8l1.5-1.5M18 4l1-1M20 9l1.5-.5"/>',
+      music:'<path d="M9 18V5l10-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>' }[t] || '';
+    return React.createElement('span',{style:{display:'inline-flex'},dangerouslySetInnerHTML:{__html:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>'}});
+  }
+
+  prevMonth = () => this.setState(s => { let m=s.calM-1, y=s.calY; if(m<0){m=11;y--;} return {calM:m,calY:y}; });
+  nextMonth = () => this.setState(s => { let m=s.calM+1, y=s.calY; if(m>11){m=0;y++;} return {calM:m,calY:y}; });
+
+  tabStyle(active){
+    const base = "border:none; cursor:pointer; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; padding:9px 18px; border-radius:7px; transition:all .15s;";
+    return active ? base + "background:#fff; color:#4220e5;" : base + "background:transparent; color:rgba(255,255,255,.85);";
+  }
+
+  renderVals(){
+    const P = {
+      plaza:'assets/_compartidas/news-plaza.png', vial:'assets/_compartidas/news-vialidad.png', salud:'assets/_compartidas/news-salud.png',
+      alumbrado:'assets/_compartidas/news-alumbrado.png', agua:'assets/_compartidas/news-agua.png', transporte:'assets/_compartidas/news-transporte.png', aerea:'assets/_compartidas/banner-noticias.png'
+    };
+    const news = {
+      ciudad: [
+        { tag:'Ciudad', date:'4 jul 2026', title:'Nueva jornada de recuperación de espacios públicos en el casco central', desc:'Cuadrillas municipales intervienen plazas y aceras para devolver el espacio a las familias guareñas.', img:'assets/_compartidas/news-brigada.png' },
+        { tag:'Ciudad', date:'2 jul 2026', title:'Rehabilitación de vías en la parroquia Guarenas', desc:'Asfaltado y bacheo en las principales arterias del municipio.', img:P.vial },
+        { tag:'Ciudad', date:'28 jun 2026', title:'Operativo de salud llega a las comunidades del sur', img:P.salud },
+        { tag:'Ciudad', date:'25 jun 2026', title:'Ampliación del alumbrado público en avenidas principales', desc:'Nuevas luminarias LED para mayor seguridad nocturna.', img:P.alumbrado },
+        { tag:'Ciudad', date:'20 jun 2026', title:'Jornada de arborización en espacios recuperados', img:P.plaza },
+        { tag:'Ciudad', date:'15 jun 2026', title:'Mejoras en la red de distribución de agua potable', desc:'Sustitución de tuberías para un servicio más estable.', img:P.agua },
+        { tag:'Ciudad', date:'10 jun 2026', title:'Nuevas rutas de transporte urbano para las comunidades', img:P.transporte },
+        { tag:'Ciudad', date:'6 jun 2026', title:'Repavimentación de calles en el este del municipio', img:P.vial },
+        { tag:'Ciudad', date:'2 jun 2026', title:'Instalación de semáforos inteligentes en el centro', img:P.alumbrado },
+        { tag:'Ciudad', date:'28 may 2026', title:'Vista aérea del avance de las obras urbanas', img:P.aerea },
+      ],
+      pais: [
+        { tag:'País', date:'5 jul 2026', title:'Municipios del país coordinan agenda de desarrollo urbano', desc:'Autoridades locales acuerdan lineamientos comunes para modernizar los servicios ciudadanos.', img:P.aerea },
+        { tag:'País', date:'1 jul 2026', title:'Nuevos convenios de cooperación entre alcaldías', desc:'Acuerdos para compartir buenas prácticas de gestión.', img:P.plaza },
+        { tag:'País', date:'27 jun 2026', title:'Programa nacional de infraestructura beneficia a Miranda', img:P.vial },
+        { tag:'País', date:'22 jun 2026', title:'Encuentro de gobiernos locales sobre transformación digital', desc:'Servicios en línea más simples para el ciudadano.', img:P.transporte },
+        { tag:'País', date:'17 jun 2026', title:'Avances del plan nacional de vialidad', img:P.vial },
+        { tag:'País', date:'12 jun 2026', title:'Foro de ciudades sostenibles reúne a municipios del país', desc:'Agua, energía y espacios verdes en la agenda.', img:P.agua },
+        { tag:'País', date:'8 jun 2026', title:'Cooperación internacional para proyectos urbanos', img:P.salud },
+        { tag:'País', date:'3 jun 2026', title:'Red de alumbrado público se moderniza en varias regiones', img:P.alumbrado },
+        { tag:'País', date:'30 may 2026', title:'Municipios impulsan planes conjuntos de movilidad', img:P.transporte },
+      ],
+      alcalde: [
+        { tag:'Alcalde', date:'6 jul 2026', title:'Comunicado del alcalde: balance de gestión del primer semestre', desc:'El alcalde presenta a la ciudadanía los avances alcanzados y los compromisos para los próximos meses.', img:P.aerea },
+        { tag:'Alcalde', date:'30 jun 2026', title:'Alcalde inaugura obras de vialidad en el municipio', desc:'Nuevas vías para conectar mejor a las comunidades.', img:P.vial },
+        { tag:'Alcalde', date:'24 jun 2026', title:'Encuentro directo del alcalde con líderes comunitarios', img:P.plaza },
+        { tag:'Alcalde', date:'18 jun 2026', title:'Mensaje del alcalde por el aniversario de la ciudad', desc:'Un llamado al orgullo y al trabajo conjunto.', img:P.salud },
+        { tag:'Alcalde', date:'12 jun 2026', title:'Supervisión de los trabajos de alumbrado público', img:P.alumbrado },
+        { tag:'Alcalde', date:'6 jun 2026', title:'Reunión con el sector comercial del municipio', desc:'Impulso a los emprendedores y comercios locales.', img:P.transporte },
+        { tag:'Alcalde', date:'1 jun 2026', title:'Anuncio del plan de recuperación de espacios deportivos', img:P.plaza },
+        { tag:'Alcalde', date:'27 may 2026', title:'El alcalde recorre las obras de agua potable', img:P.agua },
+      ],
+    };
+    const tab = this.state.tab;
+    const NEWS = (window.GStore && window.GStore.get('g_noticias')) || news;
+    const list = NEWS[tab] || [];
+    const resto = list.slice(1);
+    const sectionLabels = { ciudad:'Ciudad de Guarenas', pais:'Nacional', alcalde:'Despacho del Alcalde' };
+    // repartir en 3 columnas de periódico (round-robin); cada noticia lleva su foto
+    const buckets = [[],[],[]];
+    resto.forEach((n, i) => buckets[i % 3].push(n));
+    const cols = buckets.map((arr, ci) => {
+      const items = arr.map((n, ii) => {
+        const base = 'display:block; text-decoration:none;';
+        const itemStyle = ii === 0
+          ? base
+          : base + ' border-top:1px solid #e6e6ea; margin-top:20px; padding-top:20px;';
+        const big = ii === 0;
+        const titleStyle = 'font-family:\'Lora\',serif; font-weight:600; font-size:' + (big ? '20px' : '16.5px') + '; line-height:1.28; margin:0; color:#141418;';
+        const imgBox = 'aspect-ratio:' + (big ? '16/10' : '16/9') + '; background:#eef0f4; border:1px solid #e6e6ea; margin-bottom:13px; overflow:hidden;';
+        return { ...n, hasImg:true, big, itemStyle, titleStyle, imgBox };
+      });
+      let style = 'display:flex; flex-direction:column;';
+      if (ci === 0) style += ' padding-right:28px;';
+      else style += ' border-left:1px solid #e6e6ea; padding:0 28px;';
+      return { style, items };
+    });
+    return {
+      featured: list[0],
+      cols,
+      monthName: this.MONTHS[this.state.calM],
+      yearNum: String(this.state.calY),
+      weekdays: ['L','M','M','J','V','S','D'],
+      prevMonth: this.prevMonth,
+      nextMonth: this.nextMonth,
+      ...(() => {
+        const m = this.state.calM, y = this.state.calY;
+        const first = new Date(y, m, 1);
+        let startDow = (first.getDay() + 6) % 7; // lunes=0
+        const dim = new Date(y, m+1, 0).getDate();
+        const cells = [];
+        for(let i=0;i<startDow;i++) cells.push({ label:'', bg:'transparent', border:'0', fg:'transparent', weight:'400', icon:null, iconColor:'transparent', title:'' });
+        const evs = [];
+        for(let d=1; d<=dim; d++){
+          const key = (m+1)+'-'+d;
+          const h = this.HOLIDAYS[key];
+          if(h){
+            cells.push({ label:String(d), bg:'#eef0ff', border:'1px solid #cdbcff', fg:'#4220e5', weight:'700', icon:this._ico(h.t), iconColor:'#4220e5', title:h.n });
+            evs.push({ name:h.n, dateLabel:d+' de '+this.MONTHS[m].toLowerCase(), icon:this._ico(h.t), tint:'#eef0ff', color:'#4220e5' });
+          } else {
+            cells.push({ label:String(d), bg:'#faf7f0', border:'1px solid #ece5d6', fg:'#4a4636', weight:'500', icon:null, iconColor:'transparent', title:'' });
+          }
+        }
+        return { days: cells, monthEvents: evs, noEvents: evs.length===0 };
+      })(),
+      posts: [
+        { slot:'ig-1', ph:'Post 1', cap:'Jornada de servicios en las comunidades del municipio.' },
+        { slot:'ig-2', ph:'Post 2', cap:'Recorrido por las obras de vialidad junto a los vecinos.' },
+        { slot:'ig-3', ph:'Post 3', cap:'Encuentro con líderes comunitarios de Guarenas.' },
+        { slot:'ig-4', ph:'Post 4', cap:'Entrega de espacios recuperados para las familias.' },
+      ],
+      sectionLabel: sectionLabels[tab],
+      edition: 'Julio 2026',
+      setCiudad: () => this.setState({ tab:'ciudad' }),
+      setPais: () => this.setState({ tab:'pais' }),
+      setAlcalde: () => this.setState({ tab:'alcalde' }),
+      tabCiudad: this.tabStyle(tab==='ciudad'),
+      tabPais: this.tabStyle(tab==='pais'),
+      tabAlcalde: this.tabStyle(tab==='alcalde'),
+    };
+  }
+}
+</script>
+</body>
+</html>

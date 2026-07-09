@@ -27,7 +27,7 @@
       author: 'Antonio Galíndez',
       role: 'Alcalde de Guarenas',
       initials: 'AG',
-      photo: 'assets/Home/comunicado-alcalde.png'
+      photo: 'assets/_compartidas/comunicado-alcalde.png'
     },
 
     // ---- Noticias ----
@@ -74,7 +74,7 @@
           saint: 'San Pedro',
           title: 'Parranda de San Pedro',
           dateLabel: '28 y 29 de junio',
-          photo: 'assets/Identidad/proximo-evento.png',
+          photo: 'assets/_compartidas/proximo-evento.png',
           desc: 'Patrimonio Cultural Inmaterial de la Humanidad (UNESCO). Guarenas se viste de fiesta con levitas, sombreros de copa, banderas y la María Ignacia cargando su muñeca al ritmo del cuatro y las maracas.',
           program: [
             { time: '5:00 P.M. · Dom 28', title: 'Serenata a San Pedro', place: 'Iglesia Sagrado Corazón de Jesús (Urb. 27 de Febrero)', desc: 'Noche de cantos, fe y tambor para esperar el día del Santo.' },

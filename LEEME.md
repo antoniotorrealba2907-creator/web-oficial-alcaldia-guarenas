@@ -1,98 +1,70 @@
-# Portal Web — Alcaldía Bolivariana de Guarenas
+# Alcaldía Bolivariana de Guarenas — Portal Web
 
-Sitio web institucional. Conjunto de páginas HTML autónomas con JavaScript propio,
-imágenes reales organizadas por página y un panel de administración editable.
+Sitio estático (HTML + CSS + JavaScript). Se abre sin servidor: doble clic en
+`index.html` (redirige a `Home.dc.html`) o abre directamente cualquier página.
 
----
-
-## 1. Cómo abrir / ejecutar
-
-Sirve la carpeta con un servidor local (no la abras con doble clic `file://`,
-algunos navegadores bloquean recursos locales):
-
-```bash
-# dentro de la carpeta "Alcaldia Guarenas - Web"
-python3 -m http.server 8000
-# abre  http://localhost:8000/          (index.html redirige al Inicio)
-```
-
-**Entrada:** `index.html` → redirige a `Home.dc.html`
-
----
-
-## 2. Estructura de carpetas
+## Estructura
 
 ```
 Alcaldia Guarenas - Web/
-├── README.md / LEEME.md
-├── index.html                     ← entrada (redirige al Inicio)
+├── index.html                 → redirige al Inicio
+├── Home.dc.html               → Inicio
+├── Gestion.dc.html            → Gestión
+├── Tramites.dc.html           → Trámites en línea
+├── Noticias.dc.html           → Noticias
+├── Identidad.dc.html          → Identidad y Cultura
+├── Info Municipal.dc.html     → Información Municipal
+├── Aseo Urbano.dc.html        → Aseo Urbano
+├── Portal Admin.dc.html       → Panel de administración
+├── Fundamentos de Marca.dc.html → Sistema de diseño / manual de marca
 │
-├── Home.dc.html                   ← INICIO
-├── Gestion.dc.html                ← Gestión / obras / línea de tiempo
-├── Tramites.dc.html               ← Trámites en línea
-├── Noticias.dc.html               ← Noticias y comunicados
-├── Identidad.dc.html              ← Identidad, cultura y tradiciones
-├── Info Municipal.dc.html         ← Información del municipio + agenda
-├── Aseo Urbano.dc.html            ← Rutas de aseo, mapa y camión 360°
-├── Portal Admin.dc.html           ← Panel de administración
-├── Fundamentos de Marca.dc.html   ← Sistema de diseño (marca)
+├── scripts/                   → JavaScript y CSS compartidos
+│   ├── support.js             (runtime de las páginas)
+│   ├── fx.js                  (tema, efectos, MENÚ HAMBURGUESA móvil)
+│   ├── responsive.css         (adaptación a móvil — cargar de último)
+│   ├── guarenas-store.js      (CMS ligero: noticias, comunicado, agenda)
+│   ├── rutas-aseo.js          (rutas y horarios de recolección)
+│   └── image-slot.js          (componente de foto arrastrable)
 │
-├── scripts/                       ← todo el JavaScript
-│   ├── support.js                 · runtime de los componentes
-│   ├── guarenas-store.js          · contenido editable (noticias, comunicado, agenda)
-│   ├── rutas-aseo.js              · datos de rutas de recolección
-│   ├── image-slot.js              · arrastrar/soltar imágenes
-│   └── fx.js                      · efectos (tema, animaciones)
+├── assets/
+│   ├── _compartidas/          → imágenes usadas por varias páginas
+│   │   ├── marca/             → logos e isotipos (Alcaldía y ¡Vive Guarenas!)
+│   │   └── camion-360/        → 7 fotogramas del camión (giro 360°)
+│   ├── Home/                  → imágenes propias del Inicio
+│   ├── Gestion/               → línea de tiempo y foto de gestión
+│   ├── Tramites/              → banner de trámites
+│   ├── Identidad/             → video cultural, parranda, turismo
+│   └── Info-Municipal/        → banners de municipio, seguridad, inversión
 │
-└── assets/                        ← IMÁGENES ORGANIZADAS POR PÁGINA
-    ├── Home/                      · fotos exclusivas del Inicio
-    ├── Gestion/                   · línea de tiempo, plaza
-    ├── Tramites/                  · banner de trámites
-    ├── Identidad/                 · cultura, parranda, video, cascada
-    ├── Info-Municipal/            · municipio, seguridad, inversión
-    ├── Fundamentos-Marca/         · logos de la guía de marca
-    └── _compartidas/              · imágenes usadas por varias páginas
-        ├── marca/                 · logos institucionales (escudo, isotipo, Vive)
-        └── camion-360/            · g01–g07 (fotogramas del camión de aseo)
+└── documentos-fuente/         → PDFs originales (mapa turístico, plan, folletos)
 ```
 
-**Regla de organización:** cada imagen que usa **una sola página** vive en la carpeta de
-esa página; las que comparten **varias páginas** están en `_compartidas/`. Las páginas
-`.dc.html` permanecen juntas en la raíz porque se enlazan entre sí (menú superior).
+## Responsive (móvil)
 
----
+- **`scripts/responsive.css`** contiene TODA la adaptación móvil dentro de media
+  queries; en escritorio el diseño no cambia. Debe cargarse de último en el
+  `<head>` (después de `fx.js`). Ya está enlazado en las 9 páginas.
+- **Menú hamburguesa:** lo inyecta `fx.js` automáticamente en pantallas ≤900px.
+  No requiere marcado extra en las páginas.
+- Puntos de quiebre: ≤900px (menú), ≤760px (apila columnas y escala títulos),
+  ≤430px (ajustes finos).
 
-## 3. Sistema de diseño
+## Marca
 
-Guía visual completa en `Fundamentos de Marca.dc.html`.
+- Colores: azul-índigo `#4220e5`, rojo `#ea3755`, naranja `#ff9d00`,
+  verde Aseo `#3a7d44`. Fondo cálido `#f3ede1`.
+- Tipografías: **Poppins** (titulares) + **Varela Round** (texto).
+- El detalle completo del sistema está en `Fundamentos de Marca.dc.html`.
 
-**Colores**
-| Uso                     | Color     |
-|-------------------------|-----------|
-| Azul índigo (primario)  | `#4220e5` |
-| Rojo                    | `#ea3755` |
-| Naranja                 | `#ff9d00` |
-| Verde Aseo              | `#3a7d44` |
-| Fondo crema/cálido      | `#f3ede1` |
+## Dependencias externas (requieren internet)
 
-**Tipografía:** Poppins (títulos/UI), Varela Round (acentos), Lora (cuerpos en Noticias).
+- Google Fonts (Poppins, Varela Round).
+- Leaflet 1.9.4 (mapas de Aseo y turismo), vía unpkg.
 
-**Logos** en `assets/_compartidas/marca/` (compartidos) y `assets/Fundamentos-Marca/` (variantes de la guía).
+Para uso 100% sin conexión, descarga esas librerías y cámbialas por rutas locales.
 
----
+## Panel de administración
 
-## 4. Panel de administración
-
-`Portal Admin.dc.html` edita, sin tocar código: comunicado del alcalde, noticias,
-agenda cultural y rutas de aseo. Se guarda en el navegador (localStorage) vía
-`scripts/guarenas-store.js` y `scripts/rutas-aseo.js`. Para producción, conectar
-estos dos módulos a un backend/base de datos real.
-
----
-
-## 5. Dependencias externas (CDN — requieren internet)
-
-- **Google Fonts** (Poppins, Varela Round, Lora)
-- **Leaflet 1.9.4** + **OpenStreetMap** (mapas en Inicio y Aseo Urbano)
-
-El resto (imágenes, video, scripts) es local.
+`Portal Admin.dc.html` permite editar noticias, el comunicado del alcalde, la
+agenda cultural y las rutas de aseo. Los cambios se guardan en el navegador
+(localStorage) y se reflejan en las páginas públicas del mismo equipo/navegador.

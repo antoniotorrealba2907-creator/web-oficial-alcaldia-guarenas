@@ -94,7 +94,32 @@
     });
   }
 
-  function run() { try { tag(); addToggle(); initTram(); } catch (e) {} }
+  function initMobileNav() {
+    document.querySelectorAll('header').forEach(function (header) {
+      var nav = header.querySelector('nav');
+      if (!nav || header._mnavInit) return;
+      var bar = nav.parentNode;                 // fila: logo | nav | acciones
+      if (!bar) return;
+      header._mnavInit = true;
+      var btn = document.createElement('button');
+      btn.setAttribute('data-mnav-btn', '1');
+      btn.setAttribute('aria-label', 'Abrir menú');
+      btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path></svg>';
+      // Insertar la hamburguesa como último elemento de la barra (a la derecha)
+      bar.appendChild(btn);
+      function close() { header.classList.remove('mnav-open'); btn.setAttribute('aria-label', 'Abrir menú'); }
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = header.classList.toggle('mnav-open');
+        btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      });
+      // Cerrar al tocar un enlace o fuera del header
+      nav.addEventListener('click', function (e) { if (e.target.closest('a')) close(); });
+      document.addEventListener('click', function (e) { if (!header.contains(e.target)) close(); });
+    });
+  }
+
+  function run() { try { tag(); addToggle(); initTram(); initMobileNav(); } catch (e) {} }
   requestAnimationFrame(run);
   setInterval(run, 1200);
   document.addEventListener('DOMContentLoaded', run);

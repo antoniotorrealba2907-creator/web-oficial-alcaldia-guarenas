@@ -37,7 +37,31 @@
 @media (prefers-reduced-motion:reduce){ .gborder::before,.glow::after{ animation:none !important; } }
 </style>
 <script src="scripts/fx.js"></script>
+<link rel="stylesheet" href="scripts/responsive.css">
+
+<!-- figma-deps -->
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/Identidad/identidad-cultura.mp4">
+<meta name="ext-resource-dependency" content="assets/Identidad/identidad-hero.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/vive-guarenas-banner.mp4">
+<meta name="ext-resource-dependency" content="assets/Identidad/turismo-cascada.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-vive-white.svg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia-white.png">
+<meta name="ext-resource-dependency" content="assets/Identidad/parranda-2024-1.jpg">
+<meta name="ext-resource-dependency" content="assets/Identidad/parranda-2024-2.jpg">
+<meta name="ext-resource-dependency" content="assets/Identidad/parranda-2024-3.jpg">
+<meta name="ext-resource-dependency" content="assets/Identidad/parranda-2024-4.jpg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/proximo-evento.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/eventos-culturales.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/patrimonio.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/fiestas-patronales.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/turismo-guarenas.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-parque.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-waraira.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-casarapa.png">
+<!-- /figma-deps -->
 </helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4220E5"></rect><path d="M50 68 C36 58 30 50 30 42 a10 10 0 0 1 20 -2 a10 10 0 0 1 20 2 c0 8 -6 16 -20 26 Z" fill="#ff9d00"></path></svg></template>
 <div style="font-family:Arial,Helvetica,sans-serif; color:#2a2a2e; background:#ffffff;">
 
   <div style="background:#141238; color:#b8b5d6;">
@@ -641,7 +665,7 @@ class Component extends DCLogic {
 
   _agEv0(){
     try{ if(window.GStore){ const a = window.GStore.get('g_agenda'); if(a && a.events && a.events[0]) return a.events[0]; } }catch(e){}
-    return { title:'Parranda de San Pedro', desc:'La fiesta más querida de Guarenas y Guatire, Patrimonio Cultural Inmaterial de la Humanidad. Los parranderos salen a las calles con levitas, sombreros de copa y el rostro pintado, honrando la promesa de María Ignacia al ritmo del cuatro y las maracas.', photo:'assets/Identidad/proximo-evento.png' };
+    return { title:'Parranda de San Pedro', desc:'La fiesta más querida de Guarenas y Guatire, Patrimonio Cultural Inmaterial de la Humanidad. Los parranderos salen a las calles con levitas, sombreros de copa y el rostro pintado, honrando la promesa de María Ignacia al ritmo del cuatro y las maracas.', photo:'assets/_compartidas/proximo-evento.png' };
   }
   _agEvents(day){
     const ev = this._agEv0();

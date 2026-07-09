@@ -71,6 +71,61 @@
   .theme-dark img, .theme-dark video, .theme-dark image-slot, .theme-dark .leaflet-container, .theme-dark [data-noinvert]{ filter:invert(1) hue-rotate(180deg); }
 </style>
 <script src="scripts/fx.js"></script>
+<link rel="stylesheet" href="scripts/responsive.css">
+
+<!-- figma-deps -->
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/Home/aerea-atardecer.png">
+<meta name="ext-resource-dependency" content="assets/Home/aerea-plaza-noche.png">
+<meta name="ext-resource-dependency" content="assets/Home/aerea-ciudad.png">
+<meta name="ext-resource-dependency" content="assets/Home/silueta-guarenas.png">
+<meta name="ext-resource-dependency" content="assets/Home/acc-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/Home/alcalde.png">
+<meta name="ext-resource-dependency" content="assets/Home/tramites-hero-se-or.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/vive-guarenas-banner.mp4">
+<meta name="ext-resource-dependency" content="assets/Home/turismo-cascada-hd.jpg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-vive-white.svg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/isotipo-white.svg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/wordmark-guarenas-white.svg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia-white.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/camion-360/g01.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/camion-360/g02.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/camion-360/g03.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/camion-360/g04.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/camion-360/g05.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/camion-360/g06.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/camion-360/g07.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/news-brigada.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/news-vialidad.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/news-salud.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/news-alumbrado.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/news-transporte.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/news-agua.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/news-plaza.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/banner-noticias.png">
+<meta name="ext-resource-dependency" content="assets/Home/noticia-balance.jpg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/comunicado-alcalde.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/patrimonio.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-parque.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-waraira.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-casarapa.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/acc-tramites.png">
+<meta name="ext-resource-dependency" content="assets/Home/acc-noticias.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/acc-gestion.png">
+<meta name="ext-resource-dependency" content="assets/Home/acc-identidad.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/acc-info.png">
+<meta name="ext-resource-dependency" content="assets/Home/obra-luminarias.jpg">
+<meta name="ext-resource-dependency" content="assets/Home/obra-asfaltado.jpg">
+<meta name="ext-resource-dependency" content="assets/Home/obra-escuelas.jpg">
+<meta name="ext-resource-dependency" content="assets/Home/logro-familias.jpg">
+<meta name="ext-resource-dependency" content="assets/Home/obra-impermeabilizacion.jpg">
+<meta name="ext-resource-dependency" content="assets/Home/logro-canchas.jpg">
+<meta name="ext-resource-dependency" content="assets/Home/logro-aseo.jpg">
+<meta name="ext-resource-dependency" content="assets/Home/logro-jornada.jpg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/fiestas-patronales.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/eventos-culturales.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/turismo-guarenas.png">
+<!-- /figma-deps -->
 </helmet>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4220E5"></rect><g transform="translate(50 46)" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 24c0-9-8-15-8-15s-8 6-8 15" transform="translate(-10 -8)"></path><path d="M-22 24h44"></path><path d="M-16 24V6l16-10 16 10v18"></path><path d="M-8 24V13M0 24V13M8 24V13"></path></g><text x="50" y="86" font-family="Poppins,Arial,sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">GUARENAS</text></svg></template>
 <div id="guaRoot" style="font-family:Arial,Helvetica,sans-serif; color:#2a2a2e; background:#ffffff; overflow-x:hidden;">
@@ -764,7 +819,7 @@
 
     <!-- banda titular + accesos -->
     <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:64px 32px 40px; display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap;">
-      <h2 style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; color: #fff; margin: 0; max-width: 19ch;">Construyamos juntos <span style="white-space:nowrap">una&nbsp;<img src="assets/Home/wordmark-guarenas-white.svg" alt="Guarenas" style="height:.8em; width:auto; vertical-align:-.03em; display:inline-block;"></span> más humana</h2>
+      <h2 style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; color: #fff; margin: 0; max-width: 19ch;">Construyamos juntos <span style="white-space:nowrap">una&nbsp;<img src="assets/_compartidas/marca/wordmark-guarenas-white.svg" alt="Guarenas" style="height:.8em; width:auto; vertical-align:-.03em; display:inline-block;"></span> más humana</h2>
       <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; max-width:520px;">
         <a href="#inicio" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#141238; background:#ff9d00; padding:11px 20px; border-radius:999px;" style-hover="opacity:.9;">Inicio</a>
         <a href="#gestion" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); padding:11px 20px; border-radius:999px;" style-hover="background:rgba(255,255,255,.16);">Gestión</a>
@@ -1302,7 +1357,7 @@ class Component extends DCLogic {
       comAuthor: com.author || '',
       comRole: com.role || '',
       comInitials: com.initials || '',
-      comPhoto: com.photo || 'assets/Home/comunicado-alcalde.png',
+      comPhoto: com.photo || 'assets/_compartidas/comunicado-alcalde.png',
       comParas,
       showCom: this.showCom, hideCom: this.hideCom, openComModal: this.openComModal, closeComModal: this.closeComModal, stopProp: this.stopProp,
       doSearch: () => {

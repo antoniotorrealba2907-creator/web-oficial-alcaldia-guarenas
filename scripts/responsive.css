@@ -1,0 +1,108 @@
+/* ============================================================
+   responsive.css — adaptación móvil del portal Alcaldía de Guarenas
+   No altera el diseño de escritorio: todo vive dentro de media
+   queries. Sobrescribe estilos inline vía selectores de atributo
+   [style*="..."] + !important. Cargar de ÚLTIMO en el <helmet>.
+   NOTA: los estilos inline usan ESPACIO tras los dos puntos
+   (font-size: 54px, aspect-ratio: 2.4 / 1) — los selectores lo respetan.
+   ============================================================ */
+
+/* --- Base: evitar desbordes horizontales en cualquier ancho --- */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video, image-slot, canvas { max-width: 100%; }
+
+/* Botón hamburguesa (inyectado por fx.js) — oculto en escritorio */
+[data-mnav-btn] { display: none; }
+
+/* ============================================================
+   ≤ 900px — colapsar el menú a hamburguesa
+   ============================================================ */
+@media (max-width: 900px) {
+  header nav { display: none !important; }
+  [data-mnav-btn] {
+    display: inline-flex !important; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 12px;
+    border: 1px solid rgba(66,32,229,.18); background: #fff; color: #4220e5;
+    cursor: pointer; flex: none;
+  }
+  header.mnav-open nav {
+    display: flex !important; position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; align-items: stretch !important; gap: 2px !important;
+    background: #fff !important; border-radius: 0 0 18px 18px !important;
+    border: 1px solid #e8e8ec !important; border-top: none !important;
+    padding: 12px !important; margin: 0 !important;
+    box-shadow: 0 24px 48px -20px rgba(20,18,56,.35) !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    max-height: 78vh; overflow-y: auto; z-index: 80;
+  }
+  header.mnav-open nav a {
+    text-align: left; font-size: 16px !important; padding: 14px 16px !important;
+    border-radius: 12px !important; width: 100%;
+  }
+  header > div { position: relative; }
+}
+
+/* ============================================================
+   ≤ 760px — apilar columnas y ajustar medidas
+   ============================================================ */
+@media (max-width: 760px) {
+  /* Apilar TODAS las grillas multicolumna a una sola columna */
+  [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+
+  /* Reducir separaciones grandes */
+  [style*="gap: 44px"], [style*="gap: 48px"], [style*="gap: 52px"],
+  [style*="gap: 56px"], [style*="gap: 60px"], [style*="gap: 64px"] { gap: 24px !important; }
+
+  /* Cabecera más compacta */
+  header > div { padding: 12px 16px !important; }
+  header img[src*="logo-alcaldia"] { height: 42px !important; }
+
+  /* Hero de video: dejar de ser panorámico bajito */
+  [style*="aspect-ratio: 2.4 / 1"] { aspect-ratio: 1.15 / 1 !important; max-height: none !important; }
+
+  /* --- Escalar títulos grandes (formato con espacio) --- */
+  [style*="font-size: 150px"] { font-size: 62px !important; width: auto !important; height: auto !important; }
+  [style*="font-size: 132px"] { font-size: 58px !important; }
+  [style*="font-size: 120px"] { font-size: 56px !important; }
+  [style*="font-size: 112px"] { font-size: 54px !important; }
+  [style*="font-size: 104px"] { font-size: 52px !important; }
+  [style*="font-size: 96px"]  { font-size: 50px !important; }
+  [style*="font-size: 88px"]  { font-size: 48px !important; }
+  [style*="font-size: 80px"]  { font-size: 46px !important; }
+  [style*="font-size: 72px"]  { font-size: 44px !important; }
+  [style*="font-size: 64px"]  { font-size: 40px !important; }
+  [style*="font-size: 60px"]  { font-size: 38px !important; }
+  [style*="font-size: 56px"]  { font-size: 37px !important; }
+  [style*="font-size: 54px"]  { font-size: 36px !important; }
+  [style*="font-size: 52px"]  { font-size: 35px !important; }
+  [style*="font-size: 50px"]  { font-size: 34px !important; }
+  [style*="font-size: 48px"]  { font-size: 33px !important; }
+  [style*="font-size: 46px"]  { font-size: 32px !important; }
+  [style*="font-size: 44px"]  { font-size: 31px !important; }
+  [style*="font-size: 42px"]  { font-size: 30px !important; }
+  [style*="font-size: 40px"]  { font-size: 29px !important; }
+  [style*="font-size: 38px"]  { font-size: 28px !important; }
+  [style*="font-size: 36px"]  { font-size: 27px !important; }
+  [style*="font-size: 34px"]  { font-size: 26px !important; }
+  [style*="font-size: 32px"]  { font-size: 25px !important; }
+  [style*="font-size: 30px"]  { font-size: 24px !important; }
+
+  /* Reducir paddings verticales/horizontales muy grandes de secciones */
+  [style*="padding: 80px"] { padding: 44px 20px !important; }
+  [style*="padding: 72px"] { padding: 40px 20px !important; }
+  [style*="padding: 64px"] { padding: 38px 20px !important; }
+  [style*="padding: 60px"] { padding: 36px 18px !important; }
+  [style*="padding: 56px"] { padding: 34px 18px !important; }
+
+  /* Radios enormes de media grande */
+  [style*="border-radius: 32px"], [style*="border-radius: 28px"] { border-radius: 20px !important; }
+}
+
+/* ============================================================
+   ≤ 430px — ajustes finos
+   ============================================================ */
+@media (max-width: 430px) {
+  [style*="font-size: 150px"] { font-size: 52px !important; }
+  [style*="font-size: 132px"] { font-size: 48px !important; }
+  header img[src*="logo-alcaldia"] { height: 38px !important; }
+}

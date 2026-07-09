@@ -8,10 +8,10 @@
    ===================================================================== */
 (function () {
   var P = {
-    plaza: 'assets/_compartidas/news-plaza.png', vial: 'assets/_compartidas/news-vialidad.png',
-    salud: 'assets/_compartidas/news-salud.png', alumbrado: 'assets/_compartidas/news-alumbrado.png',
-    agua: 'assets/_compartidas/news-agua.png', transporte: 'assets/_compartidas/news-transporte.png',
-    aerea: 'assets/_compartidas/banner-noticias.png', brigada: 'assets/_compartidas/news-brigada.png'
+    plaza: 'assets/news-plaza.png', vial: 'assets/news-vialidad.png',
+    salud: 'assets/news-salud.png', alumbrado: 'assets/news-alumbrado.png',
+    agua: 'assets/news-agua.png', transporte: 'assets/news-transporte.png',
+    aerea: 'assets/banner-noticias.png', brigada: 'assets/news-brigada.png'
   };
 
   var DEFAULTS = {
@@ -27,7 +27,7 @@
       author: 'Antonio Galíndez',
       role: 'Alcalde de Guarenas',
       initials: 'AG',
-      photo: 'assets/_compartidas/comunicado-alcalde.png'
+      photo: 'assets/comunicado-alcalde.png'
     },
 
     // ---- Noticias ----
@@ -74,7 +74,7 @@
           saint: 'San Pedro',
           title: 'Parranda de San Pedro',
           dateLabel: '28 y 29 de junio',
-          photo: 'assets/_compartidas/proximo-evento.png',
+          photo: 'assets/proximo-evento.png',
           desc: 'Patrimonio Cultural Inmaterial de la Humanidad (UNESCO). Guarenas se viste de fiesta con levitas, sombreros de copa, banderas y la María Ignacia cargando su muñeca al ritmo del cuatro y las maracas.',
           program: [
             { time: '5:00 P.M. · Dom 28', title: 'Serenata a San Pedro', place: 'Iglesia Sagrado Corazón de Jesús (Urb. 27 de Febrero)', desc: 'Noche de cantos, fe y tambor para esperar el día del Santo.' },

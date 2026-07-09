@@ -106,3 +106,32 @@ img, video, image-slot, canvas { max-width: 100%; }
   [style*="font-size: 132px"] { font-size: 48px !important; }
   header img[src*="logo-alcaldia"] { height: 38px !important; }
 }
+
+/* ============================================================
+   Ajustes móviles adicionales
+   ============================================================ */
+/* Ocultar barra utilitaria superior (Municipio · Estado Bolivariano…) */
+@media (max-width: 900px) {
+  [style*="padding:9px 32px"] { display: none !important; }
+}
+
+@media (max-width: 760px) {
+  /* Franja "Guarenas en cifras" → cuadrícula 2×2 compacta */
+  [data-cifras] { grid-template-columns: 1fr 1fr !important; }
+  [data-cifras] > div { padding: 20px 14px !important; border-right: none !important; }
+  [data-cifras] > div:nth-child(odd) { border-right: 1px solid #e6e6ea !important; }
+  [data-cifras] > div:nth-child(-n+2) { border-bottom: 1px solid #e6e6ea !important; }
+  [data-cifras] div[style*="font-size:44px"] { font-size: 30px !important; }
+  [data-cifras] span[style*="margin-bottom:18px"] { margin-bottom: 10px !important; }
+
+  /* Mapa turismo: panel como hoja inferior con plegado */
+  [data-turpanel] {
+    top: auto !important; bottom: 10px !important; left: 10px !important; right: 10px !important;
+    width: auto !important; max-height: 48% !important; border-radius: 16px !important;
+    overflow: hidden !important; display: flex !important; flex-direction: column !important;
+  }
+  [data-turpanel] [data-turp-body] { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  [data-turpanel].turp-collapsed { max-height: none !important; }
+  .turp-collapsed [data-turp-body] { display: none !important; }
+}
+.turp-collapsed [data-turp-chev] { transform: rotate(180deg) !important; }

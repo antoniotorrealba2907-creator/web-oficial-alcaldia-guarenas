@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inicio — Alcaldía Bolivariana de Guarenas</title>
+<script src="scripts/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Varela+Round&amp;display=swap" rel="stylesheet">
+<script src="scripts/image-slot.js"></script>
+<script src="scripts/guarenas-store.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#ffffff; -webkit-font-smoothing:antialiased; }
+  @keyframes sc-float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-6px); } }
+  @keyframes comPulse{ 0%{ box-shadow:0 0 0 0 rgba(234,55,85,.55); } 70%{ box-shadow:0 0 0 7px rgba(234,55,85,0); } 100%{ box-shadow:0 0 0 0 rgba(234,55,85,0); } }
+  @keyframes comDown{ from{ transform:translate(-50%,-160%); opacity:0; } to{ transform:translate(-50%,0); opacity:1; } }
+  @keyframes comFade{ from{ opacity:0; } to{ opacity:1; } }
+  @keyframes comPop{ from{ transform:translateY(20px) scale(.96); opacity:0; } to{ transform:none; opacity:1; } }
+  .com-toast{ animation:comDown .45s cubic-bezier(.2,.8,.2,1) both; }
+  .com-ov{ animation:comFade .3s ease both; }
+  .com-card{ animation:comPop .42s cubic-bezier(.2,.8,.2,1) both; }
+  ::selection{ background:#4220e5; color:#fff; }
+  a{ color:inherit; text-decoration:none; }
+  input{ font-family:Arial,Helvetica,sans-serif; }
+  image-slot{ display:block; width:100%; height:100%; }
+  @keyframes albRise{ from{ opacity:0; transform:translateY(26px); } to{ opacity:1; transform:none; } }
+  @keyframes albPulse{ 0%,100%{ transform:translateX(-50%) scale(1); opacity:1; } 50%{ transform:translateX(-50%) scale(1.05); opacity:.9; } }
+  @keyframes rvUp{ from{ opacity:0; transform:translateY(38px); } to{ opacity:1; transform:none; } }
+  .rv{ animation:rvUp both linear; animation-timeline:view(); animation-range:entry 4% cover 24%; }
+  @keyframes marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @keyframes barGrow{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+  .statbar{ transform-origin:left; animation:barGrow both linear; animation-timeline:view(); animation-range:entry 12% cover 42%; }
+  @keyframes coinSpin{ from{ transform:rotateY(0deg); } to{ transform:rotateY(360deg); } }
+  @keyframes coinFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+  .coin3d{ animation:coinSpin 6s linear infinite; transform-style:preserve-3d; }
+  .coin3d:hover{ animation-duration:2.2s; }
+  .coin-face{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; border-radius:50%; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+  @media (prefers-reduced-motion:reduce){ .rv{ animation:none !important; } .tram-track{ animation:none !important; } .coin3d{ animation:none !important; } }
+  @keyframes kbSlide{ 0%{ opacity:0; transform:scale(1.08); } 6%{ opacity:1; } 30%{ opacity:1; } 36%{ opacity:0; } 100%{ opacity:0; transform:scale(1.16); } }
+  .kb{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; animation:kbSlide 18s ease-in-out infinite; will-change:opacity,transform; }
+  .kb.k1{ animation-delay:0s; }
+  .kb.k2{ animation-delay:6s; }
+  .kb.k3{ animation-delay:12s; }
+  @keyframes kbTitleIn{ from{ opacity:0; transform:translateY(16px); letter-spacing:.02em; } to{ opacity:1; transform:none; letter-spacing:0; } }
+  @media (prefers-reduced-motion:reduce){ .kb{ animation:none !important; opacity:1; } .kb.k2,.kb.k3{ opacity:0; } }
+  @keyframes drawLine{ from{ clip-path:inset(0 100% 0 0); } to{ clip-path:inset(0 0 0 0); } }
+  @keyframes drawSweep{ 0%{ clip-path:inset(0 100% 0 0); } 100%{ clip-path:inset(0 0 0 0); } }
+  .drawauto{ animation:drawSweep 3s cubic-bezier(.45,0,.15,1) .35s both; }
+  @media (prefers-reduced-motion:reduce){ .drawauto{ animation:none !important; } }
+  .drawline{ animation:drawLine linear both; animation-timeline:view(); animation-range:entry 0% cover 45%; }
+  [data-tramscroll]::-webkit-scrollbar{ display:none; }
+  [data-tramscroll] a, [data-tramscroll] .tram-track > div{ user-select:none; }
+  @property --ghue{ syntax:'<angle>'; inherits:false; initial-value:230deg; }
+  @keyframes ghue{ 0%{ --ghue:230deg; } 33%{ --ghue:352deg; } 66%{ --ghue:45deg; } 100%{ --ghue:230deg; } }
+  .glow::after{ content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; background:radial-gradient(210px circle at var(--mx,50%) var(--my,50%), hsl(var(--ghue,230) 92% 62% / .95), hsl(var(--ghue,230) 92% 62% / .35) 42%, transparent 68%); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity .3s; animation:ghue 7s linear infinite; pointer-events:none; z-index:3; }
+  .glow:hover::after{ opacity:1; }
+  @property --gba{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+  @keyframes gbspin{ to{ --gba:360deg; } }
+  .gborder::before{ content:""; position:absolute; inset:0; border-radius:inherit; padding:2px; background:conic-gradient(from var(--gba,0deg), #2f169e, #4a34ff, #7a5cff, #a99bff, #4a34ff, #2f169e); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; animation:gbspin 4s linear infinite; pointer-events:none; z-index:4; }
+  @media (prefers-reduced-motion:reduce){ .gborder::before{ animation:none !important; } }
+  .theme-dark{ filter:invert(1) hue-rotate(180deg); background:#0d0b2e !important; }
+  .theme-dark img, .theme-dark video, .theme-dark image-slot, .theme-dark .leaflet-container, .theme-dark [data-noinvert]{ filter:invert(1) hue-rotate(180deg); }
+</style>
+<script src="scripts/fx.js"></script>
+<link rel="stylesheet" href="scripts/responsive.css">
+
+<!-- figma-deps -->
+<meta name="ext-resource-dependency" content="assets/logo-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/aerea-atardecer.png">
+<meta name="ext-resource-dependency" content="assets/aerea-plaza-noche.png">
+<meta name="ext-resource-dependency" content="assets/aerea-ciudad.png">
+<meta name="ext-resource-dependency" content="assets/silueta-guarenas.png">
+<meta name="ext-resource-dependency" content="assets/silueta-lineas.svg">
+<meta name="ext-resource-dependency" content="assets/acc-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/alcalde.png">
+<meta name="ext-resource-dependency" content="assets/enlace-gobierno.png">
+<meta name="ext-resource-dependency" content="assets/enlace-miranda.png">
+<meta name="ext-resource-dependency" content="assets/logo-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/tramites-hero-se-or.png">
+<meta name="ext-resource-dependency" content="assets/vive-guarenas-banner.mp4">
+<meta name="ext-resource-dependency" content="assets/turismo-cascada-hd.jpg">
+<meta name="ext-resource-dependency" content="assets/logo-vive-white.svg">
+<meta name="ext-resource-dependency" content="assets/isotipo-white.svg">
+<meta name="ext-resource-dependency" content="assets/wordmark-guarenas-white.svg">
+<meta name="ext-resource-dependency" content="assets/logo-alcaldia-white.png">
+<meta name="ext-resource-dependency" content="assets/truck360/g01.png">
+<meta name="ext-resource-dependency" content="assets/truck360/g02.png">
+<meta name="ext-resource-dependency" content="assets/truck360/g03.png">
+<meta name="ext-resource-dependency" content="assets/truck360/g04.png">
+<meta name="ext-resource-dependency" content="assets/truck360/g05.png">
+<meta name="ext-resource-dependency" content="assets/truck360/g06.png">
+<meta name="ext-resource-dependency" content="assets/truck360/g07.png">
+<meta name="ext-resource-dependency" content="assets/news-brigada.png">
+<meta name="ext-resource-dependency" content="assets/news-vialidad.png">
+<meta name="ext-resource-dependency" content="assets/news-salud.png">
+<meta name="ext-resource-dependency" content="assets/news-alumbrado.png">
+<meta name="ext-resource-dependency" content="assets/news-transporte.png">
+<meta name="ext-resource-dependency" content="assets/news-agua.png">
+<meta name="ext-resource-dependency" content="assets/news-plaza.png">
+<meta name="ext-resource-dependency" content="assets/banner-noticias.png">
+<meta name="ext-resource-dependency" content="assets/noticia-balance.jpg">
+<meta name="ext-resource-dependency" content="assets/comunicado-alcalde.png">
+<meta name="ext-resource-dependency" content="assets/patrimonio.png">
+<meta name="ext-resource-dependency" content="assets/tur-parque.png">
+<meta name="ext-resource-dependency" content="assets/tur-waraira.png">
+<meta name="ext-resource-dependency" content="assets/tur-casarapa.png">
+<meta name="ext-resource-dependency" content="assets/acc-tramites.png">
+<meta name="ext-resource-dependency" content="assets/acc-noticias.png">
+<meta name="ext-resource-dependency" content="assets/acc-gestion.png">
+<meta name="ext-resource-dependency" content="assets/acc-identidad.png">
+<meta name="ext-resource-dependency" content="assets/acc-info.png">
+<meta name="ext-resource-dependency" content="assets/obra-luminarias.jpg">
+<meta name="ext-resource-dependency" content="assets/obra-asfaltado.jpg">
+<meta name="ext-resource-dependency" content="assets/obra-escuelas.jpg">
+<meta name="ext-resource-dependency" content="assets/logro-familias.jpg">
+<meta name="ext-resource-dependency" content="assets/obra-impermeabilizacion.jpg">
+<meta name="ext-resource-dependency" content="assets/logro-canchas.jpg">
+<meta name="ext-resource-dependency" content="assets/logro-aseo.jpg">
+<meta name="ext-resource-dependency" content="assets/logro-jornada.jpg">
+<meta name="ext-resource-dependency" content="assets/fiestas-patronales.png">
+<meta name="ext-resource-dependency" content="assets/eventos-culturales.png">
+<meta name="ext-resource-dependency" content="assets/turismo-guarenas.png">
+<!-- /figma-deps -->
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4220E5"></rect><g transform="translate(50 46)" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 24c0-9-8-15-8-15s-8 6-8 15" transform="translate(-10 -8)"></path><path d="M-22 24h44"></path><path d="M-16 24V6l16-10 16 10v18"></path><path d="M-8 24V13M0 24V13M8 24V13"></path></g><text x="50" y="86" font-family="Poppins,Arial,sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">GUARENAS</text></svg></template>
+<div id="guaRoot" style="font-family:Arial,Helvetica,sans-serif; color:#2a2a2e; background:#ffffff; overflow-x:clip;">
+
+  <!-- UTILITY BAR -->
+  <div style="background:#141238; color:#b8b5d6;">
+    <div style="max-width:1240px; margin:0 auto; padding:9px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; font-size:12.5px;">
+      <span style="letter-spacing:.02em;">Municipio de Guarenas · Estado Bolivariano de Miranda</span>
+      <div style="display:flex; gap:22px;">
+        <a href="#" style-hover="color:#fff;">Directorio</a>
+        <a href="#" style-hover="color:#fff;">Transparencia</a>
+        <a href="#" style-hover="color:#fff;">Contacto</a>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex; height:3px; width:100%;">
+    <div style="flex:1; background:#ff9d00;"></div>
+    <div style="flex:1; background:#4220e5;"></div>
+    <div style="flex:1; background:#ea3755;"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header style="position:sticky; top:0; z-index:60; background:#ffffff; border-bottom:1px solid #e8e8ec;">
+    <div style="max-width:1240px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:28px;">
+      <div style="display:flex; align-items:center;">
+        <img src="assets/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:56px; width:auto; display:block;">
+      </div>
+      <nav style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; justify-content:center; background:rgba(255,255,255,.5); backdrop-filter:blur(16px) saturate(1.4); -webkit-backdrop-filter:blur(16px) saturate(1.4); border:1px solid rgba(66,32,229,.14); border-radius:999px; padding:6px; box-shadow:0 10px 30px -16px rgba(20,18,56,.28), inset 0 1px 0 rgba(255,255,255,.6);">
+        <a href="Gestion.dc.html" style="font-size:13.5px; font-weight:600; padding:9px 18px; border-radius:999px; color:#4220e5; transition:background .2s, color .2s;" style-hover="background:linear-gradient(135deg,#4a34ff,#3ca2fa); color:#fff;">Gestión</a>
+        <a href="Tramites.dc.html" style="font-size:13.5px; font-weight:600; padding:9px 18px; border-radius:999px; color:#4220e5; transition:background .2s, color .2s;" style-hover="background:linear-gradient(135deg,#4a34ff,#3ca2fa); color:#fff;">Trámites</a>
+        <a href="Noticias.dc.html" style="font-size:13.5px; font-weight:600; padding:9px 18px; border-radius:999px; color:#4220e5; transition:background .2s, color .2s;" style-hover="background:linear-gradient(135deg,#4a34ff,#3ca2fa); color:#fff;">Noticias</a>
+        <a href="Identidad.dc.html" style="font-size:13.5px; font-weight:600; padding:9px 18px; border-radius:999px; color:#4220e5; transition:background .2s, color .2s;" style-hover="background:linear-gradient(135deg,#4a34ff,#3ca2fa); color:#fff;">Identidad</a>
+        <a href="Info Municipal.dc.html" style="font-size:13.5px; font-weight:600; padding:9px 18px; border-radius:999px; color:#4220e5; transition:background .2s, color .2s;" style-hover="background:linear-gradient(135deg,#4a34ff,#3ca2fa); color:#fff;">Info Municipal</a>
+        <a href="Aseo Urbano.dc.html" style="font-size:13.5px; font-weight:600; padding:9px 18px; border-radius:999px; color:#4220e5; transition:background .2s, color .2s;" style-hover="background:linear-gradient(135deg,#2f8a4e,#5bbf6a); color:#fff;">Aseo Urbano</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="Portal Admin.dc.html" aria-label="Portal de administración" title="Portal de administración" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:999px; border:1px solid #dcdce2; background:#fff; color:#6a6a76; flex:none; text-decoration:none;" style-hover="background:#f4f4f6; color:#4220e5;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        </a>
+        <button onClick="{{ doSearch }}" aria-label="Buscar" title="Buscar" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:999px; border:1px solid #dcdce2; background:#fff; cursor:pointer; color:#4220e5; flex:none;" style-hover="background:#f4f4f6;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        </button>
+        <sc-if value="{{ comActive }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ showCom }}" aria-label="Comunicado importante del alcalde" title="Comunicado importante" style="position:relative; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:999px; border:1px solid #dcdce2; background:#fff; cursor:pointer; color:#4220e5; flex:none;" style-hover="background:#f4f4f6;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>
+          <span style="position:absolute; top:6px; right:7px; width:9px; height:9px; border-radius:50%; background:#ea3755; border:2px solid #fff; animation:comPulse 1.6s ease-out infinite;"></span>
+        </button>
+        </sc-if>
+      </div>
+    </div>
+  </header>
+
+  <!-- TOAST COMUNICADO (aparece arriba y se desvanece) -->
+  <sc-if value="{{ comShow }}" hint-placeholder-val="{{ false }}">
+  <div class="com-toast" style="position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:400; display:flex; align-items:center; gap:14px; width:min(560px,92vw); padding:13px 16px; border-radius:15px; background:linear-gradient(120deg,#161234,#2f169e); color:#fff; box-shadow:0 24px 60px -24px rgba(20,18,56,.75); cursor:pointer;" onClick="{{ openComModal }}">
+    <span style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg,#ff9d00,#ffb84d);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#161234" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg></span>
+    <div style="flex:1;">
+      <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:14px; color:#fff;">Comunicado importante</div>
+      <div style="font-family:'Varela Round',sans-serif; font-size:12.5px; color:#c9c4ec;">Mensaje del alcalde · toca para verlo</div>
+    </div>
+    <button onClick="{{ hideCom }}" aria-label="Descartar" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:999px; border:none; background:rgba(255,255,255,.14); color:#fff; cursor:pointer;" style-hover="background:rgba(255,255,255,.26);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+  </div>
+  </sc-if>
+
+  <!-- MODAL COMUNICADO ESPECIAL -->
+  <sc-if value="{{ comModal }}" hint-placeholder-val="{{ false }}">
+  <div class="com-ov" style="position:fixed; inset:0; z-index:500; display:flex; align-items:center; justify-content:center; padding:24px; background:rgba(10,8,30,.62); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);" onClick="{{ closeComModal }}">
+    <div class="com-card" style="position:relative; width:min(560px,94vw); background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 40px 100px -30px rgba(10,8,30,.7);" onClick="{{ stopProp }}">
+      <button onClick="{{ closeComModal }}" aria-label="Cerrar" style="position:absolute; top:16px; right:16px; z-index:2; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:999px; border:none; background:rgba(255,255,255,.9); color:#161234; cursor:pointer; box-shadow:0 6px 18px -6px rgba(0,0,0,.4);" style-hover="background:#fff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+      <div style="position:relative; overflow:hidden; background:#161234; padding:34px 40px 30px; color:#fff;">
+        <img src="{{ comPhoto }}" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.55;">
+        <div style="position:absolute; inset:0; background:linear-gradient(115deg, rgba(22,18,52,.96) 0%, rgba(47,22,158,.82) 55%, rgba(66,32,229,.55) 100%);"></div>
+        <div style="position:absolute; top:-50px; right:-30px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(255,157,0,.32),transparent 70%); pointer-events:none;"></div>
+        <span style="position:relative; display:inline-flex; align-items:center; gap:9px; font-family:'Poppins',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:#ffd08a; margin-bottom:16px;">{{ comEyebrow }}</span>
+        <h2 style="position:relative; font-family:'Poppins',sans-serif; font-weight:700; font-size:27px; line-height:1.18; letter-spacing:-.01em; margin:0;">{{ comTitle }}</h2>
+      </div>
+      <div style="padding:30px 40px 34px;">
+        <sc-for list="{{ comParas }}" as="para" hint-placeholder-count="2">
+          <p style="{{ para.style }}">{{ para.text }}</p>
+        </sc-for>
+        <div style="display:flex; align-items:center; gap:13px; padding-top:18px; border-top:1px solid #ececf1;">
+          <span style="width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,#4a34ff,#3ca2fa); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:16px;">{{ comInitials }}</span>
+          <div>
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:14.5px; color:#161234;">{{ comAuthor }}</div>
+            <div style="font-family:'Varela Round',sans-serif; font-size:13px; color:#8a8698;">{{ comRole }}</div>
+          </div>
+          <a href="Noticias.dc.html" style="margin-left:auto; display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-weight:700; font-size:13.5px; color:#fff; background:#4220e5; padding:12px 22px; border-radius:10px;" style-hover="background:#3417c4;">Ver noticias
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- HERO: BIG VIDEO -->
+  <section id="inicio" style="width:100%; margin:0; padding:0;">
+    <div class="rv" style="position:relative; width:100%; aspect-ratio:2.4/1; max-height:440px; overflow:hidden; background:#0d0b2e; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px;">
+      <img class="kb k1" src="assets/aerea-atardecer.png" alt="Vista aérea de Guarenas al atardecer">
+      <img class="kb k2" src="assets/aerea-plaza-noche.png" alt="Plaza de Guarenas iluminada de noche">
+      <img class="kb k3" src="assets/aerea-ciudad.png" alt="Panorámica aérea de la ciudad de Guarenas">
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,11,46,.35) 0%, rgba(13,11,46,.15) 42%, rgba(13,11,46,.72) 100%);"></div>
+      <span style="position:absolute; top:20px; left:20px; z-index:2; display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#0d0b2e; background:#fff; padding:7px 13px; border-radius:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4220e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"></rect><path d="m16 10 6-3v10l-6-3z"></path></svg>
+        Guarenas
+      </span>
+      <div style="position:relative; z-index:2; text-align:center; padding:0 24px; animation:kbTitleIn 1.1s cubic-bezier(.2,.8,.2,1) both;">
+        <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(30px,5vw,58px); line-height:1.02; color:#fff; letter-spacing:-.02em; text-shadow:0 6px 30px rgba(0,0,0,.45); text-wrap:balance;">Guarenas más cerca de si</div>
+        <div style="font-family:'Varela Round',sans-serif; font-size:clamp(14px,1.6vw,18px); color:#f0eeff; margin-top:12px; text-shadow:0 2px 14px rgba(0,0,0,.5);">La ciudad que construimos juntos, cada día</div>
+      </div>
+    </div>
+
+    <!-- SILUETA GUARENAS -->
+    <div data-noborder="" style="width:100vw; margin-left:calc(50% - 50vw); padding:36px 0 8px; display:flex; justify-content:center;">
+      <img src="assets/silueta-lineas.svg" alt="Silueta de Guarenas — iglesia, estatua ecuestre de Ambrosio Plaza y árboles" class="drawauto" style="width:100%; height:auto; display:block; opacity:.9;">
+    </div>
+
+    <!-- GESTION EN CIFRAS (strip) -->
+    <div class="rv" style="max-width:1240px; margin:12px auto 0; padding:0 32px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+        <span style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#4220e5; font-weight:700;">Gestión en cifras</span>
+        <span style="flex:1; height:1px; background:linear-gradient(90deg, rgba(66,32,229,.18), rgba(66,32,229,0));"></span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:28px;">
+        <sc-for list="{{ cifras }}" as="c" hint-placeholder-count="5">
+          <div style="padding:2px 0;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="display:inline-flex; color:#4220e5;">{{ c.iconNode }}</span>
+              <span style="font-family:'Poppins',sans-serif; font-weight:700; font-size:32px; line-height:1; letter-spacing:-.02em; color:#161624;"><span class="countnum" data-to="{{ c.to }}" data-pre="{{ c.pre }}" data-suf="{{ c.suf }}">{{ c.pre }}0{{ c.suf }}</span></span>
+            </div>
+            <div style="font-family:'Varela Round',sans-serif; font-size:13px; line-height:1.45; color:#77777e; margin-top:8px;">{{ c.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- INFO BELOW VIDEO -->
+    <div style="max-width:1240px; margin:0 auto; padding:44px 32px 8px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+        <span style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#4220e5; font-weight:700;">Alcaldía de Guarenas</span>
+      </div>
+      <h1 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:46px; line-height:1.08; letter-spacing:-.02em; margin:0; color:#1c1c1f;">Una Guarenas <span style="color:#4220e5;">más humana</span></h1>
+      <p style="font-family:'Varela Round',sans-serif; font-size:16px; line-height:1.65; color:#5f5f66; margin:16px 0 0; max-width:60ch;">Un portal pensado para ti: encuentra en un solo lugar los trámites, las noticias, la gestión y la identidad del municipio. Accede rápido a lo que necesitas y mantente al día con todo lo que construimos, cada día, por nuestra querida Guarenas.</p>
+    </div>
+  </section>
+
+  <!-- ACCESOS RAPIDOS -->
+  <section style="max-width:1240px; margin:28px auto 0; padding:0 32px;">
+    <div class="rv" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+      <a href="Gestion.dc.html" style="position:relative; display:block; border-radius:16px; overflow:hidden; background:#eef0f4; min-height:210px; transition:box-shadow .3s, transform .3s;" style-hover="box-shadow:0 22px 50px -26px rgba(20,18,56,.55); transform:translateY(-3px);">
+        <image-slot id="acceso-foto" shape="rounded" radius="16" placeholder="Foto del equipo de la Alcaldía" src="assets/acc-alcaldia.png"></image-slot>
+        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,18,56,.85), rgba(20,18,56,.05) 60%); pointer-events:none;"></div>
+        <div style="position:absolute; left:0; right:0; bottom:0; padding:22px; display:flex; align-items:center; justify-content:space-between; gap:12px; pointer-events:none;">
+          <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:17px; color:#fff;">¿Cómo trabaja tu Alcaldía?</span>
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; background:#ffffff; color:#4220e5; flex:0 0 auto;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </span>
+        </div>
+      </a>
+      <sc-for list="{{ accesos }}" as="a" hint-placeholder-count="5">
+        <a href="{{ a.href }}" style="position:relative; display:block; border-radius:16px; overflow:hidden; background:#eef0f4; min-height:210px; transition:box-shadow .3s, transform .3s;" style-hover="box-shadow:0 22px 50px -26px rgba(20,18,56,.55); transform:translateY(-3px);">
+          <image-slot id="{{ a.slot }}" shape="rounded" radius="16" placeholder="{{ a.ph }}" src="{{ a.src }}"></image-slot>
+          <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,18,56,.9), rgba(20,18,56,.35) 48%, rgba(20,18,56,.05) 78%); pointer-events:none;"></div>
+          <span style="position:absolute; top:16px; left:16px; display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.92); color:#4220e5; box-shadow:0 8px 20px -8px rgba(20,18,56,.4); pointer-events:none;">{{ a.icon }}</span>
+          <div style="position:absolute; left:0; right:0; bottom:0; padding:22px; pointer-events:none;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:6px;">
+              <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:18px; color:#fff;">{{ a.label }}</span>
+              <span style="display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.16); color:#fff; flex:0 0 auto;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </span>
+            </div>
+            <span style="display:block; font-family:'Varela Round',sans-serif; font-size:13px; line-height:1.5; color:rgba(255,255,255,.82);">{{ a.hint }}</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CONTADOR DIAS DE GESTION -->
+  <section style="margin:64px 0 0; padding:0;">
+    <div style="position:relative; background:#4220e5; overflow:hidden;">
+      <!-- fondo editorial: base profunda + spotlight -->
+      <div style="position:absolute; inset:0; background:linear-gradient(135deg,#3a1fd0 0%,#4220e5 42%,#2a1298 100%); pointer-events:none;"></div>
+      <div style="position:absolute; left:50%; top:54%; transform:translate(-50%,-50%); width:640px; height:640px; border-radius:50%; background:radial-gradient(circle, rgba(122,98,255,.7) 0%, rgba(70,42,190,0) 62%); pointer-events:none;"></div>
+      <div style="position:absolute; right:-140px; bottom:-180px; width:520px; height:520px; border-radius:50%; border:1.5px solid rgba(255,255,255,.08); pointer-events:none;"></div>
+
+      <!-- hashtags top con separadores -->
+      <div style="position:relative; max-width:1240px; margin:0 auto; display:flex; align-items:center; gap:18px; padding:18px 44px 0; font-family:'Poppins',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:#fff;">
+        <span style="white-space:nowrap;">#UnaGuarenasMásHumana</span>
+        <span style="flex:1; height:1.5px; background:rgba(255,255,255,.25);"></span>
+        <span style="white-space:nowrap; color:#ff9d00;">#UnaGuarenasMásLimpia</span>
+        <span style="flex:1; height:1.5px; background:rgba(255,255,255,.25);"></span>
+        <span style="white-space:nowrap;">#UnaGuarenasMásCiudad</span>
+      </div>
+
+      <div class="alc-grid" style="position:relative; max-width:1240px; margin:0 auto; display:grid; grid-template-columns:0.8fr auto 1.15fr; gap:44px; align-items:center; padding:12px 40px 0; animation:albRise linear both; animation-timeline:view(); animation-range:entry 5% cover 38%;">
+        <!-- contador -->
+        <div style="text-align:left; justify-self:start; position:relative; padding-left:12px;">
+          <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:150px; line-height:.9; color:#fff; letter-spacing:-.05em; text-shadow:0 12px 34px rgba(0,0,0,.25);">{{ dias }}</div>
+          <div style="width:76px; height:5px; background:#ff9d00; border-radius:999px; margin:14px 0 0;"></div>
+          <div style="display:inline-block; font-family:'Poppins',sans-serif; font-weight:600; font-size:26px; letter-spacing:.14em; text-transform:uppercase; color:#c9beff; margin-top:16px;">Días de gestión</div>
+          <div style="display:flex; gap:10px; margin-top:22px;">
+            <div style="text-align:center; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); border-radius:12px; padding:10px 16px; min-width:66px;">
+              <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:30px; line-height:1; color:#fff;">{{ gAnios }}</div>
+              <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#c9beff; margin-top:6px;">Años</div>
+            </div>
+            <div style="text-align:center; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); border-radius:12px; padding:10px 16px; min-width:66px;">
+              <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:30px; line-height:1; color:#fff;">{{ gMeses }}</div>
+              <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#c9beff; margin-top:6px;">Meses</div>
+            </div>
+            <div style="text-align:center; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); border-radius:12px; padding:10px 16px; min-width:66px;">
+              <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:30px; line-height:1; color:#ff9d00;">{{ gDiasR }}</div>
+              <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#c9beff; margin-top:6px;">Días</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- foto editorial con iluminación -->
+        <div style="position:relative; align-self:end; display:flex; justify-content:center;">
+          <div style="position:absolute; bottom:-120px; left:50%; transform:translateX(-50%); width:440px; height:440px; border-radius:50%; background:radial-gradient(circle at 50% 38%, #6a4cff 0%, #341a9e 54%, rgba(34,16,122,0) 100%); animation:albPulse 5.5s ease-in-out infinite;"></div>
+          <img src="assets/alcalde.png" alt="El Alcalde de Guarenas" style="position:relative; height:426px; width:auto; display:block; margin-top:-16px; filter:contrast(1.12) saturate(1.08) brightness(.97) drop-shadow(-16px 12px 30px rgba(18,8,80,.6));">
+        </div>
+
+        <!-- lema editorial -->
+        <div style="display:flex; flex-direction:column; align-items:flex-start; padding-bottom:30px;">
+          <span style="display:inline-flex; align-items:center; gap:9px; font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#c9beff; margin-bottom:18px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            Gestión 2025
+          </span>
+          <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:46px; line-height:1; letter-spacing:-.03em; text-transform:uppercase; color:#fff; margin:0;">Trabajo continuo por una <span style="color:#ff9d00;">Guarenas más humana</span></h2>
+          <div style="display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13px; color:#fff; margin-top:18px; border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:8px 15px;">
+            <span style="width:7px; height:7px; border-radius:50%; background:#ff9d00;"></span>
+            Antonio Galíndez · Alcalde de Guarenas
+          </div>
+        </div>
+      </div>
+
+      <!-- franja tricolor inferior -->
+      <div style="position:relative; display:flex; height:6px;">
+        <div style="flex:1; background:#2c14a8;"></div>
+        <div style="flex:1; background:#ea3755;"></div>
+        <div style="flex:1; background:#ff9d00;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GESTION -->
+  <section id="gestion" class="rv" style="max-width:1240px; margin:0 auto; padding:84px 32px 0;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:32px; flex-wrap:wrap; margin-bottom:34px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <span style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#4220e5; font-weight:700;">Información de gestión</span>
+        </div>
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; letter-spacing:-.01em; margin:0; color:#1c1c1f;">Lo que construimos juntos</h2>
+      </div>
+      <a href="#logros" style="font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; color:#4220e5; display:inline-flex; align-items:center; gap:8px;" style-hover="gap:12px;">Ver logros e hitos
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+      <sc-for list="{{ gestion }}" as="g" hint-placeholder-count="2">
+        <div style="position:relative; overflow:hidden; border:1px solid #e6e6ea; border-radius:18px; padding:38px 36px; display:flex; flex-direction:column; gap:20px; background:#fff; transition:border-color .2s, box-shadow .3s, transform .3s;" style-hover="border-color:#c9c0ff; box-shadow:0 22px 50px -30px rgba(66,32,229,.45); transform:translateY(-3px);">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:54px; height:54px; border-radius:14px; background:#4220e5; color:#fff;">{{ g.icon }}</span>
+            <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#4220e5; background:#f1effe; padding:7px 13px; border-radius:999px;">{{ g.tag }}</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:22px; margin:0 0 10px; color:#161624; letter-spacing:-.01em;">{{ g.title }}</h3>
+            <p style="font-family:'Varela Round',sans-serif; font-size:15px; line-height:1.6; color:#55555c; margin:0;">{{ g.desc }}</p>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px; border-top:1px solid #f0f0f3; padding-top:16px;">
+            <sc-for list="{{ g.points }}" as="p" hint-placeholder-count="3">
+              <div style="display:flex; align-items:center; gap:11px; padding:7px 0; font-family:'Poppins',sans-serif; font-weight:500; font-size:14px; color:#3a3a44;">
+                <span style="display:inline-flex; color:#4220e5;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+                {{ p }}
+              </div>
+            </sc-for>
+          </div>
+          <a href="#" style="font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; color:#4220e5; display:inline-flex; align-items:center; gap:8px; margin-top:2px;" style-hover="gap:12px;">Ver planes y programas
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- TRAMITES -->
+  <section id="tramites" style="margin:84px 0 0; background:#f7f7fb; border-top:1px solid #ececf1; border-bottom:1px solid #ececf1;">
+    <div class="rv" style="position:relative; overflow:hidden; min-height:360px; display:flex;">
+        <img src="assets/tramites-hero-se-or.png" alt="Atención al ciudadano — trámites en la Alcaldía de Guarenas" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center;">
+        <div style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(30,22,120,.95) 0%, rgba(42,28,180,.85) 40%, rgba(66,32,229,.35) 68%, rgba(66,32,229,0) 100%);"></div>
+        <div style="position:relative; z-index:2; width:100%; max-width:1240px; margin:0 auto; padding:56px 32px; display:flex; flex-direction:column; justify-content:center;">
+          <div style="max-width:600px;">
+          <div style="display:flex; align-items:center; gap:9px; margin-bottom:14px;">
+            <span style="width:26px; height:1px; background:#ffd08a;"></span>
+            <span style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:#ffd08a; font-weight:700;">Trámites en línea</span>
+          </div>
+          <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:40px; line-height:1.08; letter-spacing:-.02em; margin:0 0 12px; color:#fff;">Resuelve en pocos clics</h2>
+          <p style="font-family:'Varela Round',sans-serif; font-size:15.5px; line-height:1.55; color:#e2ddff; margin:0 0 24px; max-width:44ch;">Realiza tus gestiones municipales en línea, sin filas ni papeleo. Encuentra requisitos, paga y consulta desde donde estés.</p>
+          <div style="background:#fff; border:1px solid #dcdce2; border-radius:10px; padding:6px 6px 6px 18px; display:flex; align-items:center; gap:12px; max-width:480px; box-shadow:0 14px 30px -16px rgba(20,18,56,.5);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9a9aa0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+            <input placeholder="¿Qué trámite necesitas hoy?" style="flex:1; border:none; outline:none; font-size:15px; color:#1c1c1f; background:transparent;">
+            <button style="border:none; cursor:pointer; font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#fff; background:#4220e5; padding:11px 24px; border-radius:7px;" style-hover="background:#3417c4;">Buscar</button>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="rv" data-tramscroll="" style="padding:56px 0 72px; overflow-x:auto; overflow-y:hidden; cursor:grab; scrollbar-width:none; -ms-overflow-style:none; -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);">
+      <div class="tram-track" style="display:flex; gap:22px; width:max-content; padding:0 24px;">
+        <sc-for list="{{ tramites }}" as="t" hint-placeholder-count="4">
+          <div style="flex:0 0 322px; position:relative; overflow:hidden; background:#fff; border:1px solid #eceaf6; border-radius:18px; padding:30px 28px; display:flex; flex-direction:column; gap:13px; transition:transform .3s, box-shadow .3s, border-color .3s;" style-hover="transform:translateY(-6px); box-shadow:0 26px 60px -30px rgba(66,32,229,.55); border-color:#c9c0ff;">
+            <span style="position:absolute; right:-38px; top:-38px; width:118px; height:118px; border-radius:50%; background:radial-gradient(circle, rgba(66,32,229,.09), rgba(66,32,229,0) 70%); pointer-events:none;"></span>
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,#4220e5,#7a5cff); color:#fff; box-shadow:0 12px 26px -12px rgba(66,32,229,.7);">{{ t.icon }}</span>
+            <h3 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:19px; margin:2px 0 0; color:#161624; letter-spacing:-.01em;">{{ t.title }}</h3>
+            <p style="font-family:'Varela Round',sans-serif; font-size:14px; line-height:1.55; color:#55555c; margin:0; flex:1;">{{ t.desc }}</p>
+            <a href="#" style="font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; color:#4220e5; display:inline-flex; align-items:center; gap:8px;" style-hover="gap:12px;">{{ t.cta }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </sc-for>
+        <sc-for list="{{ tramites }}" as="t" hint-placeholder-count="4">
+          <div aria-hidden="true" style="flex:0 0 322px; position:relative; overflow:hidden; background:#fff; border:1px solid #eceaf6; border-radius:18px; padding:30px 28px; display:flex; flex-direction:column; gap:13px; transition:transform .3s, box-shadow .3s, border-color .3s;" style-hover="transform:translateY(-6px); box-shadow:0 26px 60px -30px rgba(66,32,229,.55); border-color:#c9c0ff;">
+            <span style="position:absolute; right:-38px; top:-38px; width:118px; height:118px; border-radius:50%; background:radial-gradient(circle, rgba(66,32,229,.09), rgba(66,32,229,0) 70%); pointer-events:none;"></span>
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,#4220e5,#7a5cff); color:#fff; box-shadow:0 12px 26px -12px rgba(66,32,229,.7);">{{ t.icon }}</span>
+            <h3 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:19px; margin:2px 0 0; color:#161624; letter-spacing:-.01em;">{{ t.title }}</h3>
+            <p style="font-family:'Varela Round',sans-serif; font-size:14px; line-height:1.55; color:#55555c; margin:0; flex:1;">{{ t.desc }}</p>
+            <a href="#" style="font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; color:#4220e5; display:inline-flex; align-items:center; gap:8px;" style-hover="gap:12px;">{{ t.cta }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASEO URBANO (banner verde) -->
+  <section id="aseo" style="margin:84px 0 0;">
+    <div class="rv" style="background:#f6faef; border-top:1px solid #e2ecd4; border-bottom:1px solid #e2ecd4;">
+      <div style="max-width:1240px; margin:0 auto; padding:56px 32px; display:grid; grid-template-columns:1.1fr 1fr; gap:44px; align-items:center;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <span style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#3a7d44; font-weight:700;">Servicio municipal</span>
+        </div>
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:32px; letter-spacing:-.01em; margin:0 0 12px; color:#11302d;">Aseo <span style="color:#7ab52e;">Urbano</span></h2>
+        <p style="font-family:'Varela Round',sans-serif; font-size:15.5px; line-height:1.6; color:#4c5a52; margin:0 0 26px; max-width:52ch;">Recolección, barrido y manejo responsable de los desechos en cada parroquia. Consulta las rutas, horarios y cómo reportar incidencias.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:26px;">
+          <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:12.5px; color:#3a7d44; background:#fff; border:1px solid #cfe3b8; padding:8px 14px; border-radius:999px;">Recolección</span>
+          <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:12.5px; color:#3a7d44; background:#fff; border:1px solid #cfe3b8; padding:8px 14px; border-radius:999px;">Barrido</span>
+          <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:12.5px; color:#3a7d44; background:#fff; border:1px solid #cfe3b8; padding:8px 14px; border-radius:999px;">Contenedores</span>
+          <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:12.5px; color:#3a7d44; background:#fff; border:1px solid #cfe3b8; padding:8px 14px; border-radius:999px;">Reportes</span>
+        </div>
+        <a href="Aseo Urbano.dc.html" style="display:inline-flex; align-items:center; gap:10px; font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#c6ed4e; background:#11302d; padding:14px 24px; border-radius:999px;" style-hover="opacity:.92;">
+          Conocer mi ruta de recolección
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+      <div style="position:relative; user-select:none;">
+        <div style="position:relative; touch-action:pan-y;">
+          <img id="truck360" src="{{ truckSrc }}" onPointerDown="{{ truckDown }}" draggable="false" alt="Camión de Aseo Urbano de Guarenas — vista 360°" style="width:100%; display:block; cursor:grab;">
+          <div style="position:absolute; top:6px; left:6px; display:inline-flex; align-items:center; gap:7px; font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#11302d; background:#c6ed4e; padding:6px 11px; border-radius:999px; pointer-events:none;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9"></path><path d="M21 3v6h-6"></path></svg>
+            360°
+          </div>
+        </div>
+        <div style="margin-top:8px; text-align:center; font-family:'Varela Round',sans-serif; font-size:12.5px; color:#7a8a80; display:flex; align-items:center; justify-content:center; gap:8px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 3 12l5 6"></path><path d="m16 6 5 6-5 6"></path></svg>
+          Arrastra para girar el camión
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section id="noticias" class="rv" style="max-width:1240px; margin:0 auto; padding:84px 32px 0;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:30px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <span style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#4220e5; font-weight:700;">Política y actualidad</span>
+        </div>
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; letter-spacing:-.01em; margin:0; color:#1c1c1f;">Noticias de Guarenas</h2>
+      </div>
+      <div data-turpanel="1" style="display:inline-flex; gap:4px; border:1px solid #e2e2e8; padding:4px; border-radius:8px;">
+        <button onClick="{{ setCiudad }}" style="{{ tabCiudad }}">Ciudad</button>
+        <button onClick="{{ setPais }}" style="{{ tabPais }}">País</button>
+        <button onClick="{{ setAlcalde }}" style="{{ tabAlcalde }}">Alcalde</button>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:28px;">
+      <a href="#" style="display:block;">
+        <div style="border-radius:12px; overflow:hidden; background:#eef0f4; aspect-ratio:16/9; border:1px solid #e6e6ea;">
+          <img src="{{ featured.img }}" alt="{{ featured.title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+        <div style="margin-top:18px;">
+          <div style="display:inline-flex; align-items:center; gap:10px; font-size:12px; color:#9a9aa0; margin-bottom:10px;">
+            <span style="font-family:'Poppins',sans-serif; font-weight:700; color:#4220e5; text-transform:uppercase; letter-spacing:.06em; font-size:11px;">{{ featured.tag }}</span> · <span>{{ featured.date }}</span>
+          </div>
+          <h3 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:23px; line-height:1.28; margin:0 0 8px; color:#1c1c1f;">{{ featured.title }}</h3>
+          <p style="font-family:'Varela Round',sans-serif; font-size:15px; line-height:1.55; color:#55555c; margin:0;">{{ featured.desc }}</p>
+        </div>
+      </a>
+      <div style="display:flex; flex-direction:column; max-height:474px; overflow-y:auto; padding-right:6px;">
+        <sc-for list="{{ resto }}" as="n" hint-placeholder-count="3">
+          <a href="#" style="display:flex; gap:16px; align-items:center; padding:16px 0; border-bottom:1px solid #ececf1;" style-hover="opacity:.72;">
+            <div style="flex:0 0 104px; height:74px; border-radius:8px; overflow:hidden; background:#eef0f4; border:1px solid #e6e6ea;">
+              <img src="{{ n.img }}" alt="{{ n.title }}" style="width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <div>
+              <div style="font-size:11.5px; color:#9a9aa0; margin-bottom:6px;"><span style="font-family:'Poppins',sans-serif; font-weight:700; color:#4220e5; text-transform:uppercase; letter-spacing:.05em;">{{ n.tag }}</span> · {{ n.date }}</div>
+              <h4 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:15.5px; line-height:1.35; margin:0; color:#1c1c1f;">{{ n.title }}</h4>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGROS E HITOS -->
+  <section id="logros" class="rv" style="max-width:1240px; margin:84px auto 0; padding:0 32px;">
+    <div style="padding:8px 0;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+        <span style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#4220e5; font-weight:700;">Logros e hitos</span>
+      </div>
+      <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:52px; line-height:1.05; letter-spacing:-.02em; margin:0 0 18px; color:#1c1c1f; max-width:20ch;">Resultados que se ven <span style="color:#4220e5;">en la calle</span></h2>
+      <p style="font-family:'Varela Round',sans-serif; font-size:17px; line-height:1.7; color:#55555c; margin:0 0 42px; max-width:64ch; text-wrap:pretty;">Cada cifra es trabajo constante en las calles de Guarenas. Del alumbrado a la vialidad, de las escuelas a los programas sociales, la gestión avanza todos los días junto a las comunidades. Estos son los resultados que puedes ver y tocar en tu parroquia.</p>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:150px; gap:16px; grid-auto-flow:dense;">
+        <sc-for list="{{ hitos }}" as="h" hint-placeholder-count="8">
+          <div style="position:relative; border-radius:18px; overflow:hidden; background:{{ h.cardBg }}; box-shadow:0 22px 44px -30px rgba(20,18,56,.5); {{ h.span }} transition:transform .25s;" style-hover="transform:translateY(-4px);">
+            <img src="{{ h.foto }}" alt="{{ h.label }}" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; inset:0; background:{{ h.scrim }}; pointer-events:none;"></div>
+            <div style="position:absolute; left:20px; right:20px; bottom:18px;">
+              <div style="font-family:'Poppins',sans-serif; font-weight:800; font-size:{{ h.numSize }}; line-height:1; color:{{ h.numFg }}; letter-spacing:-.03em; white-space:nowrap;">{{ h.display }}</div>
+              <div style="width:32px; height:4px; border-radius:999px; background:{{ h.rule }}; margin:10px 0;"></div>
+              <div style="font-family:'Varela Round',sans-serif; font-size:13px; color:{{ h.numFg }}; opacity:.9; line-height:1.4; max-width:30ch;">{{ h.label }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- IDENTIDAD -->
+  <section id="identidad" class="rv" style="max-width:1240px; margin:0 auto; padding:84px 32px 0;">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:34px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:9px; margin-bottom:14px;">
+          
+          <span style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:#4220e5; font-weight:700;">Identidad y orgullo guareño</span>
+        </div>
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:34px; letter-spacing:-.01em; margin:0; color:#161624;">Nuestra cultura, nuestro orgullo</h2>
+        <p style="font-family:'Varela Round',sans-serif; font-size:15.5px; line-height:1.65; color:#5f5f66; margin:14px 0 0; max-width:60ch;">Guarenas late al ritmo de sus tradiciones: la Parranda de San Pedro —Patrimonio Cultural Inmaterial de la Humanidad—, sus fiestas patronales, su historia colonial y sus paisajes. Un legado vivo que heredamos, celebramos y cuidamos entre todos.</p>
+      </div>
+      <a href="Identidad.dc.html" style="font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; color:#4220e5; display:inline-flex; align-items:center; gap:8px;" style-hover="gap:12px;">Ver todo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:22px;">
+      <sc-for list="{{ identidad }}" as="i" hint-placeholder-count="4">
+        <a href="Identidad.dc.html" style="position:relative; display:block; aspect-ratio:3/4; border-radius:14px; overflow:hidden; background:#141238; transition:box-shadow .35s, transform .35s;" style-hover="box-shadow:0 26px 54px -26px rgba(20,18,56,.7); transform:translateY(-4px);">
+          <image-slot id="{{ i.slot }}" shape="rounded" radius="14" placeholder="{{ i.ph }}" src="{{ i.src }}"></image-slot>
+          <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(20,18,56,.88), rgba(20,18,56,.05) 58%); pointer-events:none;"></div>
+          <span style="position:absolute; top:14px; left:14px; font-family:'Poppins',sans-serif; font-weight:600; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#161624; background:rgba(255,255,255,.92); padding:5px 11px; border-radius:999px; pointer-events:none;">{{ i.tag }}</span>
+          <div style="position:absolute; left:0; right:0; bottom:0; padding:20px; display:flex; align-items:flex-end; justify-content:space-between; gap:10px; pointer-events:none;">
+            <div>
+              <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:17px; color:#fff;">{{ i.title }}</div>
+              <div style="font-family:'Varela Round',sans-serif; font-size:13px; color:rgba(255,255,255,.82); margin-top:4px;">{{ i.sub }}</div>
+            </div>
+            <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3); color:#fff;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- LUGARES PARA VISITAR -->
+  <!-- BANNER TURISMO (full-bleed cascada + logo Vive Guarenas, reveal en scroll) -->
+  <section style="max-width:1240px; margin:56px auto 0; padding:0 32px;">
+    <div id="turHero" style="position:relative; width:100vw; margin-left:calc(50% - 50vw); height:660px; overflow:hidden; background:#0a1c14; margin-bottom:52px;">
+      <video id="turHeroBg" src="assets/vive-guarenas-banner.mp4" poster="assets/turismo-cascada-hd.jpg" autoplay="" loop="" muted="" playsinline="" style="position:absolute; left:-4%; top:-8%; width:108%; height:120%; object-fit:cover; will-change:transform;"></video>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,20,14,.55) 0%, rgba(6,20,14,.15) 38%, rgba(6,20,14,.62) 100%);"></div>
+      <div id="turHeroInner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 24px; will-change:transform, opacity;">
+        
+        <span style="display:block; font-family:'Poppins',sans-serif; font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:rgba(255,255,255,.9); font-weight:700; margin-bottom:22px; text-shadow:0 2px 12px rgba(0,0,0,.4);">Turismo</span><img id="turHeroLogo" src="assets/logo-vive-white.svg" alt="¡Vive Guarenas!" style="width:min(680px,74vw); filter:drop-shadow(0 12px 40px rgba(0,0,0,.5));"><p style="font-family: 'Varela Round',sans-serif; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,.92); margin: 26px auto 0; max-width: 52ch; text-shadow: 0 2px 14px rgba(0,0,0,.45); width: 577px; height: 49px">Ríos, cascadas y paisajes majestuosos te esperan. Recorre los puntos turísticos, patrimoniales y naturales del municipio.</p>
+        <a href="Identidad.dc.html" style="margin-top:30px; display:inline-flex; align-items:center; gap:10px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15px; color:#0d2b1f; background:#fff; padding:14px 28px; border-radius:999px; box-shadow:0 14px 40px -12px rgba(0,0,0,.6); transition:transform .25s, box-shadow .25s;" style-hover="transform:translateY(-2px); box-shadow:0 20px 46px -12px rgba(0,0,0,.7);">Conoce Guarenas
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA TURISMO (banner) + lugares -->
+  <section id="turismo" class="rv" style="width:100%; margin:36px 0 0; padding:0;">
+    <div style="position:relative; width:100vw; margin-left:calc(50% - 50vw); height:600px; overflow:hidden; background:#eef0f4;">
+      <div id="turMap" style="position:absolute; inset:0; width:100%; height:100%;"></div>
+      <div data-turpanel="1" style="position:absolute; top:24px; left:max(24px, calc(50% - 596px)); width:338px; max-height:552px; overflow:auto; background:rgba(255,255,255,.97); border-radius:18px; padding:6px; box-shadow:0 22px 54px -22px rgba(20,18,56,.55); z-index:500;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 14px 10px;">
+          <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#4220e5;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Vive Guarenas
+          </span>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button onClick="{{ turReset }}" style="border:none; background:#f1effe; cursor:pointer; font-family:'Poppins',sans-serif; font-weight:600; font-size:12px; color:#4220e5; padding:7px 12px; border-radius:8px;" style-hover="background:#e5e0ff;">Ver todo</button>
+            <button onClick="{{ togglePanel }}" aria-label="Mostrar u ocultar la lista" style="border:none; background:#f1effe; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; color:#4220e5;" style-hover="background:#e5e0ff;"><svg data-turp-chev="" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .3s;"><path d="m6 9 6 6 6-6"></path></svg></button>
+          </div>
+        </div>
+        <div data-turp-body="">
+        <sc-for list="{{ turismoCats }}" as="c" hint-placeholder-count="5">
+          <div style="padding:8px 14px 4px;">
+            <div style="display:flex; align-items:center; gap:9px; margin-bottom:8px;">
+              <span style="width:9px; height:9px; border-radius:50%; background:{{ c.color }};"></span>
+              <span style="font-family:'Poppins',sans-serif; font-weight:700; font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:#8a8a94;">{{ c.cat }}</span>
+            </div>
+            <sc-for list="{{ c.items }}" as="t" hint-placeholder-count="3">
+              <button onClick="{{ t.onClick }}" style="{{ t.rowStyle }}">
+                <span style="{{ t.numStyle }}">{{ t.n }}</span>
+                <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px;">{{ t.iconNode }}</span>
+                <span style="font-family:'Varela Round',sans-serif; font-size:14px; color:#2a2a2e; text-align:left; line-height:1.35;">{{ t.name }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1240px; margin:0 auto; padding:52px 32px 0;">
+      <h3 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:24px; letter-spacing:-.01em; margin:0 0 22px; color:#161624;">Lugares para visitar</h3>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+        <sc-for list="{{ lugares }}" as="l" hint-placeholder-count="4">
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div style="position:relative; aspect-ratio:1/1; border-radius:18px; overflow:hidden; background:#eef0f4; box-shadow:0 18px 40px -28px rgba(20,18,56,.5);">
+              <image-slot id="{{ l.slot }}" shape="rounded" radius="18" placeholder="{{ l.ph }}" src="{{ l.src }}"></image-slot>
+              <span style="position:absolute; top:12px; right:12px; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:#161624; background:rgba(255,255,255,.94); padding:6px 12px; border-radius:999px;">{{ l.tag }}</span>
+            </div>
+            <div>
+              <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:17px; color:#161624; line-height:1.2;">{{ l.name }}</div>
+              <div style="display:flex; align-items:center; gap:6px; margin-top:6px; font-family:'Varela Round',sans-serif; font-size:13px; color:#7a7a86;">
+                <span style="display:inline-flex; color:#4220e5;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+                {{ l.loc }}
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRADICIONES -->
+  <section id="tradiciones" class="rv" style="max-width:1240px; margin:84px auto 0; padding:0 32px;">
+    <div style="display:flex; align-items:center; gap:9px; margin-bottom:14px;">
+      
+      <span style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:#ff9d00; font-weight:700;">Cultura viva</span>
+    </div>
+    <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:34px; letter-spacing:-.02em; margin:0 0 6px; color:#161624;">Tradiciones que nos identifican</h2>
+    <p style="font-family:'Varela Round',sans-serif; font-size:15px; color:#5f5f66; margin:0 0 30px; max-width:64ch;">Manifestaciones culturales del municipio Ambrosio Plaza — algunas declaradas Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:20px;">
+      <sc-for list="{{ tradiciones }}" as="t" hint-placeholder-count="5">
+        <div style="background:#fff; border:1px solid #ececf1; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .2s, box-shadow .3s, transform .3s;" style-hover="border-color:#c9c0ff; box-shadow:0 22px 48px -30px rgba(20,18,56,.45); transform:translateY(-4px);">
+          <div style="position:relative; aspect-ratio:4/3; background:#eef0f4; overflow:hidden;">
+            <image-slot id="{{ t.slot }}" shape="rect" placeholder="{{ t.ph }}" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+            <span style="position:absolute; top:12px; left:12px; font-family:'Poppins',sans-serif; font-weight:600; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:#161624; background:rgba(255,255,255,.92); padding:5px 11px; border-radius:999px;">{{ t.tag }}</span>
+          </div>
+          <div style="padding:20px 20px 22px; display:flex; flex-direction:column; gap:8px;">
+            <h3 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:17px; margin:0; color:#161624; line-height:1.2;">{{ t.title }}</h3>
+            <p style="font-family:'Varela Round',sans-serif; font-size:13px; line-height:1.55; color:#5f5f66; margin:0;">{{ t.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- INFO MUNICIPAL -->
+  <section id="info" style="max-width:1240px; margin:84px auto 0; padding:0 32px;">
+    <div class="rv">
+      <!-- encabezado -->
+      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:30px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:9px; margin-bottom:12px;">
+            
+            <span style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:#4220e5; font-weight:700;">Información municipal</span>
+          </div>
+          <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:36px; margin:0; color:#161624; letter-spacing:-.02em;">Guarenas en cifras</h2>
+        </div>
+        <p style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.55; color:#6b6b77; margin:0; max-width:34ch;">Nuestro municipio en datos — Ambrosio Plaza, estado Miranda.</p>
+      </div>
+
+      <!-- franja de cifras -->
+      <div data-cifras="1" style="border-top:2px solid #161624; border-bottom:1px solid #e6e6ea; display:grid; grid-template-columns:repeat(4,1fr);">
+        <sc-for list="{{ datos }}" as="d" hint-placeholder-count="4">
+          <div style="{{ d.stripStyle }}">
+            <span style="display:inline-flex; color:#4220e5; margin-bottom:18px;">{{ d.iconNode }}</span>
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:44px; color:#161624; letter-spacing:-.035em; line-height:.95;">{{ d.num }}</div>
+            <div style="font-family:'Poppins',sans-serif; font-weight:500; font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:#8a8a94; margin-top:12px;">{{ d.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- directorio -->
+      <div style="position:relative; overflow:hidden; background:#0d0b2e; border-radius:22px; margin-top:24px; padding:40px 44px; color:#fff;">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:26px;">
+          <div>
+            <span style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:#ffb14d; font-weight:700;">Agenda Amarilla</span>
+            <h3 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:27px; margin:8px 0 0; letter-spacing:-.02em;">Directorio de servicios y negocios</h3>
+          </div>
+          <a href="#" style="flex:none; display:inline-flex; align-items:center; gap:10px; font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#0d0b2e; background:#ff9d00; padding:13px 22px; border-radius:10px;" style-hover="opacity:.92;">Explorar directorio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+          <sc-for list="{{ directorio }}" as="c" hint-placeholder-count="3">
+            <a href="#" style="display:flex; align-items:center; gap:15px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:18px 18px; transition:background .2s, border-color .2s, transform .2s;" style-hover="background:rgba(255,255,255,.11); border-color:rgba(255,255,255,.3); transform:translateY(-3px);">
+              <span style="flex:none; display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:12px; background:rgba(255,177,77,.15); color:#ffb14d;">{{ c.iconNode }}</span>
+              <span style="flex:1;">
+                <span style="display:block; font-family:'Poppins',sans-serif; font-weight:600; font-size:16px; color:#fff;">{{ c.title }}</span>
+                <span style="display:block; font-family:'Varela Round',sans-serif; font-size:12.5px; color:#b6b3d6; margin-top:2px;">{{ c.desc }}</span>
+              </span>
+              <span style="flex:none; display:inline-flex; color:rgba(255,255,255,.5);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOCES DE LA COMUNIDAD -->
+  <section class="rv" style="background:#f5f7fc; border-top:1px solid #e6e9f2; border-bottom:1px solid #e6e9f2; margin:84px 0 0;">
+    <div style="max-width:1240px; margin:0 auto; padding:72px 32px;">
+      <div style="text-align:center; max-width:640px; margin:0 auto 44px;">
+        <div style="display:inline-flex; align-items:center; gap:9px; margin-bottom:14px;">
+          
+          <span style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:#4220e5; font-weight:700;">Voces de la comunidad</span>
+          
+        </div>
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:36px; letter-spacing:-.02em; margin:0; color:#161624;">Lo que dice nuestra gente</h2>
+        <p style="font-family:'Varela Round',sans-serif; font-size:15.5px; line-height:1.6; color:#6b6b77; margin:12px 0 0;">Guareneros y guareneras comparten cómo viven los cambios en su municipio.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px;">
+        <sc-for list="{{ testimonios }}" as="t" hint-placeholder-count="3">
+          <div style="background:#fff; border:1px solid #e6e9f2; border-radius:18px; padding:30px 28px; display:flex; flex-direction:column; gap:18px; box-shadow:0 14px 36px -28px rgba(20,18,56,.5);">
+            <div style="display:flex; gap:3px; color:#ff9d00;">
+              <sc-for list="{{ t.stars }}" as="s" hint-placeholder-count="5"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5.9 20.4l1.4-6.8L2.2 9l6.9-.7z"></path></svg></sc-for>
+            </div>
+            <p style="font-family:'Varela Round',sans-serif; font-size:15px; line-height:1.65; color:#3a3a44; margin:0; flex:1;">{{ t.quote }}</p>
+            <div style="display:flex; align-items:center; gap:13px; border-top:1px solid #f0f0f3; padding-top:18px;">
+              <span style="flex:none; width:46px; height:46px; border-radius:50%; overflow:hidden; background:#eef0f4;">
+                <image-slot id="{{ t.slot }}" shape="circle" placeholder="Foto" style="width:100%; height:100%;"></image-slot>
+              </span>
+              <span>
+                <span style="display:block; font-family:'Poppins',sans-serif; font-weight:600; font-size:15px; color:#161624;">{{ t.name }}</span>
+                <span style="display:block; font-family:'Varela Round',sans-serif; font-size:12.5px; color:#8a8a94; margin-top:1px;">{{ t.role }}</span>
+              </span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENLACES INSTITUCIONALES -->
+  <section style="max-width:1240px; margin:56px auto 0; padding:0 32px;">
+    <div style="display:flex; align-items:center; gap:9px; margin-bottom:16px;">
+      
+      <span style="font-family:'Poppins',sans-serif; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:#4220e5; font-weight:700;">Enlaces institucionales</span>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+      <sc-for list="{{ enlaces }}" as="e" hint-placeholder-count="3">
+        <a href="{{ e.href }}" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:16px; background:#fff; border:1px solid #e6e6ea; border-radius:14px; padding:18px 20px; transition:border-color .2s, box-shadow .3s, transform .3s;" style-hover="border-color:#c9c0ff; box-shadow:0 18px 40px -26px rgba(66,32,229,.5); transform:translateY(-3px);">
+          <img src="{{ e.logo }}" alt="{{ e.title }}" style="flex:none; height:42px; width:auto; max-width:130px; object-fit:contain;">
+          <span style="flex:1;">
+            <span style="display:block; font-family:'Poppins',sans-serif; font-weight:600; font-size:15px; color:#161624;">{{ e.title }}</span>
+            <span style="display:block; font-family:'Varela Round',sans-serif; font-size:12.5px; color:#8a8a94; margin-top:1px;">{{ e.desc }}</span>
+          </span>
+          <span style="flex:none; display:inline-flex; color:#b6b6c2;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="margin-top: 72px; background: #0d1a3d; color: #8f93b0; position:relative; overflow:hidden; display:flex; flex-direction:column;">
+    <img src="assets/isotipo-white.svg" alt="" style="position:absolute; right:-30px; top:44%; transform:translateY(-50%); height:560px; width:auto; opacity:.05; pointer-events:none; z-index:0;">
+
+    <!-- WORDMARK -->
+    <div style="position:relative; z-index:1; order:10; max-width:1240px; margin:0 auto; padding:12px 24px 30px;">
+      <svg class="fx-texthover" viewBox="0 0 1000 170" width="100%" height="auto" style="display:block; overflow:visible; cursor:default;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="fxTxtGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1000" y2="0"><stop offset="0%" stop-color="#2a6fdb"></stop><stop offset="34%" stop-color="#2fb37a"></stop><stop offset="60%" stop-color="#1f8a5b"></stop><stop offset="100%" stop-color="#4aa8ff"></stop></linearGradient>
+          <radialGradient id="fxReveal" class="fx-reveal" gradientUnits="userSpaceOnUse" r="210" cx="-1000" cy="85"><stop offset="0%" stop-color="white"></stop><stop offset="100%" stop-color="black"></stop></radialGradient>
+          <mask id="fxTxtMask"><rect x="0" y="0" width="1000" height="170" fill="url(#fxReveal)"></rect></mask>
+        </defs>
+        <text x="500" y="108" text-anchor="middle" dominant-baseline="middle" style="font-family:'Poppins',sans-serif; font-weight:700; font-size:132px; letter-spacing:-.02em; fill:transparent; stroke:rgba(255,255,255,.12); stroke-width:1;">GUARENAS</text>
+        <text x="500" y="108" text-anchor="middle" dominant-baseline="middle" stroke-dasharray="4200" stroke-dashoffset="4200" style="font-family:'Poppins',sans-serif; font-weight:700; font-size:132px; letter-spacing:-.02em; fill:transparent; stroke:#4aa8ff; stroke-width:1;">GUARENAS<animate attributeName="stroke-dashoffset" from="4200" to="0" dur="3.6s" begin="0.3s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"></animate></text>
+        <text x="500" y="108" text-anchor="middle" dominant-baseline="middle" mask="url(#fxTxtMask)" style="font-family:'Poppins',sans-serif; font-weight:700; font-size:132px; letter-spacing:-.02em; fill:url(#fxTxtGrad); stroke:url(#fxTxtGrad); stroke-width:1;">GUARENAS</text>
+      </svg>
+    </div>
+
+    <!-- banda titular + accesos -->
+    <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:64px 32px 40px; display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; color: #fff; margin: 0; max-width: 19ch;">Construyamos juntos <span style="white-space:nowrap">una&nbsp;<img src="assets/wordmark-guarenas-white.svg" alt="Guarenas" style="height:.8em; width:auto; vertical-align:-.03em; display:inline-block;"></span> más humana</h2>
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; max-width:520px;">
+        <a href="#inicio" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#141238; background:#ff9d00; padding:11px 20px; border-radius:999px;" style-hover="opacity:.9;">Inicio</a>
+        <a href="#gestion" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); padding:11px 20px; border-radius:999px;" style-hover="background:rgba(255,255,255,.16);">Gestión</a>
+        <a href="#tramites" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); padding:11px 20px; border-radius:999px;" style-hover="background:rgba(255,255,255,.16);">Trámites</a>
+        <a href="#turismo" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); padding:11px 20px; border-radius:999px;" style-hover="background:rgba(255,255,255,.16);">Turismo</a>
+        <a href="Aseo Urbano.dc.html" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); padding:11px 20px; border-radius:999px;" style-hover="background:rgba(255,255,255,.16);">Aseo Urbano</a>
+      </div>
+    </div>
+
+    <div style="position:relative; max-width:1240px; margin:0 auto; padding:0 32px;"><div style="height:1px; background:rgba(255,255,255,.12);"></div></div>
+
+    <div style="position:relative; max-width:1240px; margin:0 auto; padding:48px 32px 30px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px;">
+      <div>
+        <img src="assets/logo-alcaldia-white.png" alt="Alcaldía de Guarenas" style="height:56px; width:auto; margin-bottom:20px;">
+        <p style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.6; color:#b8b5d6; margin:0 0 18px; max-width:34ch;">Portal ciudadano de la Alcaldía de Guarenas. Gestión moderna, cercana y transparente.</p>
+        <p style="font-family:Arial,sans-serif; font-style:italic; font-size:19px; color:#ff9d00; margin:0 0 20px;">Mi querida Guarenas</p>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); color:#fff;" style-hover="background:#ff9d00; color:#0d1a3d; border-color:#ff9d00;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); color:#fff;" style-hover="background:#ff9d00; color:#0d1a3d; border-color:#ff9d00;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+          <a href="https://x.com" target="_blank" rel="noopener" aria-label="X" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); color:#fff;" style-hover="background:#ff9d00; color:#0d1a3d; border-color:#ff9d00;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.57L22.5 22h-6.6l-4.6-6.02L5.9 22H2.64l8-9.14L1.5 2h6.77l4.16 5.5L18.244 2zm-1.16 18h1.83L7.02 3.9H5.06L17.084 20z"></path></svg></a>
+          <a href="mailto:contacto@guarenas.gob.ve" aria-label="Correo" style="display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); color:#fff;" style-hover="background:#ff9d00; color:#0d1a3d; border-color:#ff9d00;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg></a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; margin-bottom:16px;">Secciones</div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-family:'Varela Round',sans-serif; font-size:14.5px; color:#b8b5d6;">
+          <a href="#gestion" style-hover="color:#fff;">Gestión</a>
+          <a href="#tramites" style-hover="color:#fff;">Trámites</a>
+          <a href="#noticias" style-hover="color:#fff;">Noticias</a>
+          <a href="#identidad" style-hover="color:#fff;">Identidad</a>
+          <a href="#info" style-hover="color:#fff;">Info Municipal</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; margin-bottom:16px;">Trámites</div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-family:'Varela Round',sans-serif; font-size:14.5px; color:#b8b5d6;">
+          <a href="#" style-hover="color:#fff;">Comercio</a>
+          <a href="#" style-hover="color:#fff;">Catastro</a>
+          <a href="#" style-hover="color:#fff;">Tributos y tasas</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; margin-bottom:16px;">Contacto</div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-family:'Varela Round',sans-serif; font-size:14.5px; color:#b8b5d6;">
+          <span>Av. Intercomunal, Guarenas, Edo. Miranda</span>
+          <span>0212 000 00 00</span>
+          <span>contacto@guarenas.gob.ve</span>
+        </div>
+      </div>
+    </div>
+    <div style="position:relative; border-top:1px solid rgba(255,255,255,.12);">
+      <div style="max-width:1240px; margin:0 auto; padding:20px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:12.5px; color:#8f8bb5;">
+        <span>© 2026 Alcaldía Bolivariana de Guarenas · Municipio Ambrosio Plaza. Todos los derechos reservados.</span>
+        <div style="display:flex; align-items:center; gap:22px; font-family:'Varela Round',sans-serif;">
+          <a href="#" style-hover="color:#fff;">Privacidad</a>
+          <a href="#" style-hover="color:#fff;">Términos</a>
+          <div style="display:flex; height:4px; width:96px; border-radius:999px; overflow:hidden;">
+            <div style="flex:1; background:#ffce00;"></div>
+            <div style="flex:1; background:#4220e5;"></div>
+            <div style="flex:1; background:#cf142b;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;gestionStartISO&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2025-01-01&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Gestión&quot;},&quot;gestionStartLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;1 de enero de 2025&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Gestión&quot;}}">
+class Component extends DCLogic {
+  state = { tab: 'ciudad', p: 0, started: false, truckFrame: 0, heroSlide: 0, comShow: false, comModal: false };
+  heroNext = () => this.setState(s => ({ heroSlide: (s.heroSlide + 1) % 3 }));
+  heroPrev = () => this.setState(s => ({ heroSlide: (s.heroSlide + 2) % 3 }));
+  showCom = () => { this.setState({ comShow: true }); clearTimeout(this._comT); this._comT = setTimeout(() => this.setState({ comShow: false }), 7000); };
+  hideCom = (e) => { if(e && e.stopPropagation) e.stopPropagation(); clearTimeout(this._comT); this.setState({ comShow: false }); };
+  openComModal = () => { clearTimeout(this._comT); this.setState({ comShow: false, comModal: true }); };
+  closeComModal = () => this.setState({ comModal: false });
+  stopProp = (e) => { if(e && e.stopPropagation) e.stopPropagation(); };
+
+  TRUCK_FRAMES = [
+    'assets/truck360/g01.png',
+    'assets/truck360/g02.png',
+    'assets/truck360/g03.png',
+    'assets/truck360/g04.png',
+    'assets/truck360/g05.png',
+    'assets/truck360/g06.png',
+    'assets/truck360/g07.png',
+  ];
+
+  _frame = 0;
+  setTruckFrame = (i) => {
+    const n = this.TRUCK_FRAMES.length;
+    i = ((i % n) + n) % n;
+    if(i === this._frame) return;
+    const front = document.getElementById('truck360');
+    if(front) front.src = this.TRUCK_FRAMES[i];
+    this._frame = i;
+  };
+
+  truckDown = (e) => {
+    e.preventDefault();
+    this._dragging = true;
+    if(this._spinRAF){ cancelAnimationFrame(this._spinRAF); this._spinRAF = null; }
+    const startX = e.clientX;
+    let lastX = startX;
+    let acc = this._frame;                      // fotograma fraccional acumulado
+    const n = this.TRUCK_FRAMES.length;
+    const perFrame = 40;                         // px de arrastre por fotograma
+    const move = (ev) => {
+      const dx = ev.clientX - lastX;
+      lastX = ev.clientX;
+      acc -= dx / perFrame;                       // arrastrar a la derecha gira en sentido natural
+      const frame = ((Math.round(acc) % n) + n) % n;
+      if(frame !== this._frame) this.setTruckFrame(frame);
+    };
+    const up = () => {
+      this._dragging = false;
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  // Auto-giro suave: una vuelta completa con aceleración/desaceleración
+  spinTruck = (turns) => {
+    if(this._spinRAF){ cancelAnimationFrame(this._spinRAF); this._spinRAF = null; }
+    const n = this.TRUCK_FRAMES.length;
+    const steps = n * (turns || 1);
+    const start = this._frame;
+    const dur = 2600;
+    const ease = (t) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;   // easeInOutCubic
+    const t0 = performance.now();
+    const tick = (now) => {
+      if(this._dragging){ this._spinRAF = null; return; }
+      const p = Math.min(1, (now - t0) / dur);
+      const frame = ((Math.round(start - steps * ease(p)) % n) + n) % n;
+      this.setTruckFrame(frame);
+      if(p < 1){ this._spinRAF = requestAnimationFrame(tick); }
+      else { this._spinRAF = null; }
+    };
+    this._spinRAF = requestAnimationFrame(tick);
+  };
+
+  componentDidMount(){
+    this._onStore = (e) => { if(!e.detail || e.detail.key === 'g_comunicado' || e.detail.key === 'g_noticias') this.forceUpdate(); };
+    if(window.GStore) window.GStore.on(this._onStore);
+    this.TRUCK_FRAMES.forEach(src => { const im = new Image(); im.src = src; });
+    this._initCifras();
+    // arranque explícito del video de turismo (loop infinito, sin audio)
+    setTimeout(() => {
+      const v = document.getElementById('turHeroBg');
+      if(v){
+        v.muted = true; v.volume = 0; v.loop = true; v.playsInline = true; v.removeAttribute('controls');
+        v.addEventListener('ended', () => { v.currentTime = 0; v.play().catch(()=>{}); });
+        const p = v.play(); if(p && p.catch) p.catch(()=>{});
+      }
+    }, 200);
+    // GIRO SUAVE al entrar en pantalla (una vuelta con aceleración/desaceleración) + arrastre manual
+    this._truckObs = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if(en.isIntersecting && !this._spunOnce && !this._dragging){
+          this._spunOnce = true;
+          this.spinTruck(1);
+        }
+      });
+    }, { threshold: 0.45 });
+    const tEl = document.getElementById('truck360');
+    if(tEl) this._truckObs.observe(tEl);
+    this._glowMove = (e) => { const c = e.target.closest ? e.target.closest('.glow') : null; if(!c) return; const r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); };
+    document.addEventListener('pointermove', this._glowMove);
+    this._tagGlow = () => {
+      document.querySelectorAll('#guaRoot a[style], #guaRoot div[style]').forEach(el => {
+        if(el.classList.contains('glow')) return;
+        const s = el.getAttribute('style') || '';
+        const radius = /border-radius:\s*1[0-9]px/.test(s) || /border-radius:\s*2[0-9]px/.test(s);
+        const card = /box-shadow:\s*0 |border:\s*1px solid (#e|rgb\(2)/.test(s);
+        if(radius && card && el.offsetWidth > 120 && el.offsetHeight > 88){
+          if(getComputedStyle(el).position === 'static') el.style.position = 'relative';
+          el.classList.add('glow');
+        }
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this._tagGlow));
+    this._tagBorder = () => {
+      const R = document.getElementById('guaRoot'); if(!R) return;
+      R.querySelectorAll('button').forEach(b => { if(b.closest('[data-turpanel]')) return; if(!b.classList.contains('gborder')){ if(getComputedStyle(b).position==='static') b.style.position='relative'; b.classList.add('gborder'); } });
+      R.querySelectorAll('div[style*="100vw"]').forEach(el => { if(el.hasAttribute('data-noborder')){ el.classList.remove('gborder'); return; } el.classList.add('gborder'); });
+      R.querySelectorAll('span[style]').forEach(el => { if(el.classList.contains('gborder')) return; const s=el.getAttribute('style')||''; if((/border-radius:\s*1[0-4]px/.test(s)||/border-radius:\s*50%/.test(s)) && el.querySelector('svg') && el.offsetWidth>=34 && el.offsetWidth<=66){ if(getComputedStyle(el).position==='static') el.style.position='relative'; el.classList.add('gborder'); } });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this._tagBorder));
+    this._borderInt = setInterval(this._tagBorder, 1500);
+    this._glowInt = setInterval(this._tagGlow, 1500);
+    this._tagTram = () => {
+      const sc = document.querySelector('[data-tramscroll]'); if(!sc || sc._tramInit) return;
+      const track = sc.querySelector('.tram-track'); if(!track || track.offsetWidth < 10) return;
+      sc._tramInit = true;
+      let down=false, sx=0, sl=0, moved=false, paused=false, pos=sc.scrollLeft||1;
+      const wrap = () => { const h = track.offsetWidth/2; if(h>0){ if(pos >= h) pos -= h; else if(pos <= 0) pos += h; } };
+      sc.addEventListener('pointerdown', e=>{ down=true; moved=false; sx=e.clientX; sl=sc.scrollLeft; sc.style.cursor='grabbing'; try{ sc.setPointerCapture(e.pointerId); }catch(_){} });
+      sc.addEventListener('pointermove', e=>{ if(!down) return; const d=e.clientX-sx; if(Math.abs(d)>4) moved=true; sc.scrollLeft = sl - d; pos = sc.scrollLeft; });
+      const up = () => { down=false; sc.style.cursor='grab'; pos=sc.scrollLeft; };
+      sc.addEventListener('pointerup', up); sc.addEventListener('pointercancel', up);
+      sc.addEventListener('click', e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); } }, true);
+      sc.addEventListener('pointerenter', ()=>paused=true);
+      sc.addEventListener('pointerleave', ()=>paused=false);
+      pos = 1; sc.scrollLeft = 1;
+      const step = () => { if(!paused && !down){ pos += 0.45; wrap(); sc.scrollLeft = pos; } this._tramRaf = requestAnimationFrame(step); };
+      step();
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this._tagTram));
+    this._tramInt = setInterval(this._tagTram, 1200);
+    try{ if(localStorage.getItem('gua-theme') === 'dark'){ const r = document.getElementById('guaRoot'); if(r) r.classList.add('theme-dark'); } }catch(e){}
+    try{ this._initTurMap(); }catch(e){}
+    // Banner turismo: parallax del fondo + reveal del logo al hacer scroll
+    this._turHero = () => {
+      const hero = document.getElementById('turHero');
+      const bg = document.getElementById('turHeroBg');
+      const inner = document.getElementById('turHeroInner');
+      const logo = document.getElementById('turHeroLogo');
+      if(!hero || !inner || !bg) return;
+      const r = hero.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      const p = Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.92)));
+      const ease = 1 - Math.pow(1 - p, 3);
+      bg.style.transform = 'translateY(' + ((p - 0.5) * 70) + 'px) scale(' + (1.04 + p * 0.06) + ')';
+      inner.style.opacity = String(Math.min(1, ease * 1.5));
+      inner.style.transform = 'translateY(' + ((1 - ease) * 64) + 'px)';
+      if(logo) logo.style.transform = 'scale(' + (0.82 + ease * 0.18) + ')';
+    };
+    window.addEventListener('scroll', this._turHero, { passive: true });
+    window.addEventListener('resize', this._turHero, { passive: true });
+    requestAnimationFrame(() => requestAnimationFrame(this._turHero));
+    // contador de días animado al cargar
+    const dur = 1800, t0 = performance.now();
+    const tick = (t) => {
+      const x = Math.min(1, (t - t0) / dur);
+      this.setState({ diasP: 1 - Math.pow(1 - x, 3) });
+      if(x < 1) this._rafDias = requestAnimationFrame(tick);
+    };
+    this._rafDias = requestAnimationFrame(tick);
+    const target = document.getElementById('logros');
+    if(!target || typeof IntersectionObserver === 'undefined'){ this.startCount(); return; }
+    const check = () => {
+      const r = target.getBoundingClientRect();
+      if(r.top < (window.innerHeight || 800) * 0.9 && r.bottom > 0){ this.startCount(); cleanup(); }
+    };
+    const cleanup = () => { if(this._obs){ this._obs.disconnect(); this._obs=null; } window.removeEventListener('scroll', check); if(this._startFallback) clearTimeout(this._startFallback); };
+    this._obs = new IntersectionObserver((entries) => {
+      if(entries.some(e => e.isIntersecting)){ this.startCount(); cleanup(); }
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+    this._obs.observe(target);
+    window.addEventListener('scroll', check, { passive: true });
+    check();
+    this._startFallback = setTimeout(() => { this.startCount(); cleanup(); }, 1500);
+  }
+
+  _initCifras = () => {
+    const run = () => {
+      const els = Array.from(document.querySelectorAll('.countnum'));
+      if(!els.length){ this._cifrasTimer = setTimeout(run, 200); return; }
+      const animate = (el) => {
+        if(el._done) return; el._done = true;
+        const to = parseFloat(el.getAttribute('data-to')) || 0;
+        const pre = el.getAttribute('data-pre') || '';
+        const suf = el.getAttribute('data-suf') || '';
+        const dur = 1500, t0 = performance.now();
+        const step = (t) => {
+          const x = Math.min(1, (t - t0) / dur);
+          const e = 1 - Math.pow(1 - x, 3);
+          el.textContent = pre + Math.round(to * e).toLocaleString('es-ES') + suf;
+          if(x < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      if(typeof IntersectionObserver === 'undefined'){ els.forEach(animate); return; }
+      this._cifrasObs = new IntersectionObserver((ents) => {
+        ents.forEach(en => { if(en.isIntersecting){ animate(en.target); this._cifrasObs.unobserve(en.target); } });
+      }, { threshold: 0.4 });
+      els.forEach(el => this._cifrasObs.observe(el));
+    };
+    this._cifrasTimer = setTimeout(run, 100);
+  };
+
+  toggleTheme = () => {
+    const root = document.getElementById('guaRoot');
+    if(!root) return;
+    const dark = !root.classList.contains('theme-dark');
+    root.classList.toggle('theme-dark', dark);
+    try{ localStorage.setItem('gua-theme', dark ? 'dark' : 'light'); }catch(e){}
+  };
+
+  componentWillUnmount(){ if(window.GStore && this._onStore) window.GStore.off(this._onStore); if(this._glowMove) document.removeEventListener('pointermove', this._glowMove); if(this._glowInt) clearInterval(this._glowInt); if(this._borderInt) clearInterval(this._borderInt); if(this._turHero){ window.removeEventListener('scroll', this._turHero); window.removeEventListener('resize', this._turHero); } if(this._obs) this._obs.disconnect(); if(this._raf) cancelAnimationFrame(this._raf); if(this._turTimer) clearTimeout(this._turTimer); if(this._turMap){ this._turMap.remove(); this._turMap=null; } }
+
+  TUR_CENTER = [10.4740, -66.6110];
+  TURISMO = [
+    { cat:'Patrimonio', color:'#4220e5', items:[
+      { n:1, name:'Catedral Nuestra Señora de Copacabana', lat:10.4712, lng:-66.6136, ic:'church' },
+      { n:2, name:'Iglesia La Candelaria', lat:10.4695, lng:-66.6100, ic:'church' },
+      { n:3, name:'Torreón de la Hacienda Trapichito', lat:10.4783, lng:-66.6040, ic:'tower' },
+      { n:4, name:'Trapiche de la Hacienda Casarapa', lat:10.4590, lng:-66.5905, ic:'landmark' },
+      { n:5, name:'Fuente de Los Amorcillos', lat:10.4715, lng:-66.6128, ic:'drop' },
+    ]},
+    { cat:'Plazas', color:'#7a5cff', items:[
+      { n:6, name:'Plaza Bolívar', lat:10.4712, lng:-66.6136, ic:'plaza' },
+      { n:7, name:'Plaza La Candelaria', lat:10.4696, lng:-66.6101, ic:'plaza' },
+      { n:8, name:'Plaza de la Guarenidad', lat:10.4735, lng:-66.6150, ic:'plaza' },
+    ]},
+    { cat:'Parques', color:'#1f9d55', items:[
+      { n:9, name:'Parque Ambrosio Plaza', lat:10.4728, lng:-66.6160, ic:'tree' },
+      { n:10, name:'Parque Negro Primero', lat:10.4670, lng:-66.6180, ic:'tree' },
+      { n:11, name:'Parque María Cartaya', lat:10.4700, lng:-66.6060, ic:'tree' },
+    ]},
+    { cat:'Museos', color:'#e08a1e', items:[
+      { n:12, name:'Museo José Félix Ribas', lat:10.4718, lng:-66.6120, ic:'museum' },
+    ]},
+    { cat:'Naturales y balnearios', color:'#17a5c4', items:[
+      { n:13, name:'Río Curupao', lat:10.4930, lng:-66.6300, ic:'wave' },
+      { n:14, name:'Río Izcaragua', lat:10.4530, lng:-66.5800, ic:'wave' },
+      { n:15, name:'Nueva Casarapa', lat:10.4585, lng:-66.5920, ic:'building' },
+      { n:16, name:'Waraira Repano (El Ávila)', lat:10.5000, lng:-66.6200, ic:'mountain' },
+    ]},
+  ];
+  _flatTur(){ const a=[]; this.TURISMO.forEach(c=>c.items.forEach(t=>a.push(Object.assign({color:c.color},t)))); return a; }
+  _initLogrosDrag = () => {
+    const sc = document.getElementById('logrosScroll');
+    if(!sc){ this._logrosTimer = setTimeout(this._initLogrosDrag, 200); return; }
+    if(sc._dragInit) return; sc._dragInit = true;
+    let down=false, sx=0, sl=0, moved=false;
+    sc.addEventListener('pointerdown', e=>{ down=true; moved=false; sx=e.clientX; sl=sc.scrollLeft; sc.style.cursor='grabbing'; try{ sc.setPointerCapture(e.pointerId); }catch(_){} });
+    sc.addEventListener('pointermove', e=>{ if(!down) return; const d=e.clientX-sx; if(Math.abs(d)>4) moved=true; sc.scrollLeft = sl - d; });
+    const up = () => { down=false; sc.style.cursor='grab'; };
+    sc.addEventListener('pointerup', up); sc.addEventListener('pointercancel', up);
+    sc.addEventListener('click', e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); } }, true);
+    sc.addEventListener('wheel', e=>{ if(Math.abs(e.deltaX) < Math.abs(e.deltaY)){ sc.scrollLeft += e.deltaY; e.preventDefault(); } }, { passive:false });
+  };
+
+  _initTram = () => {
+    const sc = document.querySelector('[data-tramscroll]');
+    if(!sc){ this._tramTimer = setTimeout(this._initTram, 200); return; }
+    if(sc._tramInit) return; sc._tramInit = true;
+    const track = sc.querySelector('.tram-track');
+    let down=false, sx=0, sl=0, moved=false, paused=false;
+    const wrap = () => { const h = track.offsetWidth/2; if(h>0){ if(sc.scrollLeft >= h) sc.scrollLeft -= h; else if(sc.scrollLeft <= 0) sc.scrollLeft += h; } };
+    sc.addEventListener('pointerdown', e=>{ down=true; moved=false; sx=e.clientX; sl=sc.scrollLeft; sc.style.cursor='grabbing'; try{ sc.setPointerCapture(e.pointerId); }catch(_){} });
+    sc.addEventListener('pointermove', e=>{ if(!down) return; const d=e.clientX-sx; if(Math.abs(d)>4) moved=true; sc.scrollLeft = sl - d; wrap(); });
+    const up = () => { down=false; sc.style.cursor='grab'; };
+    sc.addEventListener('pointerup', up); sc.addEventListener('pointercancel', up);
+    sc.addEventListener('click', e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); } }, true);
+    sc.addEventListener('scroll', wrap);
+    sc.addEventListener('pointerenter', ()=>paused=true);
+    sc.addEventListener('pointerleave', ()=>paused=false);
+    const step = () => { if(!paused && !down){ sc.scrollLeft += 0.4; wrap(); } this._tramRaf = requestAnimationFrame(step); };
+    requestAnimationFrame(()=>{ sc.scrollLeft = 1; step(); });
+  };
+  _initTurMap = () => {
+    const go = () => {
+      if(!window.L || !document.getElementById('turMap')){ this._turTimer = setTimeout(go, 150); return; }
+      if(this._turMap) return;
+      const L = window.L;
+      const c = document.getElementById('turMap');
+      if(c._leaflet_id){ try{ c._leaflet_id = null; c.innerHTML=''; }catch(_){} }
+      let map;
+      try { map = L.map('turMap', { zoomControl:true, scrollWheelZoom:false }).setView(this.TUR_CENTER, 14); }
+      catch(e){ this._turTimer = setTimeout(go, 300); return; }
+      this._turMap = map;
+      try {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; OpenStreetMap' }).addTo(map);
+        this._turLayer = L.layerGroup().addTo(map);
+        this._turMarks = {};
+        this.renderTurMarkers();
+      } catch(e){}
+      setTimeout(() => { try{ map.invalidateSize(); }catch(_){} }, 300);
+    };
+    go();
+  };
+  renderTurMarkers = () => {
+    const L = window.L;
+    if(!this._turMap || !this._turLayer || !L) return;
+    this._turLayer.clearLayers();
+    this._turMarks = {};
+    const sel = this.state.turSel;
+    this._flatTur().forEach(t => {
+      const on = sel === t.n;
+      const sz = on ? 34 : 26;
+      const html = '<div style="width:'+sz+'px;height:'+sz+'px;border-radius:50%;background:'+(on?'#ff9d00':t.color)+';color:#fff;display:flex;align-items:center;justify-content:center;font-family:Poppins,sans-serif;font-weight:700;font-size:'+(on?15:12)+'px;border:2.5px solid #fff;box-shadow:0 6px 16px -4px rgba(20,18,56,.6);">'+t.n+'</div>';
+      const icon = L.divIcon({ html, className:'', iconSize:[sz,sz], iconAnchor:[sz/2,sz/2] });
+      const mk = L.marker([t.lat,t.lng], { icon, zIndexOffset: on?1000:0 }).addTo(this._turLayer);
+      mk.bindTooltip(t.n+' · '+t.name, { direction:'top', offset:[0,-sz/2] });
+      mk.on('click', () => this._flyTo(t.n));
+      this._turMarks[t.n] = mk;
+    });
+  };
+  _flyTo = (n) => {
+    const t = this._flatTur().find(x=>x.n===n);
+    this.setState({ turSel:n }, () => this.renderTurMarkers());
+    if(this._turMap && t){ this._turMap.flyTo([t.lat,t.lng], 16, { duration:.8 }); }
+    if(window.innerWidth <= 760){ const p=document.querySelector('[data-turpanel]'); if(p) p.classList.add('turp-collapsed'); }
+    const mk = this._turMarks && this._turMarks[n];
+    if(mk){ setTimeout(()=>mk.openTooltip(), 350); }
+  };
+  turReset = () => { this.setState({ turSel:null }, () => this.renderTurMarkers()); if(this._turMap) this._turMap.flyTo(this.TUR_CENTER, 14, { duration:.8 }); };
+  togglePanel = () => { const p=document.querySelector('[data-turpanel]'); if(p) p.classList.toggle('turp-collapsed'); };
+
+  startCount(){
+    if(this.state.started) return;
+    this.setState({ started: true });
+    const dur = 1500, t0 = performance.now();
+    const tick = (t) => {
+      const x = Math.min(1, (t - t0) / dur);
+      const eased = 1 - Math.pow(1 - x, 3);
+      this.setState({ p: eased });
+      if(x < 1) this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+  }
+
+  tabStyle(active){
+    const base = "border:none; cursor:pointer; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; padding:9px 18px; border-radius:6px; transition:all .15s;";
+    return active ? base + "background:#4220e5; color:#fff;" : base + "background:transparent; color:#55555c;";
+  }
+
+  renderVals(){
+    const ico = {
+      file:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>',
+      news:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h14a2 2 0 0 0 2-2V4a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v16a2 2 0 0 1-2-2V8"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>',
+      chart:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="13" y="8" width="3" height="10"/></svg>',
+      landmark:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 10h16M12 3 4 7h16zM6 10v8M10 10v8M14 10v8M18 10v8"/></svg>',
+      pin:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+      heart:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21l8.8-8.3a5 5 0 0 0 0-7.1z"/></svg>',
+      up:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-6M21 7v6"/></svg>',
+      store:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M4 9v10h16V9M4 9h16"/></svg>',
+      map:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m9 4-6 2v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>',
+      receipt:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2.5-1.5L9 22l3-1.5L15 22l2.5-1.5L20 22V2l-2.5 1.5L15 2l-3 1.5L9 2 6.5 3.5 4 2z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+      users:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg>',
+      grid:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>',
+      flag:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg>',
+      pin2:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+    };
+    const iconEl = (svg) => React.createElement('span', { style:{ display:'inline-flex' }, dangerouslySetInnerHTML:{ __html: svg } });
+    Object.keys(ico).forEach(k => { ico[k] = iconEl(ico[k]); });
+
+    const startISO = this.props.gestionStartISO || '2025-01-01';
+    const start = new Date(startISO + 'T00:00:00');
+    const days = Math.max(0, Math.floor((Date.now() - start.getTime()) / 86400000));
+    const now = new Date();
+    let gy = now.getFullYear() - start.getFullYear();
+    let gm = now.getMonth() - start.getMonth();
+    let gd = now.getDate() - start.getDate();
+    if(gd < 0){ gm -= 1; gd += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+    if(gm < 0){ gy -= 1; gm += 12; }
+
+    const news = {
+      ciudad: [
+        { tag:'Ciudad', date:'4 jul 2026', title:'Nueva jornada de recuperación de espacios públicos en el casco central', desc:'Cuadrillas municipales intervienen plazas y aceras para devolver el espacio a las familias guareñas.', img:'assets/news-brigada.png' },
+        { tag:'Ciudad', date:'2 jul 2026', title:'Rehabilitación de vías en la parroquia Guarenas', img:'assets/news-vialidad.png' },
+        { tag:'Ciudad', date:'28 jun 2026', title:'Operativo de salud llega a las comunidades del sur', img:'assets/news-salud.png' },
+        { tag:'Ciudad', date:'25 jun 2026', title:'Ampliación del alumbrado público en avenidas principales', img:'assets/news-alumbrado.png' },
+        { tag:'Ciudad', date:'21 jun 2026', title:'Nuevo sistema de recolección de desechos casa por casa', img:'assets/news-transporte.png' },
+        { tag:'Ciudad', date:'17 jun 2026', title:'Sustitución de colectores de aguas servidas en Ruiz Pineda', img:'assets/news-agua.png' },
+        { tag:'Ciudad', date:'12 jun 2026', title:'Reinauguración de canchas deportivas en varios sectores', img:'assets/news-plaza.png' },
+      ],
+      pais: [
+        { tag:'País', date:'5 jul 2026', title:'Municipios del país coordinan agenda de desarrollo urbano', desc:'Autoridades locales acuerdan lineamientos comunes para modernizar los servicios ciudadanos.', img:'assets/news-plaza.png' },
+        { tag:'País', date:'1 jul 2026', title:'Nuevos convenios de cooperación entre alcaldías', img:'assets/news-transporte.png' },
+        { tag:'País', date:'27 jun 2026', title:'Programa nacional de infraestructura beneficia a Miranda', img:'assets/news-agua.png' },
+        { tag:'País', date:'22 jun 2026', title:'Encuentro de gobiernos locales sobre transformación digital', img:'assets/banner-noticias.png' },
+        { tag:'País', date:'16 jun 2026', title:'Plan nacional de seguridad ciudadana suma nuevas unidades', img:'assets/news-transporte.png' },
+        { tag:'País', date:'10 jun 2026', title:'Alcaldías del país impulsan la Consulta Popular de la Juventud', img:'assets/news-salud.png' },
+      ],
+      alcalde: [
+        { tag:'Alcalde', date:'6 jul 2026', title:'Comunicado del alcalde: balance de gestión del primer semestre', desc:'El alcalde presenta a la ciudadanía los avances alcanzados y los compromisos para los próximos meses.', img:'assets/noticia-balance.jpg' },
+        { tag:'Alcalde', date:'30 jun 2026', title:'Alcalde inaugura obras de vialidad en el municipio', img:'assets/news-vialidad.png' },
+        { tag:'Alcalde', date:'24 jun 2026', title:'Encuentro directo del alcalde con líderes comunitarios', img:'assets/news-salud.png' },
+        { tag:'Alcalde', date:'18 jun 2026', title:'Mensaje del alcalde por el aniversario de la ciudad', img:'assets/news-agua.png' },
+        { tag:'Alcalde', date:'13 jun 2026', title:'El alcalde entrega uniformes y equipos a la policía municipal', img:'assets/news-brigada.png' },
+        { tag:'Alcalde', date:'8 jun 2026', title:'Recorrido del alcalde por las obras de asfaltado', img:'assets/news-vialidad.png' },
+      ],
+    };
+
+    const tab = this.state.tab;
+    const NEWS = (window.GStore && window.GStore.get('g_noticias')) || news;
+    const list = NEWS[tab];
+    const com = (window.GStore && window.GStore.get('g_comunicado')) || {};
+    const comBody = com.body || [];
+    const comParas = comBody.map((t,i)=>({ text:t, style:"font-family:'Varela Round',sans-serif; font-size:15.5px; line-height:1.7; color:#4a4752; margin:0 0 "+(i < comBody.length-1 ? '18px':'24px')+";" }));
+
+    const hs = this.state.heroSlide;
+    const heroData = [
+      { cat:'Obras', title:'Rehabilitación de vías del municipio', text:'Asfaltado y recuperación de las principales avenidas de Guarenas.', ph:'Arrastra aquí la foto de la obra o noticia' },
+      { cat:'Servicios', title:'Aseo urbano casa por casa', text:'Recolección diaria en cada sector del Municipio Ambrosio Plaza.', ph:'Arrastra aquí la foto del servicio de aseo' },
+      { cat:'Comunidad', title:'Programas sociales para las familias', text:'Apoyo y recursos en escuelas y comunidades de Guarenas.', ph:'Arrastra aquí la foto del evento comunitario' },
+    ];
+    const slides = heroData.map((d,i) => ({ cat:d.cat, title:d.title, text:d.text, ph:d.ph, slotId:'hero-'+(i+1), slideStyle:'position:absolute; inset:0; opacity:'+(hs===i?1:0)+'; transition:opacity .7s ease; z-index:'+(hs===i?2:1)+'; pointer-events:'+(hs===i?'auto':'none')+';' }));
+    const dots = heroData.map((d,i) => ({ onClick:()=>this.setState({heroSlide:i}), style:'cursor:pointer; border:none; padding:0; width:'+(hs===i?26:9)+'px; height:9px; border-radius:999px; background:'+(hs===i?'#ff9d00':'rgba(255,255,255,.5)')+'; transition:all .3s;' }));
+    const turSel = this.state.turSel;
+    const turIco = {
+      church:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 5h6M6 22V12l6-4 6 4v10M4 22h16M10 22v-4a2 2 0 0 1 4 0v4"/></svg>',
+      tower:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22V4l4-2 4 2v18M8 8h8M8 13h8M11 22v-4h2v4"/></svg>',
+      landmark:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h18M4 22V10M20 22V10M8 22V10M16 22V10M12 22V10M2 10h20L12 3 2 10z"/></svg>',
+      drop:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>',
+      plaza:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v7M8 6l4-3 4 3M5 21v-5a7 7 0 0 1 14 0v5M3 21h18"/></svg>',
+      tree:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6M12 16a5 5 0 0 0 5-5 4 4 0 0 0-1-2.5A4.5 4.5 0 0 0 12 2a4.5 4.5 0 0 0-4 4.5A4 4 0 0 0 7 11a5 5 0 0 0 5 5z"/></svg>',
+      museum:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h18M4 22V10M20 22V10M9 22V10M15 22V10M2 10h20L12 3 2 10z"/></svg>',
+      wave:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0M2 14c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0M2 20c2.5-2 4.5-2 7 0s4.5 2 7 0 4.5-2 6 0"/></svg>',
+      mountain:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>',
+      building:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></svg>'
+    };
+    const turismoCats = this.TURISMO.map(c => ({
+      cat: c.cat, color: c.color,
+      items: c.items.map(t => {
+        const on = turSel === t.n;
+        return {
+          n: t.n, name: t.name,
+          iconNode: iconEl('<span style="color:'+c.color+'">'+(turIco[t.ic]||turIco.landmark)+'</span>'),
+          onClick: () => this._flyTo(t.n),
+          rowStyle: 'position:relative; width:100%; text-align:left; cursor:pointer; border:1px solid '+(on?'rgba(74,52,255,.28)':'rgba(20,18,56,.08)')+'; background:'+(on?'rgba(74,52,255,.1)':'#fff')+'; backdrop-filter:'+(on?'blur(4px)':'none')+'; display:flex; align-items:center; gap:11px; padding:9px 11px; border-radius:12px; margin-bottom:6px; transition:background .15s, border-color .15s;',
+          numStyle: 'flex:none; display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:'+(on?'#ff9d00':c.color)+'; color:#fff; font-family:Poppins,sans-serif; font-weight:700; font-size:12px;'
+        };
+      })
+    }));
+    return {
+      cifras: [
+        { to:2100, pre:'', suf:'', label:'Toneladas de asfalto colocadas', iconNode: iconEl('<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="3"/><path d="M9 17h7a3 3 0 0 0 3-3V8a2 2 0 0 0-2-2h-4l-2 4H9"/><path d="M19 11h2"/></svg>') },
+        { to:710, pre:'', suf:'', label:'Luminarias instaladas en vías', iconNode: iconEl('<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 3 2 5h4c0-2 2-3 2-5a4 4 0 0 0-4-4z"/><path d="M10 15h4M11 18h2M12 11v10"/></svg>') },
+        { to:120, pre:'+', suf:'', label:'Destapes de aguas servidas', iconNode: iconEl('<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>') },
+        { to:50, pre:'', suf:'', label:'Motos nuevas para la seguridad', iconNode: iconEl('<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="17" r="3"/><circle cx="19" cy="17" r="3"/><path d="M8 17h8l-3-6h3l-2-3M13 11 9 8H6"/></svg>') },
+        { to:9, pre:'', suf:'', label:'Canchas deportivas reinauguradas', iconNode: iconEl('<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 5v14M3 12h4M17 12h4M7 9v6M17 9v6"/></svg>') },
+      ],
+      slides, dots, heroNext:this.heroNext, heroPrev:this.heroPrev,
+      turismoCats, turReset: this.turReset, togglePanel: this.togglePanel,
+      toggleTheme: this.toggleTheme,
+      comShow: this.state.comShow, comModal: this.state.comModal,
+      comActive: com.active !== false,
+      comEyebrow: com.eyebrow || 'Mensaje del alcalde',
+      comTitle: com.title || '',
+      comAuthor: com.author || '',
+      comRole: com.role || '',
+      comInitials: com.initials || '',
+      comPhoto: com.photo || 'assets/comunicado-alcalde.png',
+      comParas,
+      showCom: this.showCom, hideCom: this.hideCom, openComModal: this.openComModal, closeComModal: this.closeComModal, stopProp: this.stopProp,
+      doSearch: () => {
+        const q = (window.prompt('Buscar en el portal (Gestión, Trámites, Noticias, Identidad, Turismo, Logros)') || '').trim().toLowerCase();
+        if (!q) return;
+        const map = [
+          { k:['gestion','gestión','obras','programa','plan'], sel:'#gestion' },
+          { k:['tramite','trámite','tramites','licencia','solvencia','catastro'], sel:'#tramites' },
+          { k:['noticia','noticias','prensa','comunicado'], sel:'#noticias' },
+          { k:['identidad','cultura','tradicion','tradición','patrimonio'], sel:'#identidad' },
+          { k:['turismo','turistico','turístico','vive','rio','río','cascada'], sel:'#turismo' },
+          { k:['logro','logros','hito','hitos','resultado'], sel:'#logros' },
+        ];
+        let sel = null;
+        for (const m of map) { if (m.k.some(w => q.includes(w))) { sel = m.sel; break; } }
+        const el = sel ? document.querySelector(sel) : null;
+        if (el) { const y = el.getBoundingClientRect().top + window.pageYOffset - 90; window.scrollTo({ top:y, behavior:'smooth' }); }
+        else { window.alert('No encontramos resultados para «' + q + '». Prueba: Gestión, Trámites, Noticias, Identidad, Turismo o Logros.'); }
+      },
+      icon3d: [
+        { label:'Patrimonio', bg:'linear-gradient(135deg,#4a34ff,#2f169e)', delay:'0s', iconNode: iconEl('<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M4 10h16M12 3 4 7h16z"/></svg>') },
+        { label:'Cultura', bg:'linear-gradient(135deg,#ff9d00,#e07600)', delay:'.4s', iconNode: iconEl('<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>') },
+        { label:'Naturaleza', bg:'linear-gradient(135deg,#1f9d55,#137a40)', delay:'.8s', iconNode: iconEl('<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 21 4-14 4 14M3 21l5-9M21 21l-5-9M12 3v4"/></svg>') },
+        { label:'Gastronomía', bg:'linear-gradient(135deg,#cf142b,#9e0f20)', delay:'1.2s', iconNode: iconEl('<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7a3 3 0 0 0 6 0V2M6 9v13M18 2c-2 0-3 2-3 5s1 4 3 4 3-1 3-4-1-5-3-5zM18 11v11"/></svg>') },
+      ],
+      testimonios: [
+        { name:'María Betancourt', role:'Vecina de Casarapa', slot:'test-1', stars:[1,1,1,1,1], quote:'Las calles están más limpias y el aseo pasa puntual. Se siente el cambio en el día a día del barrio.' },
+        { name:'José Rondón', role:'Comerciante del casco central', slot:'test-2', stars:[1,1,1,1,1], quote:'Hacer los trámites en línea me ahorró muchísimo tiempo. Antes era ir y venir; ahora resuelvo desde el teléfono.' },
+        { name:'Yelitza Guaicara', role:'Docente', slot:'test-3', stars:[1,1,1,1,1], quote:'Me encanta que rescaten nuestras tradiciones y muestren el turismo de Guarenas. Da orgullo ser guarenera.' },
+      ],
+      lugares: [
+        { name:'Catedral de Copacabana', loc:'Casco central, Guarenas', tag:'Patrimonio', slot:'lug-1', src:'assets/patrimonio.png' },
+        { name:'Parque Ambrosio Plaza', loc:'Guarenas, Miranda', tag:'Parque', slot:'lug-2', src:'assets/tur-parque.png' },
+        { name:'Waraira Repano', loc:'Parque Nacional El Ávila', tag:'Naturaleza', slot:'lug-3', src:'assets/tur-waraira.png' },
+        { name:'Nueva Casarapa', loc:'Guarenas, Miranda', tag:'Recreación', slot:'lug-4', src:'assets/tur-casarapa.png' },
+      ],
+      directorio: [
+        { title:'Industrial', desc:'Zonas y parques industriales', iconNode: ico.grid },
+        { title:'Comercial', desc:'Comercios, tiendas y servicios', iconNode: ico.store },
+        { title:'Turismo', desc:'Atractivos y sitios de interés', iconNode: ico.pin2 },
+      ],
+      tradiciones: [
+        { title:'San Juan de Guarenas', tag:'23-24 jun · UNESCO', ph:'Foto: tambores San Juan', slot:'trad-1', desc:'Fiesta popular y religiosa con tambores, cantos y procesiones. Patrimonio Cultural Inmaterial de la Humanidad, con raíces en las haciendas de caña.' },
+        { title:'Parranda de San Pedro', tag:'29 jun · UNESCO', ph:'Foto: Parranda San Pedro', slot:'trad-2', desc:'Declarada Patrimonio de la Humanidad (2013). Música, danza y fe recorriendo las calles para pagar promesa al Santo.' },
+        { title:'Orfeón de Guarenas', tag:'Desde 1973', ph:'Foto: coro / concierto', slot:'trad-3', desc:'Agrupación coral que difunde la música nacional y universal; pilar de la música coral venezolana.' },
+        { title:'La Viejita de Guarenas', tag:'Desde 1941', ph:'Foto: La Viejita', slot:'trad-4', desc:'Ícono folclórico creado por Miguel Parra: una anciana pícara que baila. Tradición única de la ciudad.' },
+        { title:'Vía Crucis Viviente', tag:'Semana Santa', ph:'Foto: Vía Crucis', slot:'trad-5', desc:'Representación teatral de la Pasión en el Parque Negro Primero. Patrimonio Cultural Inmaterial del municipio.' },
+      ],
+      enlaces: [
+        { title:'República Bolivariana de Venezuela', desc:'Gobierno nacional', logo:'assets/enlace-gobierno.png', href:'https://presidencia.gob.ve/Site/Web/Principal/paginas/classIndex.php' },
+        { title:'Gobierno de Miranda', desc:'Gobierno del Estado Miranda', logo:'assets/enlace-miranda.png', href:'http://www.miranda.gob.ve/' },
+        { title:'Alcaldía de Guarenas', desc:'Portal oficial', logo:'assets/logo-alcaldia.png', href:'Home.dc.html' },
+      ],
+      turElems: [
+        { label:'Patrimonio', iconNode: iconEl('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M4 10h16M12 3 4 7h16z"/></svg>') },
+        { label:'Cultura', iconNode: iconEl('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>') },
+        { label:'Naturaleza', iconNode: iconEl('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 21 4-14 4 14M3 21l5-9M21 21l-5-9M12 3v4"/></svg>') },
+        { label:'Gastronomía', iconNode: iconEl('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7a3 3 0 0 0 6 0V2M6 9v13M18 2c-2 0-3 2-3 5s1 4 3 4 3-1 3-4-1-5-3-5zM18 11v11"/></svg>') },
+      ],
+      dias: Math.round(days * (this.state.diasP ?? 0)).toLocaleString('es-ES'),
+      gAnios: Math.max(0, gy),
+      gMeses: Math.max(0, gm),
+      gDiasR: Math.max(0, gd),
+      gestionLabel: this.props.gestionStartLabel || '1 de enero de 2025',
+      accesos: [
+        { label:'Trámites', hint:'Licencias, catastro, tributos y solvencias en pocos clics.', href:'Tramites.dc.html', icon: ico.file, slot:'ac-tramites', ph:'Foto: atención al ciudadano', src:'assets/acc-tramites.png' },
+        { label:'Noticias', hint:'La actualidad de la ciudad, del país y del alcalde.', href:'Noticias.dc.html', icon: ico.news, slot:'ac-noticias', ph:'Foto: rueda de prensa / evento', src:'assets/acc-noticias.png' },
+        { label:'Gestión', hint:'Planes, programas, logros e hitos de la gestión.', href:'Gestion.dc.html', icon: ico.chart, slot:'ac-gestion', ph:'Foto: obra o programa', src:'assets/acc-gestion.png' },
+        { label:'Identidad', hint:'Cultura, patrimonio, fiestas y turismo guareño.', href:'Identidad.dc.html', icon: ico.landmark, slot:'ac-identidad', ph:'Foto: cultura / patrimonio', src:'assets/acc-identidad.png' },
+        { label:'Info Municipal', hint:'Datos de población y directorio de servicios.', href:'Info Municipal.dc.html', icon: ico.pin, slot:'ac-info', ph:'Foto: ciudad / panorámica', src:'assets/acc-info.png' },
+      ],
+      gestion: [
+        { title:'Políticas sociales', tag:'Bienestar', desc:'Planes y programas dirigidos al bienestar de las familias: salud, educación, deporte y atención comunitaria.', icon: ico.heart, points:['Salud comunitaria','Educación y deporte','Atención a las familias'] },
+        { title:'Políticas económicas', tag:'Desarrollo', desc:'Iniciativas para impulsar el comercio local, el empleo y la inversión productiva en el municipio.', icon: ico.up, points:['Comercio local','Generación de empleo','Inversión productiva'] },
+      ],
+      tramites: [
+        { title:'Comercio', desc:'Permisos, licencias y registros para tu negocio o actividad comercial.', cta:'Ver requisitos', icon: ico.store },
+        { title:'Catastro', desc:'Consultas y gestiones sobre inmuebles, linderos y fichas catastrales.', cta:'Consultar', icon: ico.map },
+        { title:'Tributos y tasas', desc:'Pago y consulta de impuestos, tasas municipales y solvencias.', cta:'Pagar / consultar', icon: ico.receipt },
+        { title:'Solvencias municipales', desc:'Solicita y descarga tu solvencia municipal al día en minutos.', cta:'Solicitar', icon: ico.file },
+        { title:'Licencias de construcción', desc:'Permisos de obra, remodelación y variables urbanas del municipio.', cta:'Ver requisitos', icon: ico.landmark },
+        { title:'Actividades económicas', desc:'Registro y declaración de actividades económicas y patentes.', cta:'Registrar', icon: ico.chart },
+        { title:'Permisos y eventos', desc:'Autorizaciones para eventos, ferias y uso de espacios públicos.', cta:'Solicitar', icon: ico.flag },
+        { title:'Atención al ciudadano', desc:'Reporta incidencias, haz consultas y da seguimiento a tu caso.', cta:'Ingresar', icon: ico.news },
+      ],
+      metas: (() => {
+        const p = this.state.p;
+        const raw = [
+          { name:'Iluminación pública', target:82, color:'#ff9d00' },
+          { name:'Rehabilitación de vías', target:68, color:'#4aa8ff' },
+          { name:'Recolección de desechos', target:91, color:'#3ea06a' },
+          { name:'Atención social', target:74, color:'#ff7a90' },
+        ];
+        return raw.map(m => {
+          const val = Math.round(m.target * p);
+          return { name:m.name, color:m.color, pctLabel:val+'%', width:val+'%' };
+        });
+      })(),
+      hitos: (() => {
+        const p = this.state.p, started = this.state.started;
+        const anim = (svg) => React.createElement('span', { style:{ display:'inline-flex', animation:'sc-float 3.2s ease-in-out infinite' }, dangerouslySetInnerHTML:{ __html: svg } });
+        const raw = [
+          { v:1240, f:(n)=>n.toLocaleString('es-ES'), label:'Luminarias LED instaladas en avenidas y comunidades',
+            svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4.9 11.9c.6.6.9 1.3.9 2.1h8c0-.8.3-1.5.9-2.1A7 7 0 0 0 12 2z"/></svg>',
+            foto:'assets/obra-luminarias.jpg' },
+          { v:38, f:(n)=>n+' km', label:'De vías rehabilitadas en todo el municipio',
+            svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19 8 5M20 19 16 5M12 8v2M12 13v2M12 18v2"/></svg>',
+            foto:'assets/obra-asfaltado.jpg' },
+          { v:52, f:(n)=>String(n), label:'Escuelas y espacios educativos atendidos',
+            svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 10-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>',
+            foto:'assets/obra-escuelas.jpg' },
+          { v:15, f:(n)=>'+'+n+' mil', label:'Familias beneficiadas por programas sociales',
+            svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>',
+            foto:'assets/logro-familias.jpg' },
+          { v:34, f:(n)=>String(n), label:'Techos impermeabilizados en urbanismos populares',
+            svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/></svg>',
+            foto:'assets/obra-impermeabilizacion.jpg' },
+          { v:9, f:(n)=>String(n), label:'Canchas y espacios deportivos recuperados',
+            svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>',
+            foto:'assets/logro-canchas.jpg' },
+          { v:1240, f:(n)=>n.toLocaleString('es-ES'), label:'Toneladas de desechos recolectadas al mes',
+            svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>',
+            foto:'assets/logro-aseo.jpg' },
+          { v:5, f:(n)=>String(n), label:'Parroquias con jornadas integrales de servicios',
+            svg:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+            foto:'assets/logro-jornada.jpg' },
+        ];
+        const variants = [
+          { scrim:'linear-gradient(to top, rgba(8,22,54,.94), rgba(8,22,54,.12) 62%)', numFg:'#fff', rule:'#ff9d00', span:'grid-column:span 2; grid-row:span 2;', big:true },
+          { scrim:'linear-gradient(to top, rgba(8,22,54,.9), rgba(8,22,54,.1) 60%)', numFg:'#fff', rule:'#4aa8ff', span:'grid-column:span 1; grid-row:span 1;', big:false },
+          { scrim:'linear-gradient(to top, rgba(8,22,54,.9), rgba(8,22,54,.1) 60%)', numFg:'#fff', rule:'#3a7d44', span:'grid-column:span 1; grid-row:span 1;', big:false },
+          { scrim:'linear-gradient(to top, rgba(120,16,40,.92), rgba(120,16,40,.12) 62%)', numFg:'#fff', rule:'#ff9db0', span:'grid-column:span 2; grid-row:span 1;', big:false },
+          { scrim:'linear-gradient(to top, rgba(8,22,54,.9), rgba(8,22,54,.1) 60%)', numFg:'#fff', rule:'#ff9d00', span:'grid-column:span 2; grid-row:span 1;', big:false },
+          { scrim:'linear-gradient(to top, rgba(30,14,120,.9), rgba(30,14,120,.12) 62%)', numFg:'#fff', rule:'#c9beff', span:'grid-column:span 1; grid-row:span 1;', big:false },
+          { scrim:'linear-gradient(to top, rgba(8,22,54,.9), rgba(8,22,54,.1) 60%)', numFg:'#fff', rule:'#3a7d44', span:'grid-column:span 1; grid-row:span 1;', big:false },
+          { scrim:'linear-gradient(to top, rgba(30,14,120,.9), rgba(30,14,120,.12) 62%)', numFg:'#fff', rule:'#ff9d00', span:'grid-column:span 2; grid-row:span 1;', big:false },
+        ];
+        return raw.map((h, i) => {
+          const vr = variants[i % variants.length];
+          return {
+            display: h.f(Math.round(h.v * p)),
+            label: h.label,
+            foto: h.foto,
+            scrim: vr.scrim, numFg: vr.numFg, rule: vr.rule, span: vr.span,
+            numSize: vr.big ? '52px' : '32px',
+          };
+        });
+      })(),
+      identidad: [
+        { title:'Fiestas patronales', tag:'Cultura', sub:'Tradición y fe', ph:'Fiestas patronales', slot:'id-1', src:'assets/fiestas-patronales.png' },
+        { title:'Eventos culturales', tag:'Agenda', sub:'Agenda del mes', ph:'Eventos culturales', slot:'id-2', src:'assets/eventos-culturales.png' },
+        { title:'Patrimonio', tag:'Historia', sub:'Historia y tradiciones', ph:'Patrimonio', slot:'id-3', src:'assets/patrimonio.png' },
+        { title:'Turismo', tag:'Vive Guarenas', sub:'Atractivos del municipio', ph:'Turismo', slot:'id-4', src:'assets/turismo-guarenas.png' },
+      ],
+      datos: [
+        { num:'≈ 220 mil', label:'Habitantes', iconNode: ico.users, stripStyle:'padding:28px 26px 30px 0; border-right:1px solid #e6e6ea;' },
+        { num:'5', label:'Parroquias', iconNode: ico.grid, stripStyle:'padding:28px 26px 30px; border-right:1px solid #e6e6ea;' },
+        { num:'1621', label:'Año de fundación', iconNode: ico.flag, stripStyle:'padding:28px 26px 30px; border-right:1px solid #e6e6ea;' },
+        { num:'Miranda', label:'Estado', iconNode: ico.pin2, stripStyle:'padding:28px 0 30px 26px;' },
+      ],
+      truckSrc: this.TRUCK_FRAMES[this._frame || 0],
+      truckDown: this.truckDown,
+      tab,
+      featured: list[0],
+      resto: list.slice(1),
+      setCiudad: () => this.setState({ tab:'ciudad' }),
+      setPais: () => this.setState({ tab:'pais' }),
+      setAlcalde: () => this.setState({ tab:'alcalde' }),
+      tabCiudad: this.tabStyle(tab==='ciudad'),
+      tabPais: this.tabStyle(tab==='pais'),
+      tabAlcalde: this.tabStyle(tab==='alcalde'),
+    };
+  }
+}
+</script>
+</body>
+</html>

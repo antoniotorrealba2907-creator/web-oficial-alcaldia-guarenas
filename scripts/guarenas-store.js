@@ -40,9 +40,8 @@
         { tag: 'Ciudad', date: '20 jun 2026', title: 'Jornada de arborización en espacios recuperados', desc: '', img: P.plaza },
         { tag: 'Ciudad', date: '15 jun 2026', title: 'Mejoras en la red de distribución de agua potable', desc: 'Sustitución de tuberías para un servicio más estable.', img: P.agua },
         { tag: 'Ciudad', date: '10 jun 2026', title: 'Nuevas rutas de transporte urbano para las comunidades', desc: '', img: P.transporte },
-        { tag: 'Ciudad', date: '6 jun 2026', title: 'Repavimentación de calles en el este del municipio', desc: '', img: P.vial },
-        { tag: 'Ciudad', date: '2 jun 2026', title: 'Instalación de semáforos inteligentes en el centro', desc: '', img: P.alumbrado },
-        { tag: 'Ciudad', date: '28 may 2026', title: 'Vista aérea del avance de las obras urbanas', desc: '', img: P.aerea }
+        { tag: 'Comunidad', date: '8 jun 2026', title: 'Entrega de bolsos y útiles escolares a estudiantes del municipio', desc: 'Jornada educativa para acompañar a las familias guareñas en el regreso a clases.', img: 'assets/news-educacion.png' },
+        { tag: 'Ciudad', date: '6 jun 2026', title: 'Repavimentación de calles en el este del municipio', desc: '', img: P.vial }
       ],
       pais: [
         { tag: 'País', date: '5 jul 2026', title: 'Municipios del país coordinan agenda de desarrollo urbano', desc: 'Autoridades locales acuerdan lineamientos comunes para modernizar los servicios ciudadanos.', img: P.aerea },

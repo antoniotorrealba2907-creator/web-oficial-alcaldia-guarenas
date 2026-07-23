@@ -135,3 +135,117 @@ img, video, image-slot, canvas { max-width: 100%; }
   .turp-collapsed [data-turp-body] { display: none !important; }
 }
 .turp-collapsed [data-turp-chev] { transform: rotate(180deg) !important; }
+
+/* ============================================================
+   MODO OSCURO REAL — sin invertir imágenes.
+   Fondo oscuro, texto claro, logo en blanco. Aplica en todo ancho.
+   (Reemplaza el antiguo hack filter:invert que ponía fotos en negativo.)
+   ============================================================ */
+.theme-dark, .theme-dark #guaRoot, .theme-dark body { background: #0c1024 !important; }
+
+/* Header y barra de navegación */
+.theme-dark header { background: #0c1024 !important; border-bottom-color: rgba(255,255,255,.1) !important; }
+.theme-dark header nav { background: rgba(255,255,255,.06) !important; border-color: rgba(255,255,255,.14) !important; }
+
+/* Logo de la alcaldía -> versión blanca */
+.theme-dark header img[src*="logo-alcaldia"] { filter: brightness(0) invert(1) !important; }
+
+/* Bottom tab bar y sheet en oscuro */
+.theme-dark [data-btabbar] { background: rgba(12,16,36,.92) !important; border-top-color: rgba(255,255,255,.1) !important; }
+.theme-dark [data-msheet-panel] { background: #16192f !important; }
+.theme-dark [data-msheet-grid] a { background: #1e2140 !important; border-color: rgba(255,255,255,.1) !important; }
+.theme-dark [data-ms-ico] { background: #12152b !important; border-color: rgba(255,255,255,.14) !important; }
+
+/* Las imágenes/vídeos se quedan tal cual (sin negativo) */
+.theme-dark img, .theme-dark video, .theme-dark image-slot, .theme-dark canvas, .theme-dark .leaflet-container { filter: none !important; }
+
+/* ============================================================
+   BOTTOM TAB BAR — navegación inferior tipo app (solo móvil)
+   Inyectada por fx.js. Oculta en escritorio.
+   ============================================================ */
+[data-btabbar], [data-msheet] { display: none; }
+
+@media (max-width: 900px) {
+  /* La barra inferior reemplaza al menú superior: ocultar hamburguesa */
+  [data-mnav-btn] { display: none !important; }
+
+  /* Dejar aire al final para que el contenido no quede tras la barra */
+  body { padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px)) !important; }
+
+  /* Subir el toggle de tema para que no lo tape la barra (queda arriba-dcha, ya está) */
+  [data-theme-toggle] { top: calc(12px + env(safe-area-inset-top, 0px)) !important; }
+
+  /* --- Barra --- */
+  [data-btabbar] {
+    display: flex !important; align-items: stretch; justify-content: space-around;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9990;
+    background: rgba(255,255,255,.92);
+    -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px);
+    border-top: 1px solid #e7e7ee;
+    box-shadow: 0 -10px 30px -18px rgba(20,18,56,.4);
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+  [data-btabbar] [data-bt] {
+    flex: 1 1 0; min-width: 0; appearance: none; -webkit-appearance: none;
+    background: none; border: 0; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    min-height: 52px; padding: 6px 2px; border-radius: 14px;
+    color: #8a8aa0; text-decoration: none;
+    font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 10.5px; letter-spacing: .01em;
+    position: relative; transition: color .18s cubic-bezier(.2,.7,.3,1), transform .12s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  [data-btabbar] [data-bt]:active { transform: scale(.93); }
+  [data-btabbar] [data-bt-ico] {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; transition: transform .2s cubic-bezier(.2,.7,.3,1);
+  }
+  [data-btabbar] [data-bt-ico] svg { width: 23px; height: 23px; }
+  [data-btabbar] [data-bt-lbl] { line-height: 1; }
+  [data-btabbar] [data-bt-on] { color: #4220e5; }
+  [data-btabbar] [data-bt-on] [data-bt-ico] { transform: translateY(-1px); }
+  /* Indicador superior del tab activo */
+  [data-btabbar] [data-bt-on]::before {
+    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 22px; height: 3px; border-radius: 999px; background: #4220e5;
+  }
+
+  /* --- Bottom sheet "Más" --- */
+  [data-msheet] { display: block !important; position: fixed; inset: 0; z-index: 9992; pointer-events: none; }
+  [data-msheet] [data-msheet-bd] {
+    position: absolute; inset: 0; background: rgba(12,20,50,.42);
+    opacity: 0; transition: opacity .22s ease; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  }
+  [data-msheet] [data-msheet-panel] {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: #fff; border-radius: 22px 22px 0 0;
+    padding: 10px 18px calc(24px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -24px 60px -20px rgba(20,18,56,.5);
+    transform: translateY(110%); transition: transform .26s cubic-bezier(.2,.7,.3,1);
+  }
+  [data-msheet].open { pointer-events: auto; }
+  [data-msheet].open [data-msheet-bd] { opacity: 1; }
+  [data-msheet].open [data-msheet-panel] { transform: translateY(0); }
+  [data-msheet] [data-msheet-grab] {
+    width: 42px; height: 5px; border-radius: 999px; background: #d7d7e2;
+    margin: 4px auto 14px; cursor: pointer;
+  }
+  [data-msheet] [data-msheet-title] {
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .12em;
+    text-transform: uppercase; color: #9a9ab0; margin: 0 4px 14px;
+  }
+  [data-msheet] [data-msheet-grid] { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  [data-msheet] [data-msheet-grid] a {
+    display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 12px 14px;
+    border-radius: 16px; background: #f5f4fb; border: 1px solid #ececf4; text-decoration: none;
+    color: #201d4a; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 14px;
+    transition: transform .12s ease, background .18s ease;
+  }
+  [data-msheet] [data-msheet-grid] a:active { transform: scale(.96); background: #eeecfa; }
+  [data-msheet] [data-ms-ico] {
+    display: inline-flex; align-items: center; justify-content: center; flex: none;
+    width: 40px; height: 40px; border-radius: 12px; background: #fff;
+    border: 1px solid #e6e4f3; color: #4220e5;
+  }
+  [data-msheet] [data-ms-ico] svg { width: 20px; height: 20px; }
+}

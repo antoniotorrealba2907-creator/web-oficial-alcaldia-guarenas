@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="scripts/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Varela+Round&amp;display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#fbf6f2; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:#ea3755; color:#fff; }
+  a{ color:inherit; text-decoration:none; }
+  .svc-drop{ position:relative; }
+  .svc-drop::after{ content:""; position:absolute; top:100%; left:-10px; right:-10px; height:16px; }
+  .svc-menu a{ transition:background .16s ease; }
+  .svc-menu a:hover, .svc-menu a:focus{ background:var(--acc) !important; }
+  .svc-menu a:hover span, .svc-menu a:focus span{ color:#fff !important; }
+  .svc-menu a:hover .svc-ic, .svc-menu a:focus .svc-ic{ background:rgba(255,255,255,.22) !important; color:#fff !important; }
+  .svc-menu{ opacity:0; visibility:hidden; transform:translateX(-50%) translateY(6px); transition:opacity .18s ease, transform .18s ease; pointer-events:none; }
+  .svc-drop:hover .svc-menu, .svc-drop:focus-within .svc-menu{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+  @keyframes ambRise{ from{ opacity:0; transform:translateY(24px);} to{ opacity:1; transform:none;} }
+  @keyframes ambBeat{ 0%,100%{ transform:scale(1);} 14%{ transform:scale(1.16);} 28%{ transform:scale(1);} 42%{ transform:scale(1.12);} 56%{ transform:scale(1);} }
+  @keyframes ambRing{ 0%{ transform:scale(.7); opacity:.6;} 100%{ transform:scale(1.5); opacity:0;} }
+</style>
+<script src="scripts/fx.js"></script>
+<link rel="stylesheet" href="scripts/responsive.css">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia-white.png">
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#ea3755"></rect><path d="M42 30h16v12h12v16H58v12H42V58H30V42h12z" fill="#fff"></path></svg></template>
+<div style="font-family:Arial,Helvetica,sans-serif; color:#2a1f22; background:#fbf6f2;">
+
+  <div style="background:#3a0d16; color:#e4a9b3;">
+    <div style="max-width:1240px; margin:0 auto; padding:9px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; font-size:12.5px;">
+      <span>Municipio Ambrosio Plaza · Guarenas, Estado Bolivariano de Miranda</span>
+      <div style="display:flex; gap:22px;">
+        <a href="Home.dc.html" style-hover="color:#fff;">Portal Ciudadano</a>
+        <a href="#telefonos" style-hover="color:#fff;">Emergencias</a>
+      </div>
+    </div>
+  </div>
+  <div style="height:3px; background:linear-gradient(90deg,#ea3755,#ff7a8c);"></div>
+
+  <header style="position:sticky; top:0; z-index:60; background:#ffffff; border-bottom:1px solid #f0e2e4;">
+    <div style="max-width:1240px; margin:0 auto; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; gap:28px;">
+      <a href="Home.dc.html" style="display:flex; align-items:center;">
+        <img src="assets/_compartidas/marca/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:54px; width:auto; display:block;">
+      </a>
+      <nav style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; justify-content:center;">
+        <a href="Gestion.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#c22740; transition:background .2s;" style-hover="background:#fdeef0;">Gestión</a>
+        <a href="Tramites.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#c22740; transition:background .2s;" style-hover="background:#fdeef0;">Trámites</a>
+        <a href="Noticias.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#c22740; transition:background .2s;" style-hover="background:#fdeef0;">Noticias</a>
+        <a href="Identidad.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#c22740; transition:background .2s;" style-hover="background:#fdeef0;">Identidad</a>
+        <a href="Info Municipal.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#c22740; transition:background .2s;" style-hover="background:#fdeef0;">Info Municipal</a>
+        <div class="svc-drop">
+          <span tabindex="0" role="button" aria-haspopup="true" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#fff; background:#ea3755; display:inline-flex; align-items:center; gap:4px;; cursor:pointer;" style-hover="background:#c22740;">Servicios<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:1px;"><path d="m6 9 6 6 6-6"></path></svg></span>
+          <div class="svc-menu" style="position:absolute; top:calc(100% + 12px); left:50%; min-width:250px; background:#fff; border:1px solid rgba(20,18,56,.12); border-radius:18px; box-shadow:0 24px 60px -24px rgba(20,18,56,.5); padding:8px; z-index:90; display:flex; flex-direction:column; gap:2px;">
+            <a href="Aseo Urbano.dc.html" style="--acc:#3a7d44; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(58,125,68,.12); color:#3a7d44;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M6 6l1 14h10l1-14"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Aseo Urbano</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Recolección y rutas de aseo</span></span>
+            </a>
+            <a href="Policia.dc.html" style="--acc:#2a5bd0; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(42,91,208,.12); color:#2a5bd0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5z"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Policía de Guarenas</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Seguridad ciudadana</span></span>
+            </a>
+            <a href="Ambulancia.dc.html" style="--acc:#ea3755; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(234,55,85,.12); color:#ea3755;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v8M8 12h8"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Ambulancia</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Emergencias y salud</span></span>
+            </a>
+            <a href="CPNNA.dc.html" style="--acc:#7b3fd0; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(123,63,208,.12); color:#7b3fd0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.2-9.2-8.4A5 5 0 0 1 12 6.5a5 5 0 0 1 9.2 6.1C19 16.8 12 21 12 21z"></path><path d="M9.2 12.2 11 14l3.5-3.8"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">CPNNA de Guarenas</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Protección de la niñez</span></span>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <a href="tel:911" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fff; background:#ea3755; padding:11px 20px; border-radius:8px;" style-hover="background:#c22740;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+        911
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="position:relative; background:linear-gradient(135deg,#fbf6f2 0%,#fdeef0 60%,#fbe3e7 100%); overflow:hidden;">
+    <div style="position:absolute; right:-120px; top:-80px; width:460px; height:460px; border-radius:50%; background:radial-gradient(circle,rgba(234,55,85,.14),transparent 68%);"></div>
+    <div style="position:relative; max-width:1240px; margin:0 auto; padding:76px 32px; display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center;">
+      <div style="animation:ambRise .8s ease both;">
+        <span style="display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#c22740; font-weight:700; margin-bottom:18px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v8M8 12h8"></path><circle cx="12" cy="12" r="9"></circle></svg>
+          Atención de emergencias
+        </span>
+        <h1 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:50px; line-height:1.04; letter-spacing:-.02em; margin:0 0 20px; color:#2a1f22;">Ambulancia y<br>atención <span style="color:#ea3755;">las 24 horas</span></h1>
+        <p style="font-family:'Varela Round',sans-serif; font-size:16.5px; line-height:1.65; color:#6a5a5d; margin:0 0 34px; max-width:46ch;">Servicio municipal de ambulancia y primeros auxilios para todo el Municipio Ambrosio Plaza. Ante una emergencia de salud, respondemos rápido y sin costo para el ciudadano.</p>
+        <div style="display:flex; gap:38px; flex-wrap:wrap;">
+          <div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:38px; color:#2a1f22; line-height:1;">24/7</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; color:#a0797f; margin-top:6px;">disponibilidad</div></div>
+          <div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:38px; color:#2a1f22; line-height:1;">5</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; color:#a0797f; margin-top:6px;">ambulancias activas</div></div>
+          <div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:38px; color:#2a1f22; line-height:1;">&lt;15min</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; color:#a0797f; margin-top:6px;">tiempo de respuesta</div></div>
+        </div>
+      </div>
+      <div style="position:relative; display:flex; align-items:center; justify-content:center; animation:ambRise 1s ease .15s both;">
+        <div style="position:absolute; width:280px; height:280px; border-radius:50%; border:2px solid rgba(234,55,85,.4); animation:ambRing 2.6s ease-out infinite;"></div>
+        <div style="position:absolute; width:280px; height:280px; border-radius:50%; border:2px solid rgba(234,55,85,.4); animation:ambRing 2.6s ease-out infinite 1.3s;"></div>
+        <div style="position:relative; width:230px; height:230px; border-radius:50%; background:linear-gradient(150deg,#ea3755,#ff7a8c); display:flex; align-items:center; justify-content:center; box-shadow:0 30px 70px -24px rgba(234,55,85,.6);">
+          <div style="animation:ambBeat 1.8s ease-in-out infinite; color:#fff;">
+            <svg width="118" height="118" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z" fill-opacity=".22"></path><path d="M9 12h2v-2h2v2h2v2h-2v2h-2v-2H9z" fill="#fff"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELEFONOS UTILES -->
+  <section id="telefonos" style="max-width:1240px; margin:0 auto; padding:76px 32px 0;">
+    <span style="display:inline-block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#c22740; font-weight:700; margin-bottom:14px;">Información para el ciudadano</span>
+    <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:40px; letter-spacing:-.02em; margin:0 0 8px; color:#2a1f22;">Teléfonos de emergencia</h2>
+    <p style="font-family:'Varela Round',sans-serif; font-size:15px; color:#6a5a5d; margin:0 0 34px;">Guarda estos números. Ante una emergencia, cada minuto cuenta.</p>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+      <sc-for list="{{ telefonos }}" as="t" hint-placeholder-count="4">
+        <button onClick="{{ t.onClick }}" style="{{ t.cardStyle }}">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:12px; background:rgba(255,255,255,.18); color:#fff; margin-bottom:auto;">{{ t.icon }}</span>
+          <div style="position:relative; margin-top:26px;">
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:20px; color:#fff;">{{ t.title }}</div>
+            <div style="font-family:'Varela Round',sans-serif; font-size:13px; color:rgba(255,255,255,.85); margin-top:3px;">{{ t.sub }}</div>
+            <div style="display:inline-flex; align-items:center; gap:7px; margin-top:14px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+              {{ t.revealed }}
+            </div>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- QUE HACER -->
+  <section style="max-width:1240px; margin:80px auto 0; padding:0 32px;">
+    <span style="display:inline-block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#c22740; font-weight:700; margin-bottom:14px;">Guía rápida</span>
+    <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:34px; letter-spacing:-.01em; margin:0 0 36px; color:#2a1f22;">¿Qué hacer ante una emergencia?</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <sc-for list="{{ pasos }}" as="p" hint-placeholder-count="3">
+        <div style="position:relative; border:1px solid #f0dfe2; border-radius:16px; padding:30px; background:#fff; display:flex; flex-direction:column; gap:14px;" style-hover="box-shadow:0 20px 50px -30px rgba(234,55,85,.4);">
+          <span style="position:absolute; top:22px; right:26px; font-family:'Poppins',sans-serif; font-weight:700; font-size:40px; color:#f7dbe0; line-height:1;">{{ p.n }}</span>
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:50px; height:50px; border-radius:13px; background:#ea3755; color:#fff;">{{ p.icon }}</span>
+          <h3 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:19px; margin:0; color:#2a1f22;">{{ p.title }}</h3>
+          <p style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.6; color:#6a5a5d; margin:0;">{{ p.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="max-width:1240px; margin:80px auto 0; padding:0 32px;">
+    <div style="position:relative; overflow:hidden; border-radius:22px; background:linear-gradient(120deg,#c22740,#ea3755); padding:52px 56px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;">
+      <div style="position:absolute; right:-40px; top:50%; transform:translateY(-50%); color:rgba(255,255,255,.14);"><svg width="240" height="240" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12h2v-2h2v2h2v2h-2v2h-2v-2H9z"></path><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.4"></circle></svg></div>
+      <div style="position:relative;">
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:30px; color:#fff; margin:0 0 8px; letter-spacing:-.01em;">Solicita una ambulancia</h2>
+        <p style="font-family:'Varela Round',sans-serif; font-size:15px; color:#ffe0e5; margin:0; max-width:48ch;">Llama al 911 para activar el servicio municipal de ambulancia. Mantén la calma y sigue las indicaciones del operador.</p>
+      </div>
+      <a href="tel:911" style="position:relative; display:inline-flex; align-items:center; gap:10px; font-family:'Poppins',sans-serif; font-weight:700; font-size:16px; color:#c22740; background:#fff; padding:16px 28px; border-radius:10px;" style-hover="opacity:.92;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+        Llamar al 911
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="margin-top:80px; background:#3a0d16; color:#c99aa2;">
+    <div style="max-width:1240px; margin:0 auto; padding:48px 32px 30px; display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:40px;">
+      <div>
+        <img src="assets/_compartidas/marca/logo-alcaldia-white.png" alt="Alcaldía de Guarenas" style="height:54px; width:auto; margin-bottom:18px;">
+        <p style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.6; color:#d9aeb5; margin:0; max-width:40ch;">Servicio municipal de ambulancia y primeros auxilios — atención de salud para toda la comunidad de Guarenas.</p>
+      </div>
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; margin-bottom:16px; color:#fff;">Servicios</div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-family:'Varela Round',sans-serif; font-size:14.5px;">
+          <a href="Aseo Urbano.dc.html" style-hover="color:#fff;">Aseo Urbano</a>
+          <a href="Policia.dc.html" style-hover="color:#fff;">Policía de Guarenas</a>
+          <a href="Ambulancia.dc.html" style-hover="color:#fff;">Ambulancia</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; margin-bottom:16px; color:#fff;">Emergencias</div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-family:'Varela Round',sans-serif; font-size:14.5px;">
+          <span>911 / VEN 911</span>
+          <span>Ambulancia municipal</span>
+          <span>Bomberos del municipio</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.12);">
+      <div style="max-width:1240px; margin:0 auto; padding:20px 32px; font-size:12.5px; color:#a97e86;">© 2026 Alcaldía Bolivariana de Guarenas · Municipio Ambrosio Plaza. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { open: {} };
+  renderVals(){
+    const line = (p,sz) => React.createElement('svg',{width:sz||22,height:sz||22,viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:2,strokeLinecap:'round',strokeLinejoin:'round',dangerouslySetInnerHTML:{__html:p}});
+    const ic = {
+      cross: line('<path d="M12 8v8M8 12h8"></path><circle cx="12" cy="12" r="9"></circle>'),
+      flame: line('<path d="M12 2s5 4 5 9a5 5 0 0 1-10 0c0-2 1-3 1-3s0 2 1.5 2S12 6 12 2z"></path>'),
+      shield: line('<path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5z"></path>'),
+      phone: line('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path>'),
+    };
+    const defs = [
+      { id:'emg', title:'Emergencias', sub:'Sistema nacional 911', number:'911', bg:'linear-gradient(150deg,#ea3755,#c22740)', icon:ic.cross },
+      { id:'amb', title:'Ambulancia municipal', sub:'Servicio de salud de Guarenas', number:'0212 000 00 02', bg:'linear-gradient(150deg,#2a5bd0,#1f47a8)', icon:ic.cross },
+      { id:'bmb', title:'Bomberos', sub:'Cuerpo de Bomberos del municipio', number:'0212 000 00 01', bg:'linear-gradient(150deg,#f2793a,#e2531e)', icon:ic.flame },
+      { id:'civ', title:'Protección Civil', sub:'Coordinación de riesgos', number:'0212 000 00 03', bg:'linear-gradient(150deg,#1b9e78,#12775a)', icon:ic.shield },
+    ];
+    const telefonos = defs.map(d => ({
+      title:d.title, sub:d.sub, icon:d.icon,
+      revealed: this.state.open[d.id] ? d.number : 'Toca para ver el número',
+      cardStyle:'position:relative; overflow:hidden; text-align:left; border:none; cursor:pointer; border-radius:18px; padding:22px; min-height:190px; display:flex; flex-direction:column; background:'+d.bg+'; box-shadow:0 22px 50px -30px rgba(58,13,22,.5); transition:transform .2s;',
+      onClick: () => this.setState(s => ({ open: Object.assign({}, s.open, { [d.id]: !s.open[d.id] }) })),
+    }));
+    const pasos = [
+      { n:'1', title:'Llama al 911', desc:'Marca sin miedo. El operador te guiará paso a paso hasta que llegue la ayuda.', icon:ic.phone },
+      { n:'2', title:'Indica la ubicación', desc:'Da la dirección exacta, puntos de referencia y qué tipo de emergencia es.', icon:line('<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle>',24) },
+      { n:'3', title:'Mantén la calma', desc:'No muevas al paciente salvo peligro. Sigue las indicaciones hasta que llegue la ambulancia.', icon:line('<path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"></path>',24) },
+    ];
+    return { telefonos, pasos };
+  }
+}
+</script>
+</body>
+</html>

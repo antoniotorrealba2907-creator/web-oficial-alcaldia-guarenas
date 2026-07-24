@@ -8,10 +8,12 @@
    ===================================================================== */
 (function () {
   var P = {
-    plaza: 'assets/news-plaza.png', vial: 'assets/news-vialidad.png',
-    salud: 'assets/news-salud.png', alumbrado: 'assets/news-alumbrado.png',
-    agua: 'assets/news-agua.png', transporte: 'assets/news-transporte.png',
-    aerea: 'assets/banner-noticias.png', brigada: 'assets/news-brigada.png'
+    plaza: 'assets/_compartidas/news-plaza.png', vial: 'assets/_compartidas/news-vialidad.png',
+    salud: 'assets/_compartidas/news-salud.png', alumbrado: 'assets/_compartidas/news-alumbrado.png',
+    agua: 'assets/_compartidas/news-agua.png', transporte: 'assets/_compartidas/news-transporte.png',
+    deporte: 'assets/_compartidas/noticia-deporte-1.jpg', deporte2: 'assets/_compartidas/noticia-deporte-2.jpg',
+    balance: 'assets/_compartidas/noticia-balance.jpg',
+    aerea: 'assets/_compartidas/banner-noticias.png', brigada: 'assets/_compartidas/news-brigada.png'
   };
 
   var DEFAULTS = {
@@ -27,7 +29,8 @@
       author: 'Antonio Galíndez',
       role: 'Alcalde de Guarenas',
       initials: 'AG',
-      photo: 'assets/comunicado-alcalde.png'
+      banner: 'assets/_compartidas/banner-noticias.png',
+      photo: 'assets/_compartidas/comunicado-alcalde.png'
     },
 
     // ---- Noticias ----
@@ -39,8 +42,8 @@
         { tag: 'Ciudad', date: '25 jun 2026', title: 'Ampliación del alumbrado público en avenidas principales', desc: 'Nuevas luminarias LED para mayor seguridad nocturna.', img: P.alumbrado },
         { tag: 'Ciudad', date: '20 jun 2026', title: 'Jornada de arborización en espacios recuperados', desc: '', img: P.plaza },
         { tag: 'Ciudad', date: '15 jun 2026', title: 'Mejoras en la red de distribución de agua potable', desc: 'Sustitución de tuberías para un servicio más estable.', img: P.agua },
-        { tag: 'Ciudad', date: '10 jun 2026', title: 'Nuevas rutas de transporte urbano para las comunidades', desc: '', img: P.transporte },
-        { tag: 'Comunidad', date: '8 jun 2026', title: 'Entrega de bolsos y útiles escolares a estudiantes del municipio', desc: 'Jornada educativa para acompañar a las familias guareñas en el regreso a clases.', img: 'assets/news-educacion.png' },
+        { tag: 'Ciudad', date: '10 jun 2026', title: 'Inauguración de nuevas canchas deportivas para la juventud', desc: 'El alcalde entregó espacios deportivos recuperados para el deporte y la recreación comunitaria.', img: P.deporte },
+        { tag: 'Comunidad', date: '8 jun 2026', title: 'Entrega de bolsos y útiles escolares a estudiantes del municipio', desc: 'Jornada educativa para acompañar a las familias guareñas en el regreso a clases.', img: 'assets/_compartidas/news-educacion.png' },
         { tag: 'Ciudad', date: '6 jun 2026', title: 'Repavimentación de calles en el este del municipio', desc: '', img: P.vial }
       ],
       pais: [
@@ -55,7 +58,7 @@
         { tag: 'País', date: '30 may 2026', title: 'Municipios impulsan planes conjuntos de movilidad', desc: '', img: P.transporte }
       ],
       alcalde: [
-        { tag: 'Alcalde', date: '6 jul 2026', title: 'Comunicado del alcalde: balance de gestión del primer semestre', desc: 'El alcalde presenta a la ciudadanía los avances alcanzados y los compromisos para los próximos meses.', img: P.aerea },
+        { tag: 'Alcalde', date: '6 jul 2026', title: 'Comunicado del alcalde: balance de gestión del primer semestre', desc: 'El alcalde presenta a la ciudadanía los avances alcanzados y los compromisos para los próximos meses.', img: P.balance },
         { tag: 'Alcalde', date: '30 jun 2026', title: 'Alcalde inaugura obras de vialidad en el municipio', desc: 'Nuevas vías para conectar mejor a las comunidades.', img: P.vial },
         { tag: 'Alcalde', date: '24 jun 2026', title: 'Encuentro directo del alcalde con líderes comunitarios', desc: '', img: P.plaza },
         { tag: 'Alcalde', date: '18 jun 2026', title: 'Mensaje del alcalde por el aniversario de la ciudad', desc: 'Un llamado al orgullo y al trabajo conjunto.', img: P.salud },
@@ -73,7 +76,7 @@
           saint: 'San Pedro',
           title: 'Parranda de San Pedro',
           dateLabel: '28 y 29 de junio',
-          photo: 'assets/proximo-evento.png',
+          photo: 'assets/_compartidas/proximo-evento.png',
           desc: 'Patrimonio Cultural Inmaterial de la Humanidad (UNESCO). Guarenas se viste de fiesta con levitas, sombreros de copa, banderas y la María Ignacia cargando su muñeca al ritmo del cuatro y las maracas.',
           program: [
             { time: '5:00 P.M. · Dom 28', title: 'Serenata a San Pedro', place: 'Iglesia Sagrado Corazón de Jesús (Urb. 27 de Febrero)', desc: 'Noche de cantos, fe y tambor para esperar el día del Santo.' },
@@ -83,6 +86,55 @@
             { time: 'Cierre · Lun 29', title: 'Cierre tradicional', place: 'Comunidad', desc: 'La jornada termina con el sancocho comunitario entre parranderos y vecinos.' }
           ]
         }
+      ],
+      festivos: [
+        { dia:1,  mes:1,  nombre:'Año Nuevo', icon:'fuegos', color:'#4220e5' },
+        { dia:12, mes:2,  nombre:'Carnaval', icon:'mascara', color:'#ff9d00' },
+        { dia:13, mes:2,  nombre:'Carnaval', icon:'mascara', color:'#ff9d00' },
+        { dia:19, mes:3,  nombre:'San José', icon:'iglesia', color:'#3a7d44' },
+        { dia:3,  mes:5,  nombre:'Velorios de Cruz de Mayo', icon:'iglesia', color:'#3a7d44' },
+        { dia:24, mes:6,  nombre:'Fiestas de San Juan Bautista', icon:'tambor', color:'#ea3755' },
+        { dia:28, mes:6,  nombre:'Parranda de San Pedro (víspera)', icon:'tambor', color:'#ea3755' },
+        { dia:29, mes:6,  nombre:'Parranda de San Pedro', icon:'tambor', color:'#ea3755' },
+        { dia:5,  mes:7,  nombre:'Día de la Independencia', icon:'bandera', color:'#4220e5' },
+        { dia:24, mes:7,  nombre:'Natalicio del Libertador Simón Bolívar', icon:'bandera', color:'#4220e5' },
+        { dia:14, mes:8,  nombre:'Fundación de Guarenas (1621)', icon:'corona', color:'#ff9d00' },
+        { dia:16, mes:7,  nombre:'Virgen del Carmen', icon:'iglesia', color:'#3a7d44' },
+        { dia:12, mes:10, nombre:'Día de la Resistencia Indígena', icon:'estrella', color:'#4220e5' },
+        { dia:1,  mes:11, nombre:'Día de Todos los Santos', icon:'iglesia', color:'#3a7d44' },
+        { dia:8,  mes:12, nombre:'Día de la Inmaculada Concepción', icon:'iglesia', color:'#3a7d44' },
+        { dia:24, mes:12, nombre:'Nochebuena', icon:'estrella', color:'#ea3755' },
+        { dia:25, mes:12, nombre:'Navidad', icon:'estrella', color:'#ea3755' },
+        { dia:31, mes:12, nombre:'Fin de Año', icon:'fuegos', color:'#4220e5' }
+      ]
+    },
+
+    // ---- Contador de días de gestión (fecha de inicio, editable) ----
+    g_gestion: {
+      startISO: '2025-01-01',
+      startLabel: '1 de enero de 2025'
+    },
+
+    // ---- Gestión en cifras (Home) — editable por el administrador ----
+    g_cifras: {
+      items: [
+        { icon:'road', pre:'', to:2100, suf:'', label:'Toneladas de asfalto colocadas' },
+        { icon:'bulb', pre:'', to:710, suf:'', label:'Luminarias instaladas en vías' },
+        { icon:'drop', pre:'+', to:120, suf:'', label:'Destapes de aguas servidas' },
+        { icon:'moto', pre:'', to:50, suf:'', label:'Motos nuevas para la seguridad' },
+        { icon:'court', pre:'', to:9, suf:'', label:'Canchas deportivas reinauguradas' }
+      ]
+    },
+
+    // ---- Línea de tiempo de la gestión (editable por el administrador) ----
+    g_hitos: {
+      items: [
+        { fecha:'Ene 2025', icon:'gab', title:'Instalación del gabinete municipal', desc:'Arranque de la gestión con el diagnóstico de servicios en las cinco parroquias del Municipio Ambrosio Plaza.', img:'assets/_compartidas/tl-inicio.png' },
+        { fecha:'Abr 2025', icon:'luz', title:'Guarenas más iluminada', desc:'710 luminarias LED instaladas en avenidas y comunidades: Falcón, Anzoátegui, Comercio, 19 de Abril, Andrés Bello y más.', img:'assets/_compartidas/tl-alumbrado.png' },
+        { fecha:'Jul 2025', icon:'vial', title:'Plan de asfaltado', desc:'2.100 toneladas de asfalto colocadas en Las Clavellinas, Ruiz Pineda, Casco Central, Nueva Casarapa y Quebrada Seca.', img:'assets/_compartidas/tl-vial.png' },
+        { fecha:'Oct 2025', icon:'edu', title:'Escuelas y espacios educativos', desc:'Recuperación de planteles, dotación escolar y reactivación de escuelas deportivas municipales.', img:'assets/_compartidas/tl-escuelas.png' },
+        { fecha:'Ene 2026', icon:'seg', title:'Seguridad ciudadana reforzada', desc:'Incorporación de 10 patrullas, 50 motos nuevas y dotación de 200 uniformes completos para la policía municipal.', img:'assets/_compartidas/news-brigada.png' },
+        { fecha:'Jun 2026', icon:'balance', title:'Balance del primer semestre', desc:'Rendición de cuentas pública con los principales resultados de la gestión y los compromisos para el segundo semestre.', img:'assets/_compartidas/tl-balance.png' }
       ]
     },
 
@@ -111,13 +163,29 @@
   var GStore = {
     DEFAULTS: DEFAULTS,
     ADMIN_KEY: 'g_admin_pass',
+    ADMIN_USER_KEY: 'g_admin_user',
+    DEFAULT_USER: 'admin',
     SESSION_KEY: 'g_admin_session',
     DEFAULT_PASS: 'guarenas2026',
 
     get: function (key) {
       try {
         var raw = localStorage.getItem(key);
-        if (raw) return JSON.parse(raw);
+        if (raw) {
+          var val = JSON.parse(raw);
+          if (key === 'g_noticias' && val && Array.isArray(val.ciudad)) {
+            var mig = false;
+            val.ciudad = val.ciudad.map(function (n) {
+              if (n && n.title === 'Nuevas rutas de transporte urbano para las comunidades') {
+                mig = true;
+                return { tag: 'Ciudad', date: n.date || '10 jun 2026', title: 'Inauguración de nuevas canchas deportivas para la juventud', desc: 'El alcalde entregó espacios deportivos recuperados para el deporte y la recreación comunitaria.', img: 'assets/_compartidas/noticia-deporte-1.jpg' };
+              }
+              return n;
+            });
+            if (mig) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+          }
+          return val;
+        }
       } catch (e) {}
       if (key === 'g_aseo' && window.RUTAS_ASEO) return clone(window.RUTAS_ASEO);
       return DEFAULTS[key] !== undefined ? clone(DEFAULTS[key]) : null;
@@ -137,12 +205,54 @@
     _pass: function () {
       try { return localStorage.getItem(this.ADMIN_KEY) || this.DEFAULT_PASS; } catch (e) { return this.DEFAULT_PASS; }
     },
+    adminUser: function () {
+      try { return localStorage.getItem(this.ADMIN_USER_KEY) || this.DEFAULT_USER; } catch (e) { return this.DEFAULT_USER; }
+    },
+    setAdminUser: function (u) { try { if (u && u.trim()) localStorage.setItem(this.ADMIN_USER_KEY, u.trim()); } catch (e) {} },
+    _setSession: function (obj) { try { sessionStorage.setItem(this.SESSION_KEY, JSON.stringify(obj)); } catch (e) {} },
+    session: function () {
+      try {
+        var raw = sessionStorage.getItem(this.SESSION_KEY);
+        if (!raw) return null;
+        if (raw === '1') return { auth: true, principal: true, role: 'Administrador', name: '' };
+        return JSON.parse(raw);
+      } catch (e) { return null; }
+    },
     login: function (p) {
-      if (p === this._pass()) { try { sessionStorage.setItem(this.SESSION_KEY, '1'); } catch (e) {} return true; }
+      if (p === this._pass()) {
+        var nm = '';
+        try { var pf = this.get('g_profile') || {}; nm = ((pf.first || '') + ' ' + (pf.last || '')).trim(); } catch (e) {}
+        this._setSession({ auth: true, principal: true, role: 'Administrador', name: nm });
+        return true;
+      }
+      return false;
+    },
+    loginUser: function (email, pass) {
+      var e2 = (email || '').trim().toLowerCase();
+      // administrador principal por usuario + contraseña
+      if (e2 && e2 === (this.adminUser() || '').trim().toLowerCase() && pass === this._pass()) {
+        var nm = '';
+        try { var pf = this.get('g_profile') || {}; nm = ((pf.first || '') + ' ' + (pf.last || '')).trim(); } catch (e) {}
+        this._setSession({ auth: true, principal: true, role: 'Administrador', name: nm });
+        return true;
+      }
+      var users = [];
+      try { users = this.get('g_users') || []; } catch (e) {}
+      if (!Array.isArray(users)) return false;
+      for (var i = 0; i < users.length; i++) {
+        var u = users[i];
+        var ue = (u.email || '').trim().toLowerCase();
+        var un = (u.username || '').trim().toLowerCase();
+        if (((ue && ue === e2) || (un && un === e2)) && (u.pass || '') === pass && (u.status || 'Activo') === 'Activo') {
+          this._setSession({ auth: true, principal: false, role: u.role || 'Editor', name: u.name || '' });
+          return true;
+        }
+      }
       return false;
     },
     logout: function () { try { sessionStorage.removeItem(this.SESSION_KEY); } catch (e) {} },
-    isAuthed: function () { try { return sessionStorage.getItem(this.SESSION_KEY) === '1'; } catch (e) { return false; } },
+    isAuthed: function () { var s = this.session(); return !!(s && s.auth); },
+    isPrincipal: function () { var s = this.session(); return !!(s && s.principal); },
     setPass: function (p) { try { localStorage.setItem(this.ADMIN_KEY, p); } catch (e) {} },
 
     // ---- imagen: reduce y devuelve dataURL para caber en localStorage ----

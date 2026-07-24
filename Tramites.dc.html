@@ -40,9 +40,9 @@
 <link rel="stylesheet" href="scripts/responsive.css">
 
 <!-- figma-deps -->
-<meta name="ext-resource-dependency" content="assets/logo-alcaldia.png">
-<meta name="ext-resource-dependency" content="assets/tramites-hero.png">
-<meta name="ext-resource-dependency" content="assets/logo-alcaldia-white.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/Tramites/tramites-hero.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia-white.png">
 <!-- /figma-deps -->
 <style>
 .svc-drop{ position:relative; }
@@ -58,7 +58,7 @@
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4220E5"></rect><path d="M50 68 C36 58 30 50 30 42 a10 10 0 0 1 20 -2 a10 10 0 0 1 20 2 c0 8 -6 16 -20 26 Z" fill="#ff9d00"></path></svg></template>
 <div style="font-family:Arial,Helvetica,sans-serif; color:#26221c; background:#eef1f8;">
 
-  <div style="background:#141238; color:#b8b5d6;">
+  <div data-topbar="" style="background:#141238; color:#b8b5d6;">
     <div style="max-width:1240px; margin:0 auto; padding:9px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; font-size:12.5px;">
       <span>Municipio de Guarenas · Estado Bolivariano de Miranda</span>
       <div style="display:flex; gap:22px;">
@@ -75,11 +75,30 @@
   <header style="position:sticky; top:0; z-index:60; background:#ffffff; border-bottom:1px solid #e8e8ec;">
     <div style="max-width:1240px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; gap:28px;">
       <a href="Home.dc.html" style="display:flex; align-items:center; gap:12px;">
-        <img src="assets/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:56px; width:auto; display:block;">
+        <img src="assets/_compartidas/marca/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:56px; width:auto; display:block;">
       </a>
       <nav style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center;">
         <a href="Gestion.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Gestión</a>
-        <a href="Tramites.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; background:linear-gradient(#efeaff,#efeaff) padding-box, linear-gradient(135deg,#4220e5,#7db0ff) border-box;">Trámites</a>
+        <div class="svc-drop" style="position:relative;">
+        <a href="Tramites.dc.html" role="button" aria-haspopup="true" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; background:linear-gradient(#efeaff,#efeaff) padding-box, linear-gradient(135deg,#4220e5,#7db0ff) border-box;; display:inline-flex; align-items:center; gap:4px; cursor:pointer;">Trámites<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:1px;"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <div class="svc-menu" style="position:absolute; top:calc(100% + 12px); left:50%; width:330px; max-height:72vh; overflow:auto; background:#fff; border:1px solid rgba(20,18,56,.12); border-radius:16px; box-shadow:0 24px 60px -24px rgba(20,18,56,.5); padding:8px; z-index:90; display:flex; flex-direction:column; gap:2px;">
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Hacienda · SATMAP</div>
+            <a href="Tramites.dc.html#satmap" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">SATMAP — Administración Tributaria</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Hacienda municipal · portal SIRIM</span></a>
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Comercio</div>
+            <a href="Tramites.dc.html#t-licencia-economica" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Licencia de actividad económica</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Solicitud o renovación · en línea</span></a>
+            <a href="Tramites.dc.html#t-permiso-eventos" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Permiso para eventos y espectáculos</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Autorización · presencial</span></a>
+            <a href="Tramites.dc.html#t-publicidad" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Publicidad y propaganda comercial</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Vallas y avisos · en línea</span></a>
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Catastro</div>
+            <a href="Tramites.dc.html#t-ficha-catastral" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Ficha catastral</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Inscripción o actualización</span></a>
+            <a href="Tramites.dc.html#t-linderos" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Constancia de linderos</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Certificación · presencial</span></a>
+            <a href="Tramites.dc.html#t-verificacion-catastral" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Verificación catastral</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Inspección en sitio</span></a>
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Tributos y tasas</div>
+            <a href="Tramites.dc.html#t-impuesto-economico" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Impuesto sobre actividades económicas</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Declaración y pago</span></a>
+            <a href="Tramites.dc.html#t-impuesto-inmuebles" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Impuesto sobre inmuebles urbanos</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Consulta y pago</span></a>
+            <a href="Tramites.dc.html#t-solvencia" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Solvencia municipal</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Emisión · en línea</span></a>
+            <a href="Tramites.dc.html#t-tasas-aseo" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Tasas de aseo y servicios</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Consulta y pago</span></a>
+        </div>
+        </div>
         <a href="Noticias.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Noticias</a>
         <a href="Identidad.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Identidad</a>
         <a href="Info Municipal.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Info Municipal</a>
@@ -133,12 +152,76 @@
         </div>
       </div>
       <div style="position:relative;">
-        <img src="assets/tramites-hero.png" alt="Atención al ciudadano en la Alcaldía de Guarenas" style="width:100%; height:500px; object-fit:cover; border-radius:22px; box-shadow:0 34px 74px -34px rgba(0,0,0,.4);">
+        <img src="assets/Tramites/tramites-hero.png" alt="Atención al ciudadano en la Alcaldía de Guarenas" style="width:100%; height:500px; object-fit:cover; border-radius:22px; box-shadow:0 34px 74px -34px rgba(0,0,0,.4);">
         <div style="position:absolute; left:-18px; bottom:26px; background:#fffdf9; border:1px solid #ece3d3; border-radius:15px; padding:13px 18px; display:flex; align-items:center; gap:12px; box-shadow:0 20px 44px -22px rgba(0,0,0,.32);">
           <span style="width:42px; height:42px; border-radius:11px; background:#4220e5; display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
           <div>
             <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:14px; color:#26221c;">Servicio oficial</div>
             <div style="font-family:'Varela Round',sans-serif; font-size:12.5px; color:#8a8071;">Alcaldía de Guarenas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SATMAP · HACIENDA MUNICIPAL -->
+  <section id="satmap" style="background:#eef1f8; border-top:1px solid #e3d9c7;">
+    <div style="max-width:1240px; margin:0 auto; padding:78px 32px 8px;">
+      <div style="display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center; margin-bottom:44px;">
+        <div>
+          <span style="display:block; font-family:'Poppins',sans-serif; font-weight:700; font-size:12.5px; letter-spacing:.2em; text-transform:uppercase; color:#4220e5; margin-bottom:14px;">Hacienda municipal</span>
+          <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:40px; line-height:1.06; letter-spacing:-.03em; color:#26221c; margin:0 0 16px;">SATMAP — Administración Tributaria de Plaza</h2>
+          <p style="font-family:'Varela Round',sans-serif; font-size:16px; line-height:1.62; color:#6b6252; margin:0 0 24px; max-width:52ch;">El SATMAP (antigua Dirección de Hacienda de la Alcaldía de Guarenas) centraliza todos los trámites, servicios y recaudaciones tributarias del Municipio Ambrosio Plaza. La mayoría de gestiones se inician en línea a través del portal <strong style="color:#4220e5;">SIRIM Alcaldía de Plaza</strong>.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:12px;">
+            <a href="#satmap-comercios" style="display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:#4220e5; padding:11px 20px; border-radius:9px;" style-hover="background:#3417c4;">Comercios y empresas</a>
+            <a href="#satmap-ciudadanos" style="display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#4220e5; background:#e9edfb; border:1px solid #d3ddf7; padding:11px 20px; border-radius:9px;" style-hover="background:#dfe5fb;">Ciudadanos y propiedades</a>
+          </div>
+        </div>
+        <!-- Ubicación / horario / contacto -->
+        <div style="background:#0d1a3d; border-radius:20px; padding:32px 30px; color:#c7cbe6; box-shadow:0 30px 66px -34px rgba(13,26,61,.6);">
+          <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:16px; color:#fff; margin-bottom:20px;">Ubicación, horarios y contacto</div>
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <span style="flex:0 0 auto; width:40px; height:40px; border-radius:11px; background:rgba(255,157,0,.16); color:#ff9d00; display:inline-flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff;">Oficina física</div><div style="font-family:'Varela Round',sans-serif; font-size:14px; line-height:1.5; color:#b8bcda; margin-top:3px;">SATMAP Guarenas — C.C. Aventura Comercial, Piso 1, al final del pasillo.</div></div>
+            </div>
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <span style="flex:0 0 auto; width:40px; height:40px; border-radius:11px; background:rgba(74,168,255,.16); color:#4aa8ff; display:inline-flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff;">Horario de atención</div><div style="font-family:'Varela Round',sans-serif; font-size:14px; line-height:1.5; color:#b8bcda; margin-top:3px;">Lunes a viernes, de 8:00 a.m. a 4:00 p.m.</div></div>
+            </div>
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <span style="flex:0 0 auto; width:40px; height:40px; border-radius:11px; background:rgba(58,125,68,.18); color:#5bbf6a; display:inline-flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+              <div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff;">Canal oficial</div><div style="font-family:'Varela Round',sans-serif; font-size:14px; line-height:1.5; color:#b8bcda; margin-top:3px;">Instagram: <strong style="color:#fff;">@SATMAP Guarenas</strong> — tasas, anuncios y actualizaciones.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dos bloques de trámites -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
+        <div id="satmap-comercios" style="scroll-margin-top:96px; background:#fff; border:1px solid #e1e7f4; border-radius:20px; padding:32px 30px;">
+          <div style="display:flex; align-items:center; gap:13px; margin-bottom:20px;">
+            <span style="flex:0 0 auto; width:48px; height:48px; border-radius:13px; background:#4220e5; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 10px 24px -10px rgba(66,32,229,.65);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.8-5h14.4L21 9"/><path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"/><path d="M9 20v-6h6v6"/></svg></span>
+            <div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:18px; color:#1c2438;">Comercios y empresas</div><div style="font-family:'Varela Round',sans-serif; font-size:13px; color:#8a90a6;">Actividad económica en Guarenas</div></div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; gap:12px; align-items:flex-start;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4220e5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg><div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; color:#1c2438;">Declaración mensual de actividades económicas</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5c6273; margin-top:2px;">Ingresos brutos mensuales del negocio — se gestiona en el portal SIRIM.</div></div></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4220e5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg><div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; color:#1c2438;">Licencia de actividades económicas</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5c6273; margin-top:2px;">Emisión, renovación o cese de la patente comercial para operar legalmente.</div></div></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4220e5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg><div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; color:#1c2438;">Verificación de cartelera fiscal</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5c6273; margin-top:2px;">Control de deberes formales en inspecciones: RIF, licencias vigentes y declaraciones al día.</div></div></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4220e5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg><div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; color:#1c2438;">Cálculo de tasas mediante la UMT</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5c6273; margin-top:2px;">Impuestos anclados al valor mensual de la Unidad Municipal de Tracción (UMT).</div></div></div>
+          </div>
+        </div>
+
+        <div id="satmap-ciudadanos" style="scroll-margin-top:96px; background:#fff; border:1px solid #e1e7f4; border-radius:20px; padding:32px 30px;">
+          <div style="display:flex; align-items:center; gap:13px; margin-bottom:20px;">
+            <span style="flex:0 0 auto; width:48px; height:48px; border-radius:13px; background:#3a7d44; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 10px 24px -10px rgba(58,125,68,.65);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span>
+            <div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:18px; color:#1c2438;">Ciudadanos y propiedades</div><div style="font-family:'Varela Round',sans-serif; font-size:13px; color:#8a90a6;">Impuestos y tasas personales</div></div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div style="display:flex; gap:12px; align-items:flex-start;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a7d44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg><div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; color:#1c2438;">Impuesto sobre inmuebles urbanos</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5c6273; margin-top:2px;">Pago del derecho de frente de viviendas y locales del municipio.</div></div></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a7d44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg><div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; color:#1c2438;">Impuesto de vehículos</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5c6273; margin-top:2px;">Liquidación y pago de los trimestres de automóviles registrados en la jurisdicción.</div></div></div>
+            <div style="display:flex; gap:12px; align-items:flex-start;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a7d44" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg><div><div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; color:#1c2438;">Tasas de catastro</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5c6273; margin-top:2px;">Pagos administrativos de regulación de tierras y fichas catastrales.</div></div></div>
+            <div style="margin-top:6px; background:#f6f4ea; border:1px solid #e6dcca; border-radius:12px; padding:14px 16px; font-family:'Varela Round',sans-serif; font-size:13px; line-height:1.55; color:#6b5a3a;">¿Buscas los requisitos para una licencia nueva o ayuda técnica para ingresar al sistema en línea? Acude a la oficina del SATMAP o consulta su Instagram oficial.</div>
           </div>
         </div>
       </div>
@@ -153,10 +236,11 @@
       <button onClick="{{ setComercio }}" style="{{ catComercio }}">Comercio</button>
       <button onClick="{{ setCatastro }}" style="{{ catCatastro }}">Catastro</button>
       <button onClick="{{ setTributos }}" style="{{ catTributos }}">Tributos y tasas</button>
+      <button onClick="{{ setEntes }}" style="{{ catEntes }}">Entes nacionales</button>
     </div>
     <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:18px;">
       <sc-for list="{{ lista }}" as="t" hint-placeholder-count="6">
-        <div id="{{ t.anchor }}" class="trm-in" style="position:relative; scroll-margin-top:96px; overflow:hidden; border-radius:18px; background:#ffffff; border:1px solid #e1e7f4; padding:26px 28px; transition:transform .25s, box-shadow .25s;" style-hover="transform:translateY(-5px); box-shadow:0 22px 46px -24px rgba(30,40,90,.24);">
+        <div id="{{ t.anchor }}" onClick="{{ t.onOpen }}" class="trm-in" style="position:relative; cursor:pointer; scroll-margin-top:96px; overflow:hidden; border-radius:18px; background:#ffffff; border:1px solid #e1e7f4; padding:26px 28px; transition:transform .25s, box-shadow .25s;" style-hover="transform:translateY(-5px); box-shadow:0 22px 46px -24px rgba(30,40,90,.24);">
           {{ t.numNode }}
           <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
             {{ t.chipNode }}
@@ -166,7 +250,7 @@
           <div style="font-family:'Varela Round',sans-serif; font-size:14px; line-height:1.58; color:#5c6273; margin-top:12px;">{{ t.desc }}</div>
           <div style="display:flex; align-items:center; justify-content:space-between; margin-top:20px; padding-top:16px; border-top:1px solid rgba(30,40,90,.1);">
             <span style="font-family:'Varela Round',sans-serif; font-size:12.5px; color:#8a90a6;">{{ t.time }}</span>
-            <a href="#" style="display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13px; color:#4220e5;" style-hover="gap:11px;">Iniciar
+            <a href="#" onClick="{{ t.onOpen }}" style="display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13px; color:#4220e5;" style-hover="gap:11px;">Ver requisitos
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
@@ -226,7 +310,7 @@
   </section>
 
   <footer style="margin-top: 72px; background: #0d1a3d; color: #8f93b0; position:relative; overflow:hidden; display:flex; flex-direction:column;">
-    <img src="assets/isotipo-white.svg" alt="" style="position:absolute; right:-30px; top:44%; transform:translateY(-50%); height:560px; width:auto; opacity:.05; pointer-events:none; z-index:0;">
+    <img src="assets/_compartidas/marca/isotipo-white.svg" alt="" style="position:absolute; right:-30px; top:44%; transform:translateY(-50%); height:560px; width:auto; opacity:.05; pointer-events:none; z-index:0;">
 
     <!-- WORDMARK -->
     <div style="position:relative; z-index:1; order:10; max-width:1240px; margin:0 auto; padding:12px 24px 30px;">
@@ -244,7 +328,7 @@
 
     <!-- banda titular + accesos -->
     <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:64px 32px 40px; display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap;">
-      <h2 style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; color: #fff; margin: 0; max-width: 19ch;">Construyamos juntos <span style="white-space:nowrap">una&nbsp;<img src="assets/wordmark-guarenas-white.svg" alt="Guarenas" style="height:.8em; width:auto; vertical-align:-.03em; display:inline-block;"></span> más humana</h2>
+      <h2 style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; color: #fff; margin: 0; max-width: 19ch;">Construyamos juntos <span style="white-space:nowrap">una&nbsp;<img src="assets/_compartidas/marca/wordmark-guarenas-white.svg" alt="Guarenas" style="height:.8em; width:auto; vertical-align:-.03em; display:inline-block;"></span> más humana</h2>
       <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; max-width:520px;">
         <a href="Home.dc.html" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#141238; background:#ff9d00; padding:11px 20px; border-radius:999px;" style-hover="opacity:.9;">Inicio</a>
         <a href="Gestion.dc.html" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); padding:11px 20px; border-radius:999px;" style-hover="background:rgba(255,255,255,.16);">Gestión</a>
@@ -258,7 +342,7 @@
 
     <div style="position:relative; max-width:1240px; margin:0 auto; padding:48px 32px 30px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px;">
       <div>
-        <img src="assets/logo-alcaldia-white.png" alt="Alcaldía de Guarenas" style="height:56px; width:auto; margin-bottom:20px;">
+        <img src="assets/_compartidas/marca/logo-alcaldia-white.png" alt="Alcaldía de Guarenas" style="height:56px; width:auto; margin-bottom:20px;">
         <p style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.6; color:#b8b5d6; margin:0 0 18px; max-width:34ch;">Portal ciudadano de la Alcaldía de Guarenas. Gestión moderna, cercana y transparente.</p>
         <p style="font-family:Arial,sans-serif; font-style:italic; font-size:19px; color:#ff9d00; margin:0 0 20px;">Mi querida Guarenas</p>
         <div style="display:flex; align-items:center; gap:12px;">
@@ -312,10 +396,74 @@
   </footer>
 
 </div>
+  <sc-if value="{{ detailOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeDetail }}" style="position:fixed; inset:0; z-index:2000; background:rgba(16,18,40,.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:24px;">
+      <div onClick="{{ noop }}" style="width:100%; max-width:560px; max-height:88vh; overflow:auto; background:#fff; border-radius:22px; box-shadow:0 40px 90px -30px rgba(16,18,40,.6);">
+        <div style="position:relative; padding:26px 30px 22px; border-bottom:1px solid #eef0f6;">
+          <div style="display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; font-weight:700; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:{{ sel.accent }}; margin-bottom:10px;">
+            <span style="width:7px; height:7px; border-radius:50%; background:{{ sel.accent }};"></span>{{ sel.catLabel }}
+          </div>
+          <h3 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:24px; line-height:1.15; letter-spacing:-.02em; color:#1c2438; margin:0 8px 0 0;">{{ sel.title }}</h3>
+          <div style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.55; color:#5c6273; margin-top:10px;">{{ sel.desc }}</div>
+          <button onClick="{{ closeDetail }}" aria-label="Cerrar" style="position:absolute; top:20px; right:20px; width:38px; height:38px; border-radius:50%; border:1px solid #e5e7ef; background:#fff; color:#5c6273; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;" style-hover="background:#f3f4f9;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div style="padding:24px 30px 28px;">
+          <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a90a6; margin-bottom:12px;">Requisitos</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <sc-for list="{{ reqList }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex; gap:11px; align-items:flex-start;">
+                <span style="flex:0 0 auto; margin-top:2px; width:20px; height:20px; border-radius:50%; background:rgba(66,32,229,.1); color:#4220e5; display:inline-flex; align-items:center; justify-content:center;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                </span>
+                <span style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.5; color:#3f4557;">{{ r }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:24px; background:#f7f8fc; border:1px solid #eaecf4; border-radius:16px; padding:18px 20px; display:grid; grid-template-columns:1fr 1fr; gap:16px 20px;">
+            <div style="grid-column:1 / -1; display:flex; gap:11px; align-items:flex-start;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4220e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13px; color:#1c2438;">{{ sel.office }}</div>
+                <div style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.5; color:#6b7183; margin-top:2px;">{{ sel.addr }}</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:11px; align-items:flex-start;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4220e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:1px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+              <div>
+                <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#8a90a6;">Teléfono</div>
+                <div style="font-family:'Varela Round',sans-serif; font-size:14px; color:#1c2438; margin-top:2px;">{{ sel.phone }}</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:11px; align-items:flex-start;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4220e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:1px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <div>
+                <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:#8a90a6;">Encargado</div>
+                <div style="font-family:'Varela Round',sans-serif; font-size:14px; color:#1c2438; margin-top:2px;">{{ sel.boss }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; align-items:center; margin-top:22px; flex-wrap:wrap;">
+            <span style="font-family:'Varela Round',sans-serif; font-size:12.5px; color:#8a90a6;">{{ sel.time }}</span>
+            <sc-if value="{{ hasUrl }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ sel.url }}" target="_blank" rel="noopener" style="margin-left:auto; display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#4220e5; background:rgba(66,32,229,.08); border:1px solid rgba(66,32,229,.2); padding:10px 18px; border-radius:10px;" style-hover="background:rgba(66,32,229,.14);">
+                {{ sel.urlName }}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </sc-if>
+            <button onClick="{{ closeDetail }}" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:#4220e5; border:none; padding:11px 22px; border-radius:10px; cursor:pointer;" style-hover="background:#3418c0;">Entendido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
 class Component extends DCLogic {
-  state = { cat: 'todos', q: '', cName: '', cText: '', comments: [
+  state = { cat: 'todos', q: '', sel: null, cName: '', cText: '', comments: [
     { name:'María Rodríguez', initial:'M', avatarBg:'#4220e5', time:'Hace 2 días', text:'Excelente el nuevo sistema en línea, saqué mi solvencia sin hacer cola. Muy práctico.' },
     { name:'José Herrera', initial:'J', avatarBg:'#ea3755', time:'Hace 5 días', text:'Muy buena atención en la taquilla de catastro. Ojalá agreguen más trámites al portal.' },
     { name:'Carla Díaz', initial:'C', avatarBg:'#3a7d44', time:'Hace 1 semana', text:'Pude consultar los requisitos desde el teléfono. Gracias por facilitar los procesos.' },
@@ -343,6 +491,9 @@ class Component extends DCLogic {
       in: S('<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>'),
       sv: S('<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/>'),
       ta: S('<path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>'),
+      cd: S('<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.2"/><path d="M13 10h5M13 14h4M5.4 16c.5-1.4 1.5-2 2.6-2s2.1.6 2.6 2"/>'),
+      ap: S('<circle cx="12" cy="9" r="5"/><path d="m9.6 9 1.8 1.8L14.4 7.5"/><path d="M8.5 13.5 7 21l5-2.2L17 21l-1.5-7.5"/>'),
+      cr: S('<path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><path d="M7 17h10"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/>'),
     };
     const all = [
       { n:'01', anchor:'t-licencia-economica', accent:'#4220e5', cat:'comercio', catLabel:'Comercio', icon:ic.lc, online:true,  time:'~20 min en línea',   title:'Licencia de actividad económica', desc:'Solicitud o renovación de la licencia para ejercer actividad comercial en el municipio.' },
@@ -355,13 +506,40 @@ class Component extends DCLogic {
       { n:'08', anchor:'t-impuesto-inmuebles', accent:'#1f8a5b', cat:'tributos', catLabel:'Tributos y tasas', icon:ic.in, online:true, time:'Pago en línea',    title:'Impuesto sobre inmuebles urbanos', desc:'Consulta y pago del impuesto inmobiliario (derecho de frente).' },
       { n:'09', anchor:'t-solvencia', accent:'#e08600', cat:'tributos', catLabel:'Tributos y tasas', icon:ic.sv, online:true, time:'~10 min en línea', title:'Solvencia municipal', desc:'Emisión de la solvencia de tributos municipales para trámites legales.' },
       { n:'10', anchor:'t-tasas-aseo', accent:'#2a6fdb', cat:'tributos', catLabel:'Tributos y tasas', icon:ic.ta, online:true, time:'Pago en línea',    title:'Tasas de aseo y servicios', desc:'Consulta y pago de tasas por servicios municipales.' },
+      { n:'11', anchor:'t-saime', accent:'#0b2c66', cat:'entes', catLabel:'Entes nacionales', icon:ic.cd, online:true, time:'En línea + jornada', title:'Cédula y pasaporte (SAIME)', desc:'Pasaportes y prórrogas por SAIME en línea. La oficina de Guarenas realiza jornadas especiales de cedulación.' },
+      { n:'12', anchor:'t-saren', accent:'#7b3fd0', cat:'entes', catLabel:'Entes nacionales', icon:ic.ap, online:true, time:'Portal SAREN', title:'Legalización y apostilla (SAREN)', desc:'Partidas de nacimiento, títulos universitarios y otros documentos mediante el portal SAREN en línea.' },
+      { n:'13', anchor:'t-intt', accent:'#2a6fdb', cat:'entes', catLabel:'Entes nacionales', icon:ic.cr, online:true, time:'Portal INTT + oficina', title:'Documentación vehicular (INTT)', desc:'Licencias, registro de vehículos y traspasos. Requisitos previos por el portal del INTT y atención en la oficina de Guarenas.' },
     ];
     const { cat, q } = this.state;
+    const officeByCat = {
+      comercio: { office:'Dirección de Hacienda — Área de Comercio', addr:'Casa Municipal, planta baja. Av. Bolívar, casco central, Guarenas.', phone:'0212-000-0000', boss:'Encargado de Comercio' },
+      catastro: { office:'Oficina de Catastro Municipal', addr:'Casa Municipal, planta alta. Av. Bolívar, casco central, Guarenas.', phone:'0212-000-0000', boss:'Encargado de Catastro' },
+      tributos: { office:'SATMAP — Servicio Autónomo de Tributos', addr:'Sede SATMAP, casco central, Guarenas.', phone:'0212-000-0000', boss:'Coordinador de Tributos' },
+      entes:    { office:'Oficina del ente nacional en Guarenas', addr:'Sede correspondiente / portal nacional en línea.', phone:'0212-000-0000', boss:'Atención del ente nacional' },
+    };
+    const reqByCat = {
+      comercio: ['Cédula de identidad del solicitante o RIF de la empresa','Registro mercantil (si aplica)','Documento de propiedad o contrato de arrendamiento del local','Solvencia municipal vigente'],
+      catastro: ['Cédula de identidad del propietario','Documento de propiedad del inmueble','Plano o croquis de ubicación','Solvencia de derecho de frente'],
+      tributos: ['RIF / cédula del contribuyente','Última declaración o recibo de pago','Datos del inmueble o de la actividad económica'],
+      entes:    ['Cédula de identidad vigente','Planilla del portal correspondiente','Requisitos específicos según el ente nacional'],
+    };
+    const urlByAnchor = {
+      't-saime': { u:'https://www.saime.gob.ve', n:'Portal SAIME' },
+      't-saren': { u:'https://www.saren.gob.ve', n:'Portal SAREN' },
+      't-intt':  { u:'https://www.intt.gob.ve',  n:'Portal INTT' },
+    };
+    const urlByCat = {
+      tributos: { u:'https://satmap.gob.ve', n:'Portal SATMAP' },
+    };
     let lista = cat === 'todos' ? all : all.filter(t => t.cat === cat);
     const qq = q.trim().toLowerCase();
     if(qq) lista = lista.filter(t => (t.title + ' ' + t.desc).toLowerCase().includes(qq));
     lista = lista.map(t => {
       const a = t.accent;
+      const info = officeByCat[t.cat] || officeByCat.entes;
+      const req = t.req || reqByCat[t.cat] || reqByCat.entes;
+      const portal = urlByAnchor[t.anchor] || urlByCat[t.cat] || null;
+      const detail = { title:t.title, catLabel:t.catLabel, accent:a, desc:t.desc, time:t.time, modLabel:(t.online?'En línea':'Presencial'), office:info.office, addr:info.addr, phone:info.phone, boss:info.boss, req, url:portal?portal.u:'', urlName:portal?portal.n:'' };
       const chipNode = React.createElement('span', { style:{ flex:'0 0 auto', display:'inline-flex', alignItems:'center', justifyContent:'center', width:'52px', height:'52px', borderRadius:'14px', background:a, boxShadow:'0 10px 24px -10px '+rgba(a,.75) } }, iconEl(t.icon));
       const numNode = React.createElement('span', { style:{ position:'absolute', top:'14px', right:'20px', fontFamily:"'Poppins',sans-serif", fontWeight:800, fontSize:'56px', lineHeight:1, letterSpacing:'-.04em', color:rgba(a,.12), pointerEvents:'none' } }, t.n);
       const mc = t.online ? '#1f8a5b' : '#b46a00';
@@ -370,11 +548,17 @@ class Component extends DCLogic {
       const modNode = React.createElement('span', { style:{ display:'inline-flex', alignItems:'center', gap:'7px', fontSize:'10.5px', fontWeight:700, letterSpacing:'.08em', textTransform:'uppercase', color:mc, background:mbg, border:'1px solid '+mbd, padding:'5px 12px', borderRadius:'999px' } },
         React.createElement('span', { style:{ width:'6px', height:'6px', borderRadius:'50%', background:'currentColor' } }),
         t.online ? 'En línea' : 'Presencial');
-      return Object.assign({}, t, { chipNode, numNode, modNode });
+      return Object.assign({}, t, { chipNode, numNode, modNode, onOpen: () => this.setState({ sel: detail }) });
     });
     return {
       lista,
       vacio: lista.length === 0,
+      sel: this.state.sel || {},
+      detailOpen: !!this.state.sel,
+      hasUrl: this.state.sel ? !!this.state.sel.url : false,
+      reqList: this.state.sel ? this.state.sel.req : [],
+      closeDetail: () => this.setState({ sel: null }),
+      noop: (e) => { e.stopPropagation(); },
       q,
       onSearch: (e) => this.setState({ q: e.target.value }),
       cName: this.state.cName, cText: this.state.cText, comments: this.state.comments,
@@ -394,10 +578,12 @@ class Component extends DCLogic {
       setComercio: () => this.setState({ cat:'comercio' }),
       setCatastro: () => this.setState({ cat:'catastro' }),
       setTributos: () => this.setState({ cat:'tributos' }),
+      setEntes: () => this.setState({ cat:'entes' }),
       catTodos: this.catStyle(cat==='todos'),
       catComercio: this.catStyle(cat==='comercio'),
       catCatastro: this.catStyle(cat==='catastro'),
       catTributos: this.catStyle(cat==='tributos'),
+      catEntes: this.catStyle(cat==='entes'),
     };
   }
 }

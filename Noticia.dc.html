@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="scripts/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&amp;family=Poppins:wght@400;500;600;700&amp;family=Varela+Round&amp;display=swap" rel="stylesheet">
+<script src="scripts/image-slot.js"></script>
+<script src="scripts/video-slot.js"></script>
+<script src="scripts/guarenas-store.js"></script>
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#ffffff; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:#4220e5; color:#fff; }
+  a{ color:#4220e5; text-decoration:none; }
+  a:hover{ color:#3418c0; }
+</style>
+<style>
+.svc-drop{ position:relative; }
+.svc-drop::after{ content:""; position:absolute; top:100%; left:-10px; right:-10px; height:16px; }
+.svc-menu a{ transition:background .16s ease; }
+.svc-menu a:hover, .svc-menu a:focus{ background:var(--acc) !important; }
+.svc-menu a:hover span, .svc-menu a:focus span{ color:#fff !important; }
+.svc-menu a:hover .svc-ic, .svc-menu a:focus .svc-ic{ background:rgba(255,255,255,.22) !important; color:#fff !important; }
+.svc-menu{ opacity:0; visibility:hidden; transform:translateX(-50%) translateY(6px); transition:opacity .18s ease, transform .18s ease; pointer-events:none; }
+.svc-drop:hover .svc-menu, .svc-drop:focus-within .svc-menu{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+</style>
+<script src="scripts/fx.js"></script>
+<link rel="stylesheet" href="scripts/responsive.css">
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4220E5"></rect><path d="M26 30h48v6H26zM26 46h48v5H26zM26 58h30v5H26z" fill="#fff"></path></svg></template>
+<div style="font-family:Arial,Helvetica,sans-serif; color:#2a2a2e; background:#ffffff; min-height:100vh; display:flex; flex-direction:column;">
+
+  <div data-topbar="" style="background:#141238; color:#b8b5d6;">
+    <div style="max-width:1240px; margin:0 auto; padding:9px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; font-size:12.5px;">
+      <span>Municipio de Guarenas · Estado Bolivariano de Miranda</span>
+      <div style="display:flex; gap:22px;">
+        <a href="#" style="color:#b8b5d6;" style-hover="color:#fff;">Directorio</a>
+        <a href="#" style="color:#b8b5d6;" style-hover="color:#fff;">Transparencia</a>
+        <a href="#" style="color:#b8b5d6;" style-hover="color:#fff;">Contacto</a>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex; height:3px;">
+    <div style="flex:1; background:#4220e5;"></div><div style="flex:1; background:#ea3755;"></div><div style="flex:1; background:#ff9d00;"></div>
+  </div>
+
+  <header style="position:sticky; top:0; z-index:60; background:#ffffff; border-bottom:1px solid #e8e8ec;">
+    <div style="max-width:1240px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; gap:28px;">
+      <a href="Home.dc.html" style="display:flex; align-items:center; gap:12px;">
+        <img src="assets/_compartidas/marca/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:56px; width:auto; display:block;">
+      </a>
+      <nav style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center;">
+        <a href="Gestion.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Gestión</a>
+        <div class="svc-drop" style="position:relative;">
+        <a href="Tramites.dc.html" role="button" aria-haspopup="true" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s; display:inline-flex; align-items:center; gap:4px; cursor:pointer;" style-hover="background:#efeaff;">Trámites<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:1px;"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <div class="svc-menu" style="position:absolute; top:calc(100% + 12px); left:50%; width:330px; max-height:72vh; overflow:auto; background:#fff; border:1px solid rgba(20,18,56,.12); border-radius:16px; box-shadow:0 24px 60px -24px rgba(20,18,56,.5); padding:8px; z-index:90; display:flex; flex-direction:column; gap:2px;">
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Comercio</div>
+            <a href="Tramites.dc.html#t-licencia-economica" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Licencia de actividad económica</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Solicitud o renovación · en línea</span></a>
+            <a href="Tramites.dc.html#t-permiso-eventos" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Permiso para eventos y espectáculos</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Autorización · presencial</span></a>
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Tributos y tasas</div>
+            <a href="Tramites.dc.html#t-solvencia" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Solvencia municipal</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Emisión · en línea</span></a>
+            <a href="Tramites.dc.html" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Ver todos los trámites</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Catálogo completo</span></a>
+        </div>
+        </div>
+        <a href="Noticias.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; background:linear-gradient(#efeaff,#efeaff) padding-box, linear-gradient(135deg,#4220e5,#7db0ff) border-box;">Noticias</a>
+        <a href="Identidad.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Identidad</a>
+        <a href="Info Municipal.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Info Municipal</a>
+        <div class="svc-drop">
+        <span tabindex="0" role="button" aria-haspopup="true" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s; display:inline-flex; align-items:center; gap:4px; cursor:pointer;" style-hover="background:#efeaff;">Servicios<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:1px;"><path d="m6 9 6 6 6-6"></path></svg></span>
+        <div class="svc-menu" style="position:absolute; top:calc(100% + 12px); left:50%; min-width:250px; background:#fff; border:1px solid rgba(20,18,56,.12); border-radius:18px; box-shadow:0 24px 60px -24px rgba(20,18,56,.5); padding:8px; z-index:90; display:flex; flex-direction:column; gap:2px;">
+            <a href="Aseo Urbano.dc.html" style="--acc:#3a7d44; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(58,125,68,.12); color:#3a7d44;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M6 6l1 14h10l1-14"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Aseo Urbano</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Recolección y rutas de aseo</span></span>
+            </a>
+            <a href="Policia.dc.html" style="--acc:#2a5bd0; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(42,91,208,.12); color:#2a5bd0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5z"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Policía de Guarenas</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Seguridad ciudadana</span></span>
+            </a>
+            <a href="Ambulancia.dc.html" style="--acc:#ea3755; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(234,55,85,.12); color:#ea3755;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v8M8 12h8"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Ambulancia</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Emergencias y salud</span></span>
+            </a>
+            <a href="CPNNA.dc.html" style="--acc:#7b3fd0; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(123,63,208,.12); color:#7b3fd0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.2-9.2-8.4A5 5 0 0 1 12 6.5a5 5 0 0 1 9.2 6.1C19 16.8 12 21 12 21z"></path><path d="M9.2 12.2 11 14l3.5-3.8"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">CPNNA de Guarenas</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Protección de la niñez</span></span>
+            </a>
+        </div>
+        </div>
+      </nav>
+      <a href="Noticias.dc.html" style="display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#4220e5; padding:10px 16px; border-radius:999px; border:1.5px solid #e0d9ff; background:#f6f3ff; flex:none;" style-hover="background:#efeaff;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        Volver a Noticias
+      </a>
+    </div>
+  </header>
+
+  <article style="flex:1; max-width:1120px; width:100%; margin:0 auto; padding:46px 32px 80px;">
+    <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#4220e5; margin-bottom:16px;">{{ tag }} · {{ date }}</div>
+    <h1 style="font-family:'Lora',serif; font-weight:700; font-size:44px; line-height:1.1; letter-spacing:-.015em; color:#141418; margin:0 0 28px; text-wrap:balance;">{{ title }}</h1>
+    <sc-if value="{{ hasImg }}" hint-placeholder-val="{{ true }}">
+      <div style="width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:16px; background:#eef0f4; border:1px solid #e6e6ea; margin-bottom:34px;">
+        <image-slot id="{{ heroSlotId }}" src="{{ img }}" fit="cover" placeholder="Sube o reemplaza la foto principal" style="width:100%; height:100%;"></image-slot>
+      </div>
+    </sc-if>
+    <div style="display:grid; grid-template-columns:{{ bodyCols }}; gap:46px; align-items:start;">
+      <div style="min-width:0;">
+        <p style="font-family:'Varela Round',sans-serif; font-size:19px; line-height:1.72; color:#26262e; margin:0 0 24px; font-weight:600;">{{ lead }}</p>
+        <div style="columns:2 250px; column-gap:40px;">
+          <sc-for list="{{ bodyRest }}" as="p" hint-placeholder-count="4">
+            <p style="font-family:'Varela Round',sans-serif; font-size:16px; line-height:1.78; color:#3a3a42; margin:0 0 18px; break-inside:avoid; text-align:justify;">{{ p }}</p>
+          </sc-for>
+        </div>
+        <div style="margin-top:36px; padding-top:26px; border-top:1px solid #eceaf2; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+          <span style="font-family:'Varela Round',sans-serif; font-size:13.5px; color:#8a8698;">Alcaldía de Guarenas · Municipio Ambrosio Plaza</span>
+          <a href="Noticias.dc.html" style="display:inline-flex; align-items:center; gap:8px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:#4220e5; padding:11px 20px; border-radius:10px;" style-hover="background:#3418c0;">Ver más noticias</a>
+        </div>
+      </div>
+      <sc-if value="{{ isVideoSec }}" hint-placeholder-val="{{ true }}">
+        <aside style="align-self:stretch;">
+          <div style="display:flex; flex-direction:column; height:100%; min-height:0; border-radius:18px; overflow:hidden; background:#0e1330; box-shadow:0 26px 60px -30px rgba(14,19,48,.7);">
+            <div style="display:flex; align-items:center; gap:8px; padding:14px 16px; background:linear-gradient(90deg,#161b3d,#0e1330); border-bottom:1px solid rgba(255,255,255,.08); flex:0 0 auto;">
+              <span style="display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:7px; background:#ea3755; color:#fff;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span>
+              <span style="font-family:'Poppins',sans-serif; font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#fff;">Video de la noticia</span>
+            </div>
+            <div style="position:relative; flex:1 1 0; min-height:0; background:#11162e;">
+              <video-slot id="{{ videoSlotId }}" placeholder="Agrega aquí el video vertical de la noticia" style="width:100%; height:100%;"></video-slot>
+            </div>
+            <div style="padding:13px 16px 15px; flex:0 0 auto; border-top:1px solid rgba(255,255,255,.06);">
+              <p style="font-family:'Varela Round',sans-serif; font-size:12.5px; line-height:1.5; color:#aeb4d6; margin:0;">Formato vertical (9:16), ideal para reels e historias.</p>
+            </div>
+          </div>
+        </aside>
+      </sc-if>
+    </div>
+  </article>
+
+  <section style="background:#f7f6fb; border-top:1px solid #eceaf2;">
+    <div style="max-width:1040px; margin:0 auto; padding:46px 32px 62px;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
+        <span style="font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#4220e5;">Ver más noticias</span>
+        <span style="flex:1; height:1px; background:#e2e2e8;"></span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+        <sc-for list="{{ mas }}" as="m" hint-placeholder-count="6">
+          <a href="{{ m.href }}" style="display:block; background:#fff; border:1px solid #e6e6ea; border-radius:14px; overflow:hidden; box-shadow:0 14px 34px -26px rgba(20,18,56,.5); transition:transform .2s, box-shadow .2s;" style-hover="transform:translateY(-4px); box-shadow:0 22px 44px -24px rgba(20,18,56,.4);">
+            <sc-if value="{{ m.hasImg }}" hint-placeholder-val="{{ true }}">
+              <div style="aspect-ratio:16/9; background:#eef0f4; overflow:hidden;"><img src="{{ m.img }}" alt="" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+            </sc-if>
+            <div style="padding:16px 18px 18px;">
+              <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:#4220e5; margin-bottom:8px;">{{ m.tag }} · {{ m.date }}</div>
+              <h3 style="font-family:'Lora',serif; font-weight:600; font-size:17px; line-height:1.3; color:#141418; margin:0;">{{ m.title }}</h3>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#141238; color:#8f8cb8; text-align:center; padding:26px 32px;">
+    <span style="font-family:'Varela Round',sans-serif; font-size:13px;">© 2026 Alcaldía Bolivariana de Guarenas · Municipio Ambrosio Plaza</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  DEFAULT_NEWS = (function(){
+    const P = { plaza:'assets/_compartidas/news-plaza.png', vial:'assets/_compartidas/news-vialidad.png', salud:'assets/_compartidas/news-salud.png', alumbrado:'assets/_compartidas/news-alumbrado.png', agua:'assets/_compartidas/news-agua.png', deporte:'assets/_compartidas/noticia-deporte-1.jpg', transporte:'assets/_compartidas/news-transporte.png', aerea:'assets/_compartidas/banner-noticias.png' };
+    return {
+      ciudad: [
+        { tag:'Ciudad', date:'4 jul 2026', title:'Nueva jornada de recuperación de espacios públicos en el casco central', desc:'Cuadrillas municipales intervienen plazas y aceras para devolver el espacio a las familias guareñas.', img:'assets/_compartidas/news-brigada.png' },
+        { tag:'Ciudad', date:'2 jul 2026', title:'Rehabilitación de vías en la parroquia Guarenas', desc:'Asfaltado y bacheo en las principales arterias del municipio.', img:P.vial },
+        { tag:'Ciudad', date:'28 jun 2026', title:'Operativo de salud llega a las comunidades del sur', img:P.salud },
+        { tag:'Ciudad', date:'25 jun 2026', title:'Ampliación del alumbrado público en avenidas principales', desc:'Nuevas luminarias LED para mayor seguridad nocturna.', img:P.alumbrado },
+        { tag:'Ciudad', date:'20 jun 2026', title:'Jornada de arborización en espacios recuperados', img:P.plaza },
+        { tag:'Ciudad', date:'15 jun 2026', title:'Mejoras en la red de distribución de agua potable', desc:'Sustitución de tuberías para un servicio más estable.', img:P.agua },
+        { tag:'Ciudad', date:'10 jun 2026', title:'Inauguración de nuevas canchas deportivas para la juventud', desc:'El alcalde entregó espacios deportivos recuperados para el deporte y la recreación comunitaria.', img:P.deporte },
+        { tag:'Comunidad', date:'8 jun 2026', title:'Entrega de bolsos y útiles escolares a estudiantes del municipio', desc:'Jornada educativa para acompañar a las familias guareñas en el regreso a clases.', img:'assets/_compartidas/news-educacion.png' },
+        { tag:'Ciudad', date:'6 jun 2026', title:'Repavimentación de calles en el este del municipio', img:P.vial },
+      ],
+      pais: [
+        { tag:'País', date:'5 jul 2026', title:'Municipios del país coordinan agenda de desarrollo urbano', desc:'Autoridades locales acuerdan lineamientos comunes para modernizar los servicios ciudadanos.', img:P.aerea },
+        { tag:'País', date:'1 jul 2026', title:'Nuevos convenios de cooperación entre alcaldías', desc:'Acuerdos para compartir buenas prácticas de gestión.', img:P.plaza },
+        { tag:'País', date:'27 jun 2026', title:'Programa nacional de infraestructura beneficia a Miranda', img:P.vial },
+        { tag:'País', date:'22 jun 2026', title:'Encuentro de gobiernos locales sobre transformación digital', desc:'Servicios en línea más simples para el ciudadano.', img:P.transporte },
+        { tag:'País', date:'17 jun 2026', title:'Avances del plan nacional de vialidad', img:P.vial },
+        { tag:'País', date:'12 jun 2026', title:'Foro de ciudades sostenibles reúne a municipios del país', desc:'Agua, energía y espacios verdes en la agenda.', img:P.agua },
+        { tag:'País', date:'8 jun 2026', title:'Cooperación internacional para proyectos urbanos', img:P.salud },
+        { tag:'País', date:'3 jun 2026', title:'Red de alumbrado público se moderniza en varias regiones', img:P.alumbrado },
+        { tag:'País', date:'30 may 2026', title:'Municipios impulsan planes conjuntos de movilidad', img:P.transporte },
+      ],
+      alcalde: [
+        { tag:'Alcalde', date:'6 jul 2026', title:'Comunicado del alcalde: balance de gestión del primer semestre', desc:'El alcalde presenta a la ciudadanía los avances alcanzados y los compromisos para los próximos meses.', img:P.aerea },
+        { tag:'Alcalde', date:'30 jun 2026', title:'Alcalde inaugura obras de vialidad en el municipio', desc:'Nuevas vías para conectar mejor a las comunidades.', img:P.vial },
+        { tag:'Alcalde', date:'24 jun 2026', title:'Encuentro directo del alcalde con líderes comunitarios', img:P.plaza },
+        { tag:'Alcalde', date:'18 jun 2026', title:'Mensaje del alcalde por el aniversario de la ciudad', desc:'Un llamado al orgullo y al trabajo conjunto.', img:P.salud },
+        { tag:'Alcalde', date:'12 jun 2026', title:'Supervisión de los trabajos de alumbrado público', img:P.alumbrado },
+        { tag:'Alcalde', date:'6 jun 2026', title:'Reunión con el sector comercial del municipio', desc:'Impulso a los emprendedores y comercios locales.', img:P.transporte },
+        { tag:'Alcalde', date:'1 jun 2026', title:'Anuncio del plan de recuperación de espacios deportivos', img:P.plaza },
+        { tag:'Alcalde', date:'27 may 2026', title:'El alcalde recorre las obras de agua potable', img:P.agua },
+      ],
+    };
+  })();
+  state = { art:null, ready:false };
+  componentDidMount(){ this._load(); }
+  _load = (n) => {
+    if(!window.GStore){ if((n||0)<60) setTimeout(()=>this._load((n||0)+1), 70); return; }
+    let t='ciudad', i=0;
+    try{ const q=new URLSearchParams(location.search); t=q.get('sec')||'ciudad'; i=parseInt(q.get('n')||'0',10)||0; }catch(e){}
+    const NEWS = window.GStore.get('g_noticias') || this.DEFAULT_NEWS;
+    const arr = NEWS[t] || this.DEFAULT_NEWS[t] || [];
+    const art = arr[i] || arr[0] || null;
+    this.setState({ art, curT:t, curI:i, ready:true });
+    const vkey = 'noticia-video-' + t + '-' + i;
+    if(window.VideoSlotHas){ window.VideoSlotHas(vkey).then(has => this.setState({ hasVideo: has })); }
+    if(art && art.title){ try{ document.title = art.title + ' — Noticias · Guarenas'; }catch(e){} }
+  };
+  _makeBody(a){
+    const t = (a.title || 'la actividad').trim();
+    const lead = a.desc || (t + ' se desarrolló este fin de semana en el municipio Ambrosio Plaza.');
+    const esAlcalde = (this.state.curT === 'alcalde');
+    const fecha = a.date || 'esta semana';
+    const p = [];
+    p.push('GUARENAS — ' + lead);
+    if(esAlcalde){
+      p.push('En un contacto directo con la comunidad, el alcalde Antonio Galíndez destacó que esta acción forma parte del plan de gobierno municipal, orientado a mejorar la calidad de vida de los vecinos y a fortalecer la confianza entre la ciudadanía y sus instituciones. «Seguimos trabajando calle por calle, junto a la gente, porque Guarenas se transforma con el esfuerzo de todos», expresó.');
+      p.push('La jornada, realizada el ' + fecha + ', contó con la participación de las distintas direcciones de la Alcaldía, que coordinaron labores en el terreno para dar respuestas concretas a las necesidades planteadas por las comunidades organizadas.');
+    } else {
+      p.push('La iniciativa, impulsada por la Alcaldía Bolivariana de Guarenas, movilizó a cuadrillas municipales y personal de las distintas direcciones para atender de manera directa las necesidades de las comunidades del municipio Ambrosio Plaza.');
+      p.push('Vecinos de la zona valoraron positivamente los trabajos y solicitaron que este tipo de operativos se mantengan de forma permanente. Desde la Alcaldía se informó que las labores continuarán en las próximas semanas, ampliando la cobertura a nuevos sectores.');
+    }
+    p.push('Las autoridades municipales reiteraron el llamado a la ciudadanía a sumarse a las actividades y a reportar sus requerimientos a través de los canales de atención de la Alcaldía, así como del portal digital del municipio, donde se registran las solicitudes y se hace seguimiento a cada caso.');
+    p.push('Con acciones como esta, la gestión municipal reafirma su compromiso de construir una ciudad más limpia, segura y organizada, en la que cada guareño se sienta orgulloso de su municipio.');
+    return p;
+  }
+
+  renderVals(){
+    const a = this.state.art || {};
+    let paras = [];
+    if(Array.isArray(a.body)) paras = a.body.filter(Boolean);
+    else if(typeof a.body==='string' && a.body.trim()) paras = a.body.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+    if(!paras.length) paras = this._makeBody(a);
+    const sec = this.state.curT;
+    const isVideoSec = !!this.state.hasVideo;
+    const NEWS = (window.GStore && window.GStore.get('g_noticias')) || this.DEFAULT_NEWS;
+    const t = this.state.curT, i = this.state.curI;
+    let mas = [];
+    ['ciudad','pais','alcalde'].forEach(tk => {
+      (NEWS[tk] || []).forEach((n, idx) => {
+        if(tk===t && idx===i) return;
+        mas.push({ tag:n.tag||'', date:n.date||'', title:n.title||'', img:n.img||'', hasImg:!!n.img, slot:'news-'+tk+'-'+idx, href:'Noticia.dc.html?sec='+tk+'&n='+idx });
+      });
+    });
+    mas = mas.slice(0, 6);
+    return {
+      isVideoSec,
+      bodyCols: isVideoSec ? 'minmax(0,1fr) 340px' : 'minmax(0,1fr)',
+      videoSlotId: 'noticia-video-' + sec + '-' + this.state.curI,
+      heroSlotId: 'noticia-hero-' + sec + '-' + this.state.curI,
+      lead: paras[0] || '',
+      bodyRest: paras.slice(1),
+      mas,
+      tag: a.tag || 'Noticia',
+      date: a.date || '',
+      title: a.title || 'Noticia',
+      img: a.img || '',
+      hasImg: !!a.img,
+      paras,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -38,25 +38,25 @@
 <link rel="stylesheet" href="scripts/responsive.css">
 
 <!-- figma-deps -->
-<meta name="ext-resource-dependency" content="assets/logo-alcaldia.png">
-<meta name="ext-resource-dependency" content="assets/identidad-cultura.mp4">
-<meta name="ext-resource-dependency" content="assets/identidad-hero.png">
-<meta name="ext-resource-dependency" content="assets/vive-guarenas-banner.mp4">
-<meta name="ext-resource-dependency" content="assets/turismo-cascada.png">
-<meta name="ext-resource-dependency" content="assets/logo-vive-white.svg">
-<meta name="ext-resource-dependency" content="assets/logo-alcaldia-white.png">
-<meta name="ext-resource-dependency" content="assets/parranda-2024-1.jpg">
-<meta name="ext-resource-dependency" content="assets/parranda-2024-2.jpg">
-<meta name="ext-resource-dependency" content="assets/parranda-2024-3.jpg">
-<meta name="ext-resource-dependency" content="assets/parranda-2024-4.jpg">
-<meta name="ext-resource-dependency" content="assets/proximo-evento.png">
-<meta name="ext-resource-dependency" content="assets/eventos-culturales.png">
-<meta name="ext-resource-dependency" content="assets/patrimonio.png">
-<meta name="ext-resource-dependency" content="assets/fiestas-patronales.png">
-<meta name="ext-resource-dependency" content="assets/turismo-guarenas.png">
-<meta name="ext-resource-dependency" content="assets/tur-parque.png">
-<meta name="ext-resource-dependency" content="assets/tur-waraira.png">
-<meta name="ext-resource-dependency" content="assets/tur-casarapa.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/Identidad/identidad-cultura.mp4">
+<meta name="ext-resource-dependency" content="assets/Identidad/identidad-hero.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/vive-guarenas-banner.mp4">
+<meta name="ext-resource-dependency" content="assets/Identidad/turismo-cascada.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-vive-white.svg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia-white.png">
+<meta name="ext-resource-dependency" content="assets/Identidad/parranda-2024-1.jpg">
+<meta name="ext-resource-dependency" content="assets/Identidad/parranda-2024-2.jpg">
+<meta name="ext-resource-dependency" content="assets/Identidad/parranda-2024-3.jpg">
+<meta name="ext-resource-dependency" content="assets/Identidad/parranda-2024-4.jpg">
+<meta name="ext-resource-dependency" content="assets/_compartidas/proximo-evento.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/eventos-culturales.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/patrimonio.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/fiestas-patronales.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/turismo-guarenas.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-parque.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-waraira.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/tur-casarapa.png">
 <!-- /figma-deps -->
 <style>
 .svc-drop{ position:relative; }
@@ -72,7 +72,7 @@
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#4220E5"></rect><path d="M50 68 C36 58 30 50 30 42 a10 10 0 0 1 20 -2 a10 10 0 0 1 20 2 c0 8 -6 16 -20 26 Z" fill="#ff9d00"></path></svg></template>
 <div style="font-family:Arial,Helvetica,sans-serif; color:#2a2a2e; background:#ffffff;">
 
-  <div style="background:#141238; color:#b8b5d6;">
+  <div data-topbar="" style="background:#141238; color:#b8b5d6;">
     <div style="max-width:1240px; margin:0 auto; padding:9px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; font-size:12.5px;">
       <span>Municipio de Guarenas · Estado Bolivariano de Miranda</span>
       <div style="display:flex; gap:22px;">
@@ -89,11 +89,28 @@
   <header style="position:sticky; top:0; z-index:60; background:#ffffff; border-bottom:1px solid #e8e8ec;">
     <div style="max-width:1240px; margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; gap:28px;">
       <a href="Home.dc.html" style="display:flex; align-items:center; gap:12px;">
-        <img src="assets/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:56px; width:auto; display:block;">
+        <img src="assets/_compartidas/marca/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:56px; width:auto; display:block;">
       </a>
       <nav style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; justify-content:center;">
         <a href="Gestion.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Gestión</a>
-        <a href="Tramites.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Trámites</a>
+        <div class="svc-drop" style="position:relative;">
+        <a href="Tramites.dc.html" role="button" aria-haspopup="true" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;; display:inline-flex; align-items:center; gap:4px; cursor:pointer;" style-hover="background:#efeaff;">Trámites<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:1px;"><path d="m6 9 6 6 6-6"></path></svg></a>
+        <div class="svc-menu" style="position:absolute; top:calc(100% + 12px); left:50%; width:330px; max-height:72vh; overflow:auto; background:#fff; border:1px solid rgba(20,18,56,.12); border-radius:16px; box-shadow:0 24px 60px -24px rgba(20,18,56,.5); padding:8px; z-index:90; display:flex; flex-direction:column; gap:2px;">
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Comercio</div>
+            <a href="Tramites.dc.html#t-licencia-economica" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Licencia de actividad económica</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Solicitud o renovación · en línea</span></a>
+            <a href="Tramites.dc.html#t-permiso-eventos" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Permiso para eventos y espectáculos</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Autorización · presencial</span></a>
+            <a href="Tramites.dc.html#t-publicidad" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Publicidad y propaganda comercial</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Vallas y avisos · en línea</span></a>
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Catastro</div>
+            <a href="Tramites.dc.html#t-ficha-catastral" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Ficha catastral</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Inscripción o actualización</span></a>
+            <a href="Tramites.dc.html#t-linderos" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Constancia de linderos</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Certificación · presencial</span></a>
+            <a href="Tramites.dc.html#t-verificacion-catastral" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Verificación catastral</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Inspección en sitio</span></a>
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#4220e5; padding:10px 13px 4px;">Tributos y tasas</div>
+            <a href="Tramites.dc.html#t-impuesto-economico" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Impuesto sobre actividades económicas</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Declaración y pago</span></a>
+            <a href="Tramites.dc.html#t-impuesto-inmuebles" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Impuesto sobre inmuebles urbanos</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Consulta y pago</span></a>
+            <a href="Tramites.dc.html#t-solvencia" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Solvencia municipal</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Emisión · en línea</span></a>
+            <a href="Tramites.dc.html#t-tasas-aseo" style="--acc:#4220e5; display:flex; flex-direction:column; gap:2px; padding:10px 13px; border-radius:12px; color:#3a3a40;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Tasas de aseo y servicios</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Consulta y pago</span></a>
+        </div>
+        </div>
         <a href="Noticias.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Noticias</a>
         <a href="Identidad.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; background:linear-gradient(#efeaff,#efeaff) padding-box, linear-gradient(135deg,#4220e5,#7db0ff) border-box;">Identidad</a>
         <a href="Info Municipal.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#4220e5; border:1.5px solid transparent; transition:background .2s;" style-hover="background:#efeaff;">Info Municipal</a>
@@ -121,33 +138,13 @@
       </nav>
       <div style="display:flex; align-items:center; gap:12px;">
         <a href="Portal Admin.dc.html" aria-label="Portal de administración" title="Portal de administración" style="display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:999px; border:1px solid #dcdce2; background:#fff; color:#6a6a76; text-decoration:none; flex:none;" style-hover="background:#f4f4f6; color:#4220e5;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></a>
-        <div class="svc-drop" style="position:relative;">
-        <a href="Tramites.dc.html" role="button" aria-haspopup="true" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fff; background:#4220e5; padding:11px 20px; border-radius:8px;" style-hover="background:#3417c4;">Trámites
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-        </a>
-        <div class="svc-menu" style="position:absolute; top:calc(100% + 12px); right:0; left:auto; transform:none; width:330px; max-height:70vh; overflow:auto; background:#fff; border:1px solid rgba(20,18,56,.12); border-radius:16px; box-shadow:0 24px 60px -20px rgba(20,18,56,.35); padding:8px; z-index:90;">
-              <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#9096ac; padding:10px 13px 4px;">Comercio</div>
-              <a href="Tramites.dc.html#t-licencia-economica" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Licencia de actividad económica</span></a>
-              <a href="Tramites.dc.html#t-permiso-eventos" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Permiso para eventos y espectáculos</span></a>
-              <a href="Tramites.dc.html#t-publicidad" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Publicidad y propaganda comercial</span></a>
-              <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#9096ac; padding:10px 13px 4px;">Catastro</div>
-              <a href="Tramites.dc.html#t-ficha-catastral" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Ficha catastral</span></a>
-              <a href="Tramites.dc.html#t-linderos" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Constancia de linderos</span></a>
-              <a href="Tramites.dc.html#t-verificacion-catastral" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Verificación catastral</span></a>
-              <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#9096ac; padding:10px 13px 4px;">Tributos y tasas</div>
-              <a href="Tramites.dc.html#t-impuesto-economico" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Impuesto sobre actividades económicas</span></a>
-              <a href="Tramites.dc.html#t-impuesto-inmuebles" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Impuesto sobre inmuebles urbanos</span></a>
-              <a href="Tramites.dc.html#t-solvencia" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Solvencia municipal</span></a>
-              <a href="Tramites.dc.html#t-tasas-aseo" style="--acc:#4220e5; display:block; padding:9px 13px; border-radius:10px; color:#3a3a40;"><span style="font-family:'Varela Round',sans-serif; font-size:14px;">Tasas de aseo y servicios</span></a>
-        </div>
-        </div>
       </div>
     </div>
   </header>
 
   <!-- PAGE HERO -->
-  <section style="position:relative; margin-top:72px; overflow:hidden; border-bottom:1px solid #ececf1; background:#141238; min-height:520px; display:flex; align-items:center;">
-    <video id="idHeroVid" src="assets/identidad-cultura.mp4" poster="assets/identidad-hero.png" autoplay="" loop="" muted="" playsinline="" preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
+  <section style="position:relative; overflow:hidden; border-bottom:1px solid #ececf1; background:#141238; min-height:520px; display:flex; align-items:center;">
+    <video id="idHeroVid" src="assets/Identidad/identidad-cultura.mp4" poster="assets/Identidad/identidad-hero.png" autoplay="" loop="" muted="" playsinline="" preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>
     <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(20,18,56,.94) 0%, rgba(20,18,56,.72) 44%, rgba(20,18,56,.28) 100%);"></div>
     <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:88px 32px; width:100%;">
       <span style="display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; color:#ffd08a; margin-bottom:20px;">Identidad · Cultura viva</span>
@@ -198,7 +195,7 @@
         </div>
 
         <div style="position:relative; min-height:360px;">
-          <img src="{{ evPhoto }}" alt="Parranda de San Pedro" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+          <image-slot id="ev-proximo-foto" shape="rect" placeholder="Sube la foto del evento" src="{{ evPhoto }}" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
           <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(20,18,56,.9) 0%, rgba(20,18,56,.2) 42%, rgba(20,18,56,0) 100%); pointer-events:none;"></div>
         </div>
 
@@ -572,11 +569,11 @@
 <!-- BANNER TURISMO (full-bleed cascada + logo Vive Guarenas, reveal en scroll) -->
   <section style="max-width:1240px; margin:8px auto 0; padding:0 32px;">
     <div id="turHero" style="position:relative; width:100vw; margin-left:calc(50% - 50vw); height:660px; overflow:hidden; background:#0a1c14; margin-bottom:52px;">
-      <video id="turHeroBg" src="assets/vive-guarenas-banner.mp4" poster="assets/turismo-cascada.png" autoplay="" loop="" muted="" playsinline="" preload="auto" style="position:absolute; left:-4%; top:-8%; width:108%; height:120%; object-fit:cover; will-change:transform;"></video>
+      <video id="turHeroBg" src="assets/_compartidas/vive-guarenas-banner.mp4" poster="assets/Identidad/turismo-cascada.png" autoplay="" loop="" muted="" playsinline="" preload="auto" style="position:absolute; left:-4%; top:-8%; width:108%; height:120%; object-fit:cover; will-change:transform;"></video>
       <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,20,14,.55) 0%, rgba(6,20,14,.15) 38%, rgba(6,20,14,.62) 100%);"></div>
       <div id="turHeroInner" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 24px; will-change:transform, opacity;">
         <span style="display:block; font-family:'Poppins',sans-serif; font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:rgba(255,255,255,.9); font-weight:700; margin-bottom:22px; text-shadow:0 2px 12px rgba(0,0,0,.4);">Turismo</span>
-        <img id="turHeroLogo" src="assets/logo-vive-white.svg" alt="¡Vive Guarenas!" style="width:min(860px,88vw); filter:drop-shadow(0 12px 40px rgba(0,0,0,.5));">
+        <img id="turHeroLogo" src="assets/_compartidas/marca/logo-vive-white.svg" alt="¡Vive Guarenas!" style="width:min(860px,88vw); filter:drop-shadow(0 12px 40px rgba(0,0,0,.5));">
         <p style="font-family:'Varela Round',sans-serif; font-size:16px; line-height:1.6; color:rgba(255,255,255,.92); margin:26px auto 0; max-width:52ch; text-shadow:0 2px 14px rgba(0,0,0,.45);">Ríos, cascadas y paisajes majestuosos te esperan. Recorre los puntos turísticos, patrimoniales y naturales del municipio.</p>
       </div>
     </div>
@@ -640,7 +637,7 @@
   </section>
 
   <footer style="margin-top: 72px; background: #0d1a3d; color: #8f93b0; position:relative; overflow:hidden; display:flex; flex-direction:column;">
-    <img src="assets/isotipo-white.svg" alt="" style="position:absolute; right:-30px; top:44%; transform:translateY(-50%); height:560px; width:auto; opacity:.05; pointer-events:none; z-index:0;">
+    <img src="assets/_compartidas/marca/isotipo-white.svg" alt="" style="position:absolute; right:-30px; top:44%; transform:translateY(-50%); height:560px; width:auto; opacity:.05; pointer-events:none; z-index:0;">
 
     <!-- WORDMARK -->
     <div style="position:relative; z-index:1; order:10; max-width:1240px; margin:0 auto; padding:12px 24px 30px;">
@@ -658,7 +655,7 @@
 
     <!-- banda titular + accesos -->
     <div style="position:relative; z-index:1; max-width:1240px; margin:0 auto; padding:64px 32px 40px; display:flex; align-items:flex-end; justify-content:space-between; gap:40px; flex-wrap:wrap;">
-      <h2 style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; color: #fff; margin: 0; max-width: 19ch;">Construyamos juntos <span style="white-space:nowrap">una&nbsp;<img src="assets/wordmark-guarenas-white.svg" alt="Guarenas" style="height:.8em; width:auto; vertical-align:-.03em; display:inline-block;"></span> más humana</h2>
+      <h2 style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 38px; line-height: 1.18; letter-spacing: -.02em; color: #fff; margin: 0; max-width: 19ch;">Construyamos juntos <span style="white-space:nowrap">una&nbsp;<img src="assets/_compartidas/marca/wordmark-guarenas-white.svg" alt="Guarenas" style="height:.8em; width:auto; vertical-align:-.03em; display:inline-block;"></span> más humana</h2>
       <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; max-width:520px;">
         <a href="Home.dc.html" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#141238; background:#ff9d00; padding:11px 20px; border-radius:999px;" style-hover="opacity:.9;">Inicio</a>
         <a href="Gestion.dc.html" style="font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); padding:11px 20px; border-radius:999px;" style-hover="background:rgba(255,255,255,.16);">Gestión</a>
@@ -672,7 +669,7 @@
 
     <div style="position:relative; max-width:1240px; margin:0 auto; padding:48px 32px 30px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px;">
       <div>
-        <img src="assets/logo-alcaldia-white.png" alt="Alcaldía de Guarenas" style="height:56px; width:auto; margin-bottom:20px;">
+        <img src="assets/_compartidas/marca/logo-alcaldia-white.png" alt="Alcaldía de Guarenas" style="height:56px; width:auto; margin-bottom:20px;">
         <p style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.6; color:#b8b5d6; margin:0 0 18px; max-width:34ch;">Portal ciudadano de la Alcaldía de Guarenas. Gestión moderna, cercana y transparente.</p>
         <p style="font-family:Arial,sans-serif; font-style:italic; font-size:19px; color:#ff9d00; margin:0 0 20px;">Mi querida Guarenas</p>
         <div style="display:flex; align-items:center; gap:12px;">
@@ -731,10 +728,10 @@ class Component extends DCLogic {
   state = { turSel: null, calM: 6, calY: 2026, parSel: 0, catModal: null, agDay: '29', agStop: null, rutas: this._loadRutas(), editRoute: false, armStop: null, savedFlag: false, galIdx: null };
 
   GAL = [
-    { src:'assets/parranda-2024-1.jpg', cap:'Parranderos danzando por las calles del casco colonial · Edición 2024' },
-    { src:'assets/parranda-2024-2.jpg', cap:'La María Ignacia carga su muñeca entre la multitud · Edición 2024' },
-    { src:'assets/parranda-2024-3.jpg', cap:'Cuatro, maracas y la imagen de San Pedro en procesión · Edición 2024' },
-    { src:'assets/parranda-2024-4.jpg', cap:'La fiesta llena las calles al caer la tarde · Edición 2024' },
+    { src:'assets/Identidad/parranda-2024-1.jpg', cap:'Parranderos danzando por las calles del casco colonial · Edición 2024' },
+    { src:'assets/Identidad/parranda-2024-2.jpg', cap:'La María Ignacia carga su muñeca entre la multitud · Edición 2024' },
+    { src:'assets/Identidad/parranda-2024-3.jpg', cap:'Cuatro, maracas y la imagen de San Pedro en procesión · Edición 2024' },
+    { src:'assets/Identidad/parranda-2024-4.jpg', cap:'La fiesta llena las calles al caer la tarde · Edición 2024' },
   ];
   galOpen = (i) => () => this.setState({ galIdx: i });
   galClose = () => this.setState({ galIdx: null });
@@ -776,7 +773,7 @@ class Component extends DCLogic {
 
   _agEv0(){
     try{ if(window.GStore){ const a = window.GStore.get('g_agenda'); if(a && a.events && a.events[0]) return a.events[0]; } }catch(e){}
-    return { title:'Parranda de San Pedro', desc:'La fiesta más querida de Guarenas y Guatire, Patrimonio Cultural Inmaterial de la Humanidad. Los parranderos salen a las calles con levitas, sombreros de copa y el rostro pintado, honrando la promesa de María Ignacia al ritmo del cuatro y las maracas.', photo:'assets/proximo-evento.png' };
+    return { title:'Parranda de San Pedro', desc:'La fiesta más querida de Guarenas y Guatire, Patrimonio Cultural Inmaterial de la Humanidad. Los parranderos salen a las calles con levitas, sombreros de copa y el rostro pintado, honrando la promesa de María Ignacia al ritmo del cuatro y las maracas.', photo:'assets/_compartidas/proximo-evento.png' };
   }
   _agEvents(day){
     const ev = this._agEv0();
@@ -950,19 +947,19 @@ class Component extends DCLogic {
 
   CATBAND = [
     { color:'#ea3755', veil:'linear-gradient(to top, rgba(150,15,40,.92) 6%, rgba(180,20,50,.5) 46%, rgba(180,20,50,.18) 100%)',
-      img:'assets/eventos-culturales.png', eyebrow:'Fiesta tradicional', title:'Parranda de San Pedro',
+      img:'assets/_compartidas/eventos-culturales.png', eyebrow:'Fiesta tradicional', title:'Parranda de San Pedro',
       short:'Patrimonio Cultural de la Humanidad, cada 29 de junio.',
       body:'Cada 29 de junio, Guarenas y Guatire celebran la Parranda de San Pedro, declarada Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO en 2013.\n\nLa tradición nace de la promesa de María Ignacia, una esclava que ofreció bailar a San Pedro si su hija Rosa Ignacia sanaba. Al cumplirse el milagro, cumplió su palabra. Por eso, un hombre se viste de mujer —"la María Ignacia"— y carga una muñeca que representa a la niña.\n\nLos parranderos visten levita, sombrero de copa y llevan el rostro pintado de negro en memoria de los esclavos, mientras bailan al ritmo del cuatro, las maracas y la bandera.' },
     { color:'#4220e5', veil:'linear-gradient(to top, rgba(24,14,120,.92) 6%, rgba(40,25,160,.5) 46%, rgba(40,25,160,.18) 100%)',
-      img:'assets/patrimonio.png', eyebrow:'Hecho histórico', title:'Fundación de Guarenas',
+      img:'assets/_compartidas/patrimonio.png', eyebrow:'Hecho histórico', title:'Fundación de Guarenas',
       short:'La ciudad nació el 14 de febrero de 1621.',
       body:'Guarenas fue fundada el 14 de febrero de 1621, en el valle regado por el río del mismo nombre. Su nombre proviene de los indígenas Quiriquires y Guarenas que habitaban estas tierras.\n\nDurante siglos fue tierra de haciendas de caña de azúcar y café, y hoy es capital del municipio Ambrosio Plaza, bautizado en honor al prócer independentista nacido en la ciudad.\n\nSu casco histórico conserva templos, plazas y calles que guardan la memoria de más de cuatro siglos de historia.' },
     { color:'#ff9d00', veil:'linear-gradient(to top, rgba(170,95,0,.92) 6%, rgba(200,120,0,.5) 46%, rgba(200,120,0,.18) 100%)',
-      img:'assets/fiestas-patronales.png', eyebrow:'Devoción popular', title:'Virgen de Copacabana',
+      img:'assets/_compartidas/fiestas-patronales.png', eyebrow:'Devoción popular', title:'Virgen de Copacabana',
       short:'La patrona de Guarenas y su procesión.',
       body:'Nuestra Señora de Copacabana es la patrona de Guarenas. Su devoción, de raíces coloniales, reúne cada año a los fieles del municipio en misas, procesiones y actos populares.\n\nLa Catedral de Copacabana, en el casco central, es el corazón de esta tradición religiosa que ha acompañado a las familias guareneras por generaciones, mezclando la fe católica con las expresiones culturales propias del valle.' },
     { color:'#3a7d44', veil:'linear-gradient(to top, rgba(20,80,40,.92) 6%, rgba(35,105,55,.5) 46%, rgba(35,105,55,.18) 100%)',
-      img:'assets/turismo-guarenas.png', eyebrow:'Tradición de mayo', title:'Velorios de Cruz de Mayo',
+      img:'assets/_compartidas/turismo-guarenas.png', eyebrow:'Tradición de mayo', title:'Velorios de Cruz de Mayo',
       short:'Cantos, décimas y flores en honor a la cruz.',
       body:'Durante todo el mes de mayo, las comunidades de Guarenas celebran los Velorios de Cruz de Mayo, una tradición que combina lo religioso y lo festivo.\n\nLas cruces se adornan con flores y papel de colores, y alrededor de ellas se cantan décimas, fulías y galerones acompañados de cuatro, maracas y tambor. Es una de las expresiones más queridas del folclor local, que reúne a vecinos de todas las edades en torno a la palabra cantada.' },
   ];
@@ -970,10 +967,10 @@ class Component extends DCLogic {
   closeCat = () => this.setState({ catModal: null });
 
   PARRANDA = [
-    { img:'assets/eventos-culturales.png', caption:'Los parranderos de negro', tag:'Patrimonio de la Humanidad', title:'Parranda de San Pedro', story:'Cada 29 de junio, Guarenas y Guatire celebran su tradición más querida, declarada Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO en 2013. Nace de la promesa de una esclava, María Ignacia, y hoy la mantienen viva cientos de familias del municipio.' },
-    { img:'assets/fiestas-patronales.png', caption:'La procesión por las calles', tag:'Fe y devoción', title:'La procesión de San Pedro', story:'La imagen de San Pedro Apóstol recorre las calles del casco central acompañada por promeseros, banderas y música. Es el corazón devocional de la fiesta: la comunidad acompaña al santo en agradecimiento por los favores concedidos durante el año.' },
-    { img:'assets/patrimonio.png', caption:'Levitas, sombreros y cuatro', tag:'Vestuario tradicional', title:'Los tucusitos y la cotiza', story:'Los parranderos visten levita, sombrero de copa y el rostro pintado de negro, en memoria de los esclavos. Portan la bandera, el cuatro, las maracas y los "tucusitos" —dos niños vestidos de rojo y amarillo— mientras bailan con la cotiza al ritmo del joropo.' },
-    { img:'assets/patrimonio.png', caption:'La María Ignacia', tag:'Origen de la tradición', title:'La leyenda de María Ignacia', story:'La tradición honra a María Ignacia, esclava que prometió bailar a San Pedro si su hija Rosa Ignacia sanaba. Al cumplirse el milagro, cumplió su promesa. Por eso un hombre se viste de mujer —"la María Ignacia"— cargando una muñeca que representa a la niña.' },
+    { img:'assets/_compartidas/eventos-culturales.png', caption:'Los parranderos de negro', tag:'Patrimonio de la Humanidad', title:'Parranda de San Pedro', story:'Cada 29 de junio, Guarenas y Guatire celebran su tradición más querida, declarada Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO en 2013. Nace de la promesa de una esclava, María Ignacia, y hoy la mantienen viva cientos de familias del municipio.' },
+    { img:'assets/_compartidas/fiestas-patronales.png', caption:'La procesión por las calles', tag:'Fe y devoción', title:'La procesión de San Pedro', story:'La imagen de San Pedro Apóstol recorre las calles del casco central acompañada por promeseros, banderas y música. Es el corazón devocional de la fiesta: la comunidad acompaña al santo en agradecimiento por los favores concedidos durante el año.' },
+    { img:'assets/_compartidas/patrimonio.png', caption:'Levitas, sombreros y cuatro', tag:'Vestuario tradicional', title:'Los tucusitos y la cotiza', story:'Los parranderos visten levita, sombrero de copa y el rostro pintado de negro, en memoria de los esclavos. Portan la bandera, el cuatro, las maracas y los "tucusitos" —dos niños vestidos de rojo y amarillo— mientras bailan con la cotiza al ritmo del joropo.' },
+    { img:'assets/_compartidas/patrimonio.png', caption:'La María Ignacia', tag:'Origen de la tradición', title:'La leyenda de María Ignacia', story:'La tradición honra a María Ignacia, esclava que prometió bailar a San Pedro si su hija Rosa Ignacia sanaba. Al cumplirse el milagro, cumplió su promesa. Por eso un hombre se viste de mujer —"la María Ignacia"— cargando una muñeca que representa a la niña.' },
   ];
   selectPar = (i) => () => this.setState({ parSel: i });
 
@@ -1117,8 +1114,8 @@ class Component extends DCLogic {
       const p = Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.92)));
       const ease = 1 - Math.pow(1 - p, 3);
       bg.style.transform = 'translateY(' + ((p - 0.5) * 70) + 'px) scale(' + (1.04 + p * 0.06) + ')';
-      inner.style.opacity = String(Math.min(1, ease * 1.5));
-      inner.style.transform = 'translateY(' + ((1 - ease) * 64) + 'px)';
+      inner.style.opacity = '1';
+      inner.style.transform = 'translateY(' + ((1 - ease) * 26) + 'px)';
       if(logo) logo.style.transform = 'scale(' + (0.82 + ease * 0.18) + ')';
     };
     window.addEventListener('scroll', this._turHero, { passive: true });
@@ -1175,10 +1172,10 @@ class Component extends DCLogic {
       })),
       ...this._calVals(), prevMonth: this.prevMonth, nextMonth: this.nextMonth,
       lugares: [
-        { name:'Catedral de Copacabana', loc:'Casco central, Guarenas', tag:'Patrimonio', ph:'Catedral', slot:'id-lug-1', src:'assets/patrimonio.png' },
-        { name:'Parque Ambrosio Plaza', loc:'Guarenas, Miranda', tag:'Parque', ph:'Parque', slot:'id-lug-2', src:'assets/tur-parque.png' },
-        { name:'Waraira Repano', loc:'Parque Nacional El Ávila', tag:'Naturaleza', ph:'Waraira', slot:'id-lug-3', src:'assets/tur-waraira.png' },
-        { name:'Nueva Casarapa', loc:'Guarenas, Miranda', tag:'Recreación', ph:'Casarapa', slot:'id-lug-4', src:'assets/tur-casarapa.png' },
+        { name:'Catedral de Copacabana', loc:'Casco central, Guarenas', tag:'Patrimonio', ph:'Catedral', slot:'id-lug-1', src:'assets/_compartidas/patrimonio.png' },
+        { name:'Parque Ambrosio Plaza', loc:'Guarenas, Miranda', tag:'Parque', ph:'Parque', slot:'id-lug-2', src:'assets/_compartidas/tur-parque.png' },
+        { name:'Waraira Repano', loc:'Parque Nacional El Ávila', tag:'Naturaleza', ph:'Waraira', slot:'id-lug-3', src:'assets/_compartidas/tur-waraira.png' },
+        { name:'Nueva Casarapa', loc:'Guarenas, Miranda', tag:'Recreación', ph:'Casarapa', slot:'id-lug-4', src:'assets/_compartidas/tur-casarapa.png' },
       ],
       agDay28: this.agDay28, agDay29: this.agDay29,
       agBtn28: (this.state.agDay === '28'

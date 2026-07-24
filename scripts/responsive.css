@@ -49,6 +49,25 @@ img, video, image-slot, canvas { max-width: 100%; }
   /* Apilar TODAS las grillas multicolumna a una sola columna */
   [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
 
+  /* --- Gestión en cifras: carrusel horizontal deslizable en móvil --- */
+  [style*="repeat(5,1fr)"], [style*="repeat(5, 1fr)"] {
+    display: flex !important; grid-template-columns: none !important;
+    overflow-x: auto; gap: 18px !important; padding-bottom: 10px;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  [style*="repeat(5,1fr)"]::-webkit-scrollbar, [style*="repeat(5, 1fr)"]::-webkit-scrollbar { display: none; }
+  [style*="repeat(5,1fr)"] > *, [style*="repeat(5, 1fr)"] > * {
+    flex: 0 0 auto; min-width: 46vw; scroll-snap-align: start;
+  }
+
+  /* --- Banner "Trabajo continuo": texto arriba del círculo/foto --- */
+  .alc-grid { text-align: center; padding: 8px 20px 0 !important; }
+  .alc-grid > div:nth-child(1) { display: none !important; }        /* contador */
+  .alc-grid > div:nth-child(2) { order: 2; margin-top: 8px; }        /* foto alcalde */
+  .alc-grid > div:nth-child(3) { order: 1; align-items: center !important; padding-bottom: 8px !important; } /* lema */
+  .alc-grid > div:nth-child(3) > * { text-align: center; }
+
   /* Reducir separaciones grandes */
   [style*="gap: 44px"], [style*="gap: 48px"], [style*="gap: 52px"],
   [style*="gap: 56px"], [style*="gap: 60px"], [style*="gap: 64px"] { gap: 24px !important; }
@@ -110,9 +129,11 @@ img, video, image-slot, canvas { max-width: 100%; }
 /* ============================================================
    Ajustes móviles adicionales
    ============================================================ */
-/* Ocultar barra utilitaria superior (Municipio · Estado Bolivariano…) */
+/* Ocultar barra utilitaria superior (Municipio · Estado Bolivariano…) + línea tricolor en móvil */
 @media (max-width: 900px) {
+  [data-topbar] { display: none !important; }
   [style*="padding:9px 32px"] { display: none !important; }
+  [style*="height:3px; width:100%"] { display: none !important; }
 }
 
 @media (max-width: 760px) {
@@ -137,29 +158,6 @@ img, video, image-slot, canvas { max-width: 100%; }
 .turp-collapsed [data-turp-chev] { transform: rotate(180deg) !important; }
 
 /* ============================================================
-   MODO OSCURO REAL — sin invertir imágenes.
-   Fondo oscuro, texto claro, logo en blanco. Aplica en todo ancho.
-   (Reemplaza el antiguo hack filter:invert que ponía fotos en negativo.)
-   ============================================================ */
-.theme-dark, .theme-dark #guaRoot, .theme-dark body { background: #0c1024 !important; }
-
-/* Header y barra de navegación */
-.theme-dark header { background: #0c1024 !important; border-bottom-color: rgba(255,255,255,.1) !important; }
-.theme-dark header nav { background: rgba(255,255,255,.06) !important; border-color: rgba(255,255,255,.14) !important; }
-
-/* Logo de la alcaldía -> versión blanca */
-.theme-dark header img[src*="logo-alcaldia"] { filter: brightness(0) invert(1) !important; }
-
-/* Bottom tab bar y sheet en oscuro */
-.theme-dark [data-btabbar] { background: rgba(12,16,36,.92) !important; border-top-color: rgba(255,255,255,.1) !important; }
-.theme-dark [data-msheet-panel] { background: #16192f !important; }
-.theme-dark [data-msheet-grid] a { background: #1e2140 !important; border-color: rgba(255,255,255,.1) !important; }
-.theme-dark [data-ms-ico] { background: #12152b !important; border-color: rgba(255,255,255,.14) !important; }
-
-/* Las imágenes/vídeos se quedan tal cual (sin negativo) */
-.theme-dark img, .theme-dark video, .theme-dark image-slot, .theme-dark canvas, .theme-dark .leaflet-container { filter: none !important; }
-
-/* ============================================================
    BOTTOM TAB BAR — navegación inferior tipo app (solo móvil)
    Inyectada por fx.js. Oculta en escritorio.
    ============================================================ */
@@ -171,9 +169,6 @@ img, video, image-slot, canvas { max-width: 100%; }
 
   /* Dejar aire al final para que el contenido no quede tras la barra */
   body { padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px)) !important; }
-
-  /* Subir el toggle de tema para que no lo tape la barra (queda arriba-dcha, ya está) */
-  [data-theme-toggle] { top: calc(12px + env(safe-area-inset-top, 0px)) !important; }
 
   /* --- Barra --- */
   [data-btabbar] {
@@ -196,18 +191,18 @@ img, video, image-slot, canvas { max-width: 100%; }
     -webkit-tap-highlight-color: transparent;
   }
   [data-btabbar] [data-bt]:active { transform: scale(.93); }
+  body.gua-modal-open [data-btabbar] { display: none !important; }
   [data-btabbar] [data-bt-ico] {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 26px; height: 26px; transition: transform .2s cubic-bezier(.2,.7,.3,1);
+    width: 42px; height: 30px; border-radius: 999px;
+    transition: background .22s ease, color .2s ease, transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease;
   }
-  [data-btabbar] [data-bt-ico] svg { width: 23px; height: 23px; }
+  [data-btabbar] [data-bt-ico] svg { width: 22px; height: 22px; }
   [data-btabbar] [data-bt-lbl] { line-height: 1; }
   [data-btabbar] [data-bt-on] { color: #4220e5; }
-  [data-btabbar] [data-bt-on] [data-bt-ico] { transform: translateY(-1px); }
-  /* Indicador superior del tab activo */
-  [data-btabbar] [data-bt-on]::before {
-    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 22px; height: 3px; border-radius: 999px; background: #4220e5;
+  [data-btabbar] [data-bt-on] [data-bt-ico] {
+    background: #4220e5; color: #fff; transform: translateY(-1px);
+    box-shadow: 0 8px 16px -6px rgba(66,32,229,.6);
   }
 
   /* --- Bottom sheet "Más" --- */

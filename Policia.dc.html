@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="scripts/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Varela+Round&amp;display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#f5f7fb; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:#2a5bd0; color:#fff; }
+  a{ color:inherit; text-decoration:none; }
+  .svc-drop{ position:relative; }
+  .svc-drop::after{ content:""; position:absolute; top:100%; left:-10px; right:-10px; height:16px; }
+  .svc-menu a{ transition:background .16s ease; }
+  .svc-menu a:hover, .svc-menu a:focus{ background:var(--acc) !important; }
+  .svc-menu a:hover span, .svc-menu a:focus span{ color:#fff !important; }
+  .svc-menu a:hover .svc-ic, .svc-menu a:focus .svc-ic{ background:rgba(255,255,255,.22) !important; color:#fff !important; }
+  .svc-menu{ opacity:0; visibility:hidden; transform:translateX(-50%) translateY(6px); transition:opacity .18s ease, transform .18s ease; pointer-events:none; }
+  .svc-drop:hover .svc-menu, .svc-drop:focus-within .svc-menu{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+  @keyframes polRise{ from{ opacity:0; transform:translateY(24px);} to{ opacity:1; transform:none;} }
+  @keyframes polPulse{ 0%,100%{ transform:scale(1); opacity:.5;} 50%{ transform:scale(1.14); opacity:.85;} }
+</style>
+<script src="scripts/fx.js"></script>
+<link rel="stylesheet" href="scripts/responsive.css">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/marca/logo-alcaldia-white.png">
+<meta name="ext-resource-dependency" content="assets/_compartidas/seguridad-hd.png">
+<meta name="ext-resource-dependency" content="assets/Servicios/seguridad-patrullas.png">
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0e1b3d"></rect><path d="M50 20 30 27v18c0 15 10 25 20 30 10-5 20-15 20-30V27z" fill="none" stroke="#5b8def" stroke-width="4"></path></svg></template>
+<div style="font-family:Arial,Helvetica,sans-serif; color:#1c2230; background:#f5f7fb;">
+
+  <div style="background:#0e1b3d; color:#9fb0d6;">
+    <div style="max-width:1240px; margin:0 auto; padding:9px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; font-size:12.5px;">
+      <span>Municipio Ambrosio Plaza · Guarenas, Estado Bolivariano de Miranda</span>
+      <div style="display:flex; gap:22px;">
+        <a href="Home.dc.html" style-hover="color:#fff;">Portal Ciudadano</a>
+        <a href="#telefonos" style-hover="color:#fff;">Emergencias</a>
+      </div>
+    </div>
+  </div>
+  <div style="height:3px; background:linear-gradient(90deg,#2a5bd0,#5b8def);"></div>
+
+  <header style="position:sticky; top:0; z-index:60; background:#ffffff; border-bottom:1px solid #e6eaf2;">
+    <div style="max-width:1240px; margin:0 auto; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; gap:28px;">
+      <a href="Home.dc.html" style="display:flex; align-items:center;">
+        <img src="assets/_compartidas/marca/logo-alcaldia.png" alt="Alcaldía de Guarenas — Municipio Ambrosio Plaza" style="height:54px; width:auto; display:block;">
+      </a>
+      <nav style="display:flex; align-items:center; gap:4px; flex-wrap:wrap; justify-content:center;">
+        <a href="Gestion.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#2a5bd0; transition:background .2s;" style-hover="background:#eef3ff;">Gestión</a>
+        <a href="Tramites.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#2a5bd0; transition:background .2s;" style-hover="background:#eef3ff;">Trámites</a>
+        <a href="Noticias.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#2a5bd0; transition:background .2s;" style-hover="background:#eef3ff;">Noticias</a>
+        <a href="Identidad.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#2a5bd0; transition:background .2s;" style-hover="background:#eef3ff;">Identidad</a>
+        <a href="Info Municipal.dc.html" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#2a5bd0; transition:background .2s;" style-hover="background:#eef3ff;">Info Municipal</a>
+        <div class="svc-drop">
+          <span tabindex="0" role="button" aria-haspopup="true" style="font-size:14px; font-weight:600; padding:8px 16px; border-radius:999px; color:#fff; background:#2a5bd0; display:inline-flex; align-items:center; gap:4px;; cursor:pointer;" style-hover="background:#1f47a8;">Servicios<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:1px;"><path d="m6 9 6 6 6-6"></path></svg></span>
+          <div class="svc-menu" style="position:absolute; top:calc(100% + 12px); left:50%; min-width:250px; background:#fff; border:1px solid rgba(20,18,56,.12); border-radius:18px; box-shadow:0 24px 60px -24px rgba(20,18,56,.5); padding:8px; z-index:90; display:flex; flex-direction:column; gap:2px;">
+            <a href="Aseo Urbano.dc.html" style="--acc:#3a7d44; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(58,125,68,.12); color:#3a7d44;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M6 6l1 14h10l1-14"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Aseo Urbano</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Recolección y rutas de aseo</span></span>
+            </a>
+            <a href="Policia.dc.html" style="--acc:#2a5bd0; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(42,91,208,.12); color:#2a5bd0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5z"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Policía de Guarenas</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Seguridad ciudadana</span></span>
+            </a>
+            <a href="Ambulancia.dc.html" style="--acc:#ea3755; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(234,55,85,.12); color:#ea3755;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v8M8 12h8"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">Ambulancia</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Emergencias y salud</span></span>
+            </a>
+            <a href="CPNNA.dc.html" style="--acc:#7b3fd0; display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:12px; color:#3a3a40;">
+              <span class="svc-ic" style="flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:11px; background:rgba(123,63,208,.12); color:#7b3fd0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.2-9.2-8.4A5 5 0 0 1 12 6.5a5 5 0 0 1 9.2 6.1C19 16.8 12 21 12 21z"></path><path d="M9.2 12.2 11 14l3.5-3.8"></path></svg></span>
+              <span style="display:flex; flex-direction:column; gap:2px;"><span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; color:#1c1c22;">CPNNA de Guarenas</span><span style="font-family:'Varela Round',sans-serif; font-size:11.5px; color:#8a8698;">Protección de la niñez</span></span>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <a href="tel:911" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:600; color:#fff; background:#2a5bd0; padding:11px 20px; border-radius:8px;" style-hover="background:#1f47a8;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+        911
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO seguridad -->
+  <section style="position:relative; background:#0e1b3d; overflow:hidden;">
+    <img src="assets/Servicios/seguridad-patrullas.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.22;">
+    <div style="position:absolute; inset:0; background:linear-gradient(105deg, #0e1b3d 34%, rgba(14,27,61,.72) 62%, rgba(14,27,61,.4) 100%);"></div>
+    <div style="position:relative; max-width:1240px; margin:0 auto; padding:76px 32px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+      <div style="animation:polRise .8s ease both;">
+        <span style="display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#8fb0f5; font-weight:700; margin-bottom:18px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5z"></path></svg>
+          Seguridad ciudadana
+        </span>
+        <h1 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:50px; line-height:1.04; letter-spacing:-.02em; margin:0 0 20px; color:#fff;">Más patrullaje,<br>una Guarenas <span style="color:#5b8def;">más segura</span></h1>
+        <p style="font-family:'Varela Round',sans-serif; font-size:16.5px; line-height:1.65; color:#c3cef0; margin:0 0 34px; max-width:46ch;">Fortalecemos la Policía Municipal Ambrosio Plaza con nuevas unidades y presencia permanente en las comunidades, para proteger a cada guarenero y guarenera.</p>
+        <div style="display:flex; gap:38px; flex-wrap:wrap;">
+          <div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:38px; color:#fff; line-height:1;">+30</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; color:#8fb0f5; margin-top:6px;">nuevas patrullas</div></div>
+          <div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:38px; color:#fff; line-height:1;">24/7</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; color:#8fb0f5; margin-top:6px;">patrullaje continuo</div></div>
+          <div><div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:38px; color:#fff; line-height:1;">5</div><div style="font-family:'Varela Round',sans-serif; font-size:13.5px; color:#8fb0f5; margin-top:6px;">parroquias cubiertas</div></div>
+        </div>
+      </div>
+      <div style="position:relative; animation:polRise 1s ease .15s both;">
+        <img src="assets/_compartidas/seguridad-hd.png" alt="Patrullas de la Policía de Guarenas" style="width:100%; display:block; border-radius:20px; box-shadow:0 40px 80px -30px rgba(0,0,0,.7);">
+      </div>
+    </div>
+  </section>
+
+  <!-- TELEFONOS UTILES -->
+  <section id="telefonos" style="max-width:1240px; margin:0 auto; padding:76px 32px 0;">
+    <span style="display:inline-block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#2a5bd0; font-weight:700; margin-bottom:14px;">Información para el ciudadano</span>
+    <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:40px; letter-spacing:-.02em; margin:0 0 8px; color:#0e1b3d;">Teléfonos y servicios útiles</h2>
+    <p style="font-family:'Varela Round',sans-serif; font-size:15px; color:#5a6172; margin:0 0 34px;">Los números y datos que todo guareño debe tener a la mano.</p>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+      <sc-for list="{{ telefonos }}" as="t" hint-placeholder-count="4">
+        <button onClick="{{ t.onClick }}" style="{{ t.cardStyle }}">
+          <span style="position:absolute; right:-14px; bottom:-14px; opacity:.16;">{{ t.bigIcon }}</span>
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:46px; height:46px; border-radius:12px; background:rgba(255,255,255,.18); color:#fff; margin-bottom:auto;">{{ t.icon }}</span>
+          <div style="position:relative; margin-top:26px;">
+            <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:20px; color:#fff;">{{ t.title }}</div>
+            <div style="font-family:'Varela Round',sans-serif; font-size:13px; color:rgba(255,255,255,.85); margin-top:3px;">{{ t.sub }}</div>
+            <div style="display:inline-flex; align-items:center; gap:7px; margin-top:14px; font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; color:#fff;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+              {{ t.revealed }}
+            </div>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- COMO ACTUAMOS -->
+  <section style="max-width:1240px; margin:80px auto 0; padding:0 32px;">
+    <span style="display:inline-block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#2a5bd0; font-weight:700; margin-bottom:14px;">Nuestro trabajo</span>
+    <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:34px; letter-spacing:-.01em; margin:0 0 36px; color:#0e1b3d;">Cómo cuidamos el municipio</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <sc-for list="{{ funciones }}" as="f" hint-placeholder-count="3">
+        <div style="border:1px solid #e3e8f2; border-radius:16px; padding:30px; background:#fff; display:flex; flex-direction:column; gap:14px;" style-hover="box-shadow:0 20px 50px -30px rgba(14,27,61,.4);">
+          <span style="display:inline-flex; align-items:center; justify-content:center; width:50px; height:50px; border-radius:13px; background:#0e1b3d; color:#5b8def;">{{ f.icon }}</span>
+          <h3 style="font-family:'Poppins',sans-serif; font-weight:600; font-size:19px; margin:0; color:#0e1b3d;">{{ f.title }}</h3>
+          <p style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.6; color:#5a6172; margin:0;">{{ f.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CUERPOS POLICIALES Y SEDES -->
+  <section style="max-width:1240px; margin:0 auto; padding:20px 32px 0;">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+      <span style="width:26px; height:2px; background:#2a5bd0; border-radius:99px;"></span>
+      <span style="font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#2a5bd0; font-weight:700;">Seguridad en el municipio</span>
+    </div>
+    <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:32px; margin:0 0 8px; color:#0e1b3d;">Cuerpos de seguridad y sus sedes</h2>
+    <p style="font-family:'Varela Round',sans-serif; font-size:16px; line-height:1.6; color:#55607d; margin:0 0 34px; max-width:60ch;">Estos son los cuerpos policiales y de emergencia que hacen vida en el Municipio Ambrosio Plaza y dónde se ubican sus sedes.</p>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <sc-for list="{{ cuerpos }}" as="c" hint-placeholder-count="6">
+        <div style="background:#fff; border:1px solid #e4e7f1; border-radius:18px; padding:22px 22px 20px; box-shadow:0 20px 46px -34px rgba(14,27,61,.5); transition:transform .2s, box-shadow .2s;" style-hover="transform:translateY(-4px); box-shadow:0 26px 54px -30px rgba(14,27,61,.42);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+            <span style="{{ c.chipStyle }}">{{ c.sigla }}</span>
+            <span style="font-family:'Poppins',sans-serif; font-weight:600; font-size:15.5px; color:#0e1b3d; line-height:1.15;">{{ c.nombre }}</span>
+          </div>
+          <p style="font-family:'Varela Round',sans-serif; font-size:13.5px; line-height:1.55; color:#5c6273; margin:0 0 16px;">{{ c.desc }}</p>
+          <div style="display:flex; gap:9px; align-items:flex-start; padding-top:14px; border-top:1px solid #eef0f6;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2a5bd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto; margin-top:2px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span style="font-family:'Varela Round',sans-serif; font-size:13px; line-height:1.45; color:#3f4557;">{{ c.sede }}</span>
+          </div>
+          <div style="display:flex; gap:9px; align-items:center; margin-top:9px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2a5bd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+            <span style="font-family:'Varela Round',sans-serif; font-size:13px; color:#3f4557;">{{ c.tel }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA franja -->
+  <section style="max-width:1240px; margin:80px auto 0; padding:0 32px;">
+    <div style="position:relative; overflow:hidden; border-radius:22px; background:linear-gradient(120deg,#0e1b3d,#1f47a8); padding:52px 56px; display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;">
+      <div style="position:absolute; right:-60px; top:50%; transform:translateY(-50%); width:320px; height:320px; border-radius:50%; background:radial-gradient(circle,rgba(91,141,239,.5),transparent 68%); animation:polPulse 5s ease-in-out infinite;"></div>
+      <div style="position:relative;">
+        <h2 style="font-family:'Poppins',sans-serif; font-weight:700; font-size:30px; color:#fff; margin:0 0 8px; letter-spacing:-.01em;">¿Emergencia o denuncia?</h2>
+        <p style="font-family:'Varela Round',sans-serif; font-size:15px; color:#c3cef0; margin:0; max-width:46ch;">Llama al 911 ante cualquier emergencia, o comunícate con la Policía Municipal para reportar una situación en tu comunidad.</p>
+      </div>
+      <a href="tel:911" style="position:relative; display:inline-flex; align-items:center; gap:10px; font-family:'Poppins',sans-serif; font-weight:700; font-size:16px; color:#0e1b3d; background:#fff; padding:16px 28px; border-radius:10px;" style-hover="opacity:.92;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path></svg>
+        Llamar al 911
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="margin-top:80px; background:#0e1b3d; color:#8f9dc4;">
+    <div style="max-width:1240px; margin:0 auto; padding:48px 32px 30px; display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:40px;">
+      <div>
+        <img src="assets/_compartidas/marca/logo-alcaldia-white.png" alt="Alcaldía de Guarenas" style="height:54px; width:auto; margin-bottom:18px;">
+        <p style="font-family:'Varela Round',sans-serif; font-size:14.5px; line-height:1.6; color:#aab6da; margin:0; max-width:40ch;">Policía Municipal Ambrosio Plaza — al servicio y protección de cada comunidad de Guarenas.</p>
+      </div>
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; margin-bottom:16px; color:#fff;">Servicios</div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-family:'Varela Round',sans-serif; font-size:14.5px;">
+          <a href="Aseo Urbano.dc.html" style-hover="color:#fff;">Aseo Urbano</a>
+          <a href="Policia.dc.html" style-hover="color:#fff;">Policía de Guarenas</a>
+          <a href="Ambulancia.dc.html" style-hover="color:#fff;">Ambulancia</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; margin-bottom:16px; color:#fff;">Emergencias</div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-family:'Varela Round',sans-serif; font-size:14.5px;">
+          <span>911 / VEN 911</span>
+          <span>Policía Municipal de Guarenas</span>
+          <span>Bomberos del municipio</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.12);">
+      <div style="max-width:1240px; margin:0 auto; padding:20px 32px; font-size:12.5px; color:#7d89b3;">© 2026 Alcaldía Bolivariana de Guarenas · Municipio Ambrosio Plaza. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { open: {} };
+  renderVals(){
+    const line = (p,sz) => React.createElement('svg',{width:sz||22,height:sz||22,viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:2,strokeLinecap:'round',strokeLinejoin:'round',dangerouslySetInnerHTML:{__html:p}});
+    const fill = (p,sz) => React.createElement('svg',{width:sz||72,height:sz||72,viewBox:'0 0 24 24',fill:'currentColor',dangerouslySetInnerHTML:{__html:p}});
+    const P_SHIELD='<path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5z"></path>';
+    const P_FLAME='<path d="M12 2s5 4 5 9a5 5 0 0 1-10 0c0-2 1-3 1-3s0 2 1.5 2S12 6 12 2z"></path>';
+    const P_HEART='<path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"></path>';
+    const shield = fill(P_SHIELD), flame = fill(P_FLAME), heart = fill(P_HEART);
+    const ic = { shield: line(P_SHIELD), flame: line(P_FLAME), heart: line(P_HEART) };
+    const defs = [
+      { id:'emg', title:'Emergencias', sub:'Sistema nacional 911', number:'911', bg:'linear-gradient(150deg,#2a5bd0,#1f47a8)', icon:ic.shield, bigIcon:shield },
+      { id:'pol', title:'Policía de Guarenas', sub:'Policía Municipal Ambrosio Plaza', number:'0212 000 00 00', bg:'linear-gradient(150deg,#1b9e78,#12775a)', icon:ic.shield, bigIcon:shield },
+      { id:'bmb', title:'Bomberos', sub:'Cuerpo de Bomberos del municipio', number:'0212 000 00 01', bg:'linear-gradient(150deg,#f2793a,#e2531e)', icon:ic.flame, bigIcon:flame },
+      { id:'vio', title:'Línea Violeta', sub:'0800 MUJERES · apoyo a la mujer', number:'0800 MUJERES', bg:'linear-gradient(150deg,#7b3fd0,#5b28a8)', icon:ic.heart, bigIcon:heart },
+    ];
+    const telefonos = defs.map(d => ({
+      title:d.title, sub:d.sub, icon:d.icon, bigIcon:d.bigIcon,
+      revealed: this.state.open[d.id] ? d.number : 'Toca para ver el número',
+      cardStyle:'position:relative; overflow:hidden; text-align:left; border:none; cursor:pointer; border-radius:18px; padding:22px; min-height:190px; display:flex; flex-direction:column; background:'+d.bg+'; box-shadow:0 22px 50px -30px rgba(14,27,61,.6); transition:transform .2s;',
+      onClick: () => this.setState(s => ({ open: Object.assign({}, s.open, { [d.id]: !s.open[d.id] }) })),
+    }));
+    const F = (p) => line(p,24);
+    const funciones = [
+      { title:'Patrullaje comunitario', desc:'Recorridos permanentes en las cinco parroquias, con presencia visible en calles, plazas y zonas comerciales.', icon:F('<path d="M3 12h4l2-6 4 12 2-6h6"></path>') },
+      { title:'Atención de emergencias', desc:'Respuesta rápida ante llamadas de auxilio, coordinada con Bomberos, Protección Civil y el sistema 911.', icon:F('<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>') },
+      { title:'Prevención y comunidad', desc:'Trabajo con consejos comunales y escuelas para prevenir el delito y fortalecer la convivencia ciudadana.', icon:F('<path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>') },
+    ];
+    const cuerpos = [
+      { color:'#1b9e78', sigla:'PMAP', nombre:'Policía Municipal Ambrosio Plaza', desc:'Policía local del municipio: patrullaje, prevención y atención al ciudadano.', sede:'Comandancia General, Casco Central de Guarenas', tel:'0212 000 00 00' },
+      { color:'#2a5bd0', sigla:'PoliMiranda', nombre:'Policía del Estado Miranda', desc:'Cuerpo de policía estadal con cobertura en el municipio.', sede:'Estación policial de Guarenas', tel:'0212 000 00 02' },
+      { color:'#0b2c66', sigla:'PNB', nombre:'Policía Nacional Bolivariana', desc:'Policía nacional de apoyo en operativos y seguridad ciudadana.', sede:'Centro de Coordinación Policial Guarenas', tel:'0212 000 00 03' },
+      { color:'#3a7d44', sigla:'GNB', nombre:'Guardia Nacional Bolivariana', desc:'Destacamento de la GNB para orden público y seguridad.', sede:'Destacamento de Guarenas', tel:'0212 000 00 04' },
+      { color:'#7b3fd0', sigla:'CICPC', nombre:'Cuerpo de Investigaciones (CICPC)', desc:'Investigación penal y criminalística.', sede:'Subdelegación Guarenas', tel:'0212 000 00 05' },
+      { color:'#e2531e', sigla:'PC', nombre:'Protección Civil y Bomberos', desc:'Atención de emergencias, rescate e incendios.', sede:'Estación de Bomberos del municipio', tel:'0212 000 00 01' },
+    ].map(c => ({ color:c.color, sigla:c.sigla, nombre:c.nombre, desc:c.desc, sede:c.sede, tel:c.tel,
+      chipStyle:'flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; min-width:58px; height:32px; padding:0 12px; border-radius:9px; font-family:\'Poppins\',sans-serif; font-weight:700; font-size:12px; letter-spacing:.02em; color:#fff; background:'+c.color+';' }));
+    return { telefonos, funciones, cuerpos };
+  }
+}
+</script>
+</body>
+</html>

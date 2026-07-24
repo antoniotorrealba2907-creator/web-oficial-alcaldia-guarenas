@@ -8,12 +8,12 @@
    ===================================================================== */
 (function () {
   var P = {
-    plaza: 'assets/_compartidas/news-plaza.png', vial: 'assets/_compartidas/news-vialidad.png',
-    salud: 'assets/_compartidas/news-salud.png', alumbrado: 'assets/_compartidas/news-alumbrado.png',
-    agua: 'assets/_compartidas/news-agua.png', transporte: 'assets/_compartidas/news-transporte.png',
-    deporte: 'assets/_compartidas/noticia-deporte-1.jpg', deporte2: 'assets/_compartidas/noticia-deporte-2.jpg',
-    balance: 'assets/_compartidas/noticia-balance.jpg',
-    aerea: 'assets/_compartidas/banner-noticias.png', brigada: 'assets/_compartidas/news-brigada.png'
+    plaza: 'assets/news-plaza.png', vial: 'assets/news-vialidad.png',
+    salud: 'assets/news-salud.png', alumbrado: 'assets/news-alumbrado.png',
+    agua: 'assets/news-agua.png', transporte: 'assets/news-transporte.png',
+    deporte: 'assets/noticia-deporte-1.jpg', deporte2: 'assets/noticia-deporte-2.jpg',
+    balance: 'assets/noticia-balance.jpg',
+    aerea: 'assets/banner-noticias.png', brigada: 'assets/news-brigada.png'
   };
 
   var DEFAULTS = {
@@ -29,22 +29,22 @@
       author: 'Antonio Galíndez',
       role: 'Alcalde de Guarenas',
       initials: 'AG',
-      banner: 'assets/_compartidas/banner-noticias.png',
-      photo: 'assets/_compartidas/comunicado-alcalde.png'
+      banner: 'assets/banner-noticias.png',
+      photo: 'assets/alcalde-perfil.png'
     },
 
     // ---- Noticias ----
     g_noticias: {
       ciudad: [
         { tag: 'Ciudad', date: '4 jul 2026', title: 'Nueva jornada de recuperación de espacios públicos en el casco central', desc: 'Cuadrillas municipales intervienen plazas y aceras para devolver el espacio a las familias guareñas.', img: P.brigada },
-        { tag: 'Ciudad', date: '2 jul 2026', title: 'Rehabilitación de vías en la parroquia Guarenas', desc: 'Asfaltado y bacheo en las principales arterias del municipio.', img: P.vial },
+        { tag: 'Ciudad', date: '2 jul 2026', title: 'Rehabilitación de vías en la parroquia Guarenas', desc: 'Asfaltado y bacheo en las principales arterias del municipio.', img: 'assets/noticia-real-1.png' },
         { tag: 'Ciudad', date: '28 jun 2026', title: 'Operativo de salud llega a las comunidades del sur', desc: '', img: P.salud },
-        { tag: 'Ciudad', date: '25 jun 2026', title: 'Ampliación del alumbrado público en avenidas principales', desc: 'Nuevas luminarias LED para mayor seguridad nocturna.', img: P.alumbrado },
-        { tag: 'Ciudad', date: '20 jun 2026', title: 'Jornada de arborización en espacios recuperados', desc: '', img: P.plaza },
-        { tag: 'Ciudad', date: '15 jun 2026', title: 'Mejoras en la red de distribución de agua potable', desc: 'Sustitución de tuberías para un servicio más estable.', img: P.agua },
+        { tag: 'Ciudad', date: '25 jun 2026', title: 'Ampliación del alumbrado público en avenidas principales', desc: 'Nuevas luminarias LED para mayor seguridad nocturna.', img: 'assets/noticia-real-2.png' },
+        { tag: 'Ciudad', date: '20 jun 2026', title: 'Jornada de arborización en espacios recuperados', desc: '', img: 'assets/noticia-real-3.png' },
+        { tag: 'Ciudad', date: '15 jun 2026', title: 'Mejoras en la red de distribución de agua potable', desc: 'Sustitución de tuberías para un servicio más estable.', img: 'assets/noticia-real-4.png' },
         { tag: 'Ciudad', date: '10 jun 2026', title: 'Inauguración de nuevas canchas deportivas para la juventud', desc: 'El alcalde entregó espacios deportivos recuperados para el deporte y la recreación comunitaria.', img: P.deporte },
-        { tag: 'Comunidad', date: '8 jun 2026', title: 'Entrega de bolsos y útiles escolares a estudiantes del municipio', desc: 'Jornada educativa para acompañar a las familias guareñas en el regreso a clases.', img: 'assets/_compartidas/news-educacion.png' },
-        { tag: 'Ciudad', date: '6 jun 2026', title: 'Repavimentación de calles en el este del municipio', desc: '', img: P.vial }
+        { tag: 'Comunidad', date: '8 jun 2026', title: 'Entrega de bolsos y útiles escolares a estudiantes del municipio', desc: 'Jornada educativa para acompañar a las familias guareñas en el regreso a clases.', img: 'assets/news-educacion.png' },
+        { tag: 'Ciudad', date: '6 jun 2026', title: 'Repavimentación de calles en el este del municipio', desc: '', img: 'assets/noticia-real-5.png' }
       ],
       pais: [
         { tag: 'País', date: '5 jul 2026', title: 'Municipios del país coordinan agenda de desarrollo urbano', desc: 'Autoridades locales acuerdan lineamientos comunes para modernizar los servicios ciudadanos.', img: P.aerea },
@@ -76,7 +76,7 @@
           saint: 'San Pedro',
           title: 'Parranda de San Pedro',
           dateLabel: '28 y 29 de junio',
-          photo: 'assets/_compartidas/proximo-evento.png',
+          photo: 'assets/proximo-evento.png',
           desc: 'Patrimonio Cultural Inmaterial de la Humanidad (UNESCO). Guarenas se viste de fiesta con levitas, sombreros de copa, banderas y la María Ignacia cargando su muñeca al ritmo del cuatro y las maracas.',
           program: [
             { time: '5:00 P.M. · Dom 28', title: 'Serenata a San Pedro', place: 'Iglesia Sagrado Corazón de Jesús (Urb. 27 de Febrero)', desc: 'Noche de cantos, fe y tambor para esperar el día del Santo.' },
@@ -115,6 +115,16 @@
       startLabel: '1 de enero de 2025'
     },
 
+    // ---- Perfil del administrador ----
+    g_profile: {
+      first: 'Antonio',
+      last: 'Galíndez',
+      role: 'Alcalde de Guarenas',
+      dept: 'Despacho de la Alcaldía',
+      photo: 'assets/alcalde-perfil.png',
+      zoom: 1, posX: 0, posY: 0
+    },
+
     // ---- Gestión en cifras (Home) — editable por el administrador ----
     g_cifras: {
       items: [
@@ -129,12 +139,12 @@
     // ---- Línea de tiempo de la gestión (editable por el administrador) ----
     g_hitos: {
       items: [
-        { fecha:'Ene 2025', icon:'gab', title:'Instalación del gabinete municipal', desc:'Arranque de la gestión con el diagnóstico de servicios en las cinco parroquias del Municipio Ambrosio Plaza.', img:'assets/_compartidas/tl-inicio.png' },
-        { fecha:'Abr 2025', icon:'luz', title:'Guarenas más iluminada', desc:'710 luminarias LED instaladas en avenidas y comunidades: Falcón, Anzoátegui, Comercio, 19 de Abril, Andrés Bello y más.', img:'assets/_compartidas/tl-alumbrado.png' },
-        { fecha:'Jul 2025', icon:'vial', title:'Plan de asfaltado', desc:'2.100 toneladas de asfalto colocadas en Las Clavellinas, Ruiz Pineda, Casco Central, Nueva Casarapa y Quebrada Seca.', img:'assets/_compartidas/tl-vial.png' },
-        { fecha:'Oct 2025', icon:'edu', title:'Escuelas y espacios educativos', desc:'Recuperación de planteles, dotación escolar y reactivación de escuelas deportivas municipales.', img:'assets/_compartidas/tl-escuelas.png' },
-        { fecha:'Ene 2026', icon:'seg', title:'Seguridad ciudadana reforzada', desc:'Incorporación de 10 patrullas, 50 motos nuevas y dotación de 200 uniformes completos para la policía municipal.', img:'assets/_compartidas/news-brigada.png' },
-        { fecha:'Jun 2026', icon:'balance', title:'Balance del primer semestre', desc:'Rendición de cuentas pública con los principales resultados de la gestión y los compromisos para el segundo semestre.', img:'assets/_compartidas/tl-balance.png' }
+        { fecha:'Ene 2025', icon:'gab', title:'Instalación del gabinete municipal', desc:'Arranque de la gestión con el diagnóstico de servicios en las cinco parroquias del Municipio Ambrosio Plaza.', img:'assets/tl-inicio.png' },
+        { fecha:'Abr 2025', icon:'luz', title:'Guarenas más iluminada', desc:'710 luminarias LED instaladas en avenidas y comunidades: Falcón, Anzoátegui, Comercio, 19 de Abril, Andrés Bello y más.', img:'assets/tl-alumbrado.png' },
+        { fecha:'Jul 2025', icon:'vial', title:'Plan de asfaltado', desc:'2.100 toneladas de asfalto colocadas en Las Clavellinas, Ruiz Pineda, Casco Central, Nueva Casarapa y Quebrada Seca.', img:'assets/tl-vial.png' },
+        { fecha:'Oct 2025', icon:'edu', title:'Escuelas y espacios educativos', desc:'Recuperación de planteles, dotación escolar y reactivación de escuelas deportivas municipales.', img:'assets/tl-escuelas.png' },
+        { fecha:'Ene 2026', icon:'seg', title:'Seguridad ciudadana reforzada', desc:'Incorporación de 10 patrullas, 50 motos nuevas y dotación de 200 uniformes completos para la policía municipal.', img:'assets/news-brigada.png' },
+        { fecha:'Jun 2026', icon:'balance', title:'Balance del primer semestre', desc:'Rendición de cuentas pública con los principales resultados de la gestión y los compromisos para el segundo semestre.', img:'assets/tl-balance.png' }
       ]
     },
 
@@ -178,7 +188,7 @@
             val.ciudad = val.ciudad.map(function (n) {
               if (n && n.title === 'Nuevas rutas de transporte urbano para las comunidades') {
                 mig = true;
-                return { tag: 'Ciudad', date: n.date || '10 jun 2026', title: 'Inauguración de nuevas canchas deportivas para la juventud', desc: 'El alcalde entregó espacios deportivos recuperados para el deporte y la recreación comunitaria.', img: 'assets/_compartidas/noticia-deporte-1.jpg' };
+                return { tag: 'Ciudad', date: n.date || '10 jun 2026', title: 'Inauguración de nuevas canchas deportivas para la juventud', desc: 'El alcalde entregó espacios deportivos recuperados para el deporte y la recreación comunitaria.', img: 'assets/noticia-deporte-1.jpg' };
               }
               return n;
             });

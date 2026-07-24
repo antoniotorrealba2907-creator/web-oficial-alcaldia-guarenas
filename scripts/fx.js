@@ -11,7 +11,7 @@
       var ov = document.createElement('div');
       ov.id = '__gua-loader';
       ov.setAttribute('style', 'position:fixed;inset:0;z-index:99999;background:#ffffff;display:flex;align-items:center;justify-content:center;transition:opacity .35s ease;');
-      ov.innerHTML = '<img src="assets/_compartidas/marca/isotipo-blue.svg" alt="Alcaldía de Guarenas" style="width:96px;height:96px;animation:guaPulse 1.15s ease-in-out infinite;">';
+      ov.innerHTML = '<img src="assets/isotipo-blue.svg" alt="Alcaldía de Guarenas" style="width:96px;height:96px;animation:guaPulse 1.15s ease-in-out infinite;">';
       var st = document.createElement('style');
       st.textContent = '@keyframes guaPulse{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.06);opacity:1}}';
       document.head.appendChild(st);
